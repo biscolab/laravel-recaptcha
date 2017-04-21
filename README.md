@@ -4,13 +4,10 @@ Simple Google ReCaptcha package for Laravel 5
 ## Installation
 
 You can install the package via composer:
-
 ```sh
 composer require biscolab/laravel-recaptcha
 ```
-
 The service **provider** must be registered in `config/app.php`:
-
 ```php
 'providers' => [
     ...
@@ -33,19 +30,16 @@ php artisan vendor:publish --provider="Biscolab\ReCaptcha\ReCaptchaServiceProvid
 
 ### Add your API Keys
 Open `config/recaptcha.php` configuration file and set `api_site_key` and `api_secret_key`:
-
 ```php
 return [
     'api_site_key'      => 'YOUR_API_SITE_KEY',
     'api_secret_key'    => 'YOUR_API_SECRET_KEY',
 ];
 ```
-
 For more invermation about Site Key and Secret Key please visit [Google RaCaptcha developer documentation](https://developers.google.com/recaptcha/docs/start)
 
 ### Customize error message
 Before starting please add validation recaptcha message to `resources/lang/[LANG]/validation.php` file
-
 ```php
 return [
     ...
@@ -58,7 +52,6 @@ return [
 ### Embed in Blade
 
 Insert `{!!ReCaptcha::htmlScriptTagJsApi()!!}` before closing `</head>` tag
-
 ```blade
 <!DOCTYPE html>
 <html>
@@ -69,7 +62,6 @@ Insert `{!!ReCaptcha::htmlScriptTagJsApi()!!}` before closing `</head>` tag
 ```
 
 After you have to insert `{!!ReCaptcha::htmlFormSnippet()!!}` inside the form where you want to use the field `g-recaptcha-response`
-
 ```blade
 <form>
     ...
@@ -80,7 +72,6 @@ After you have to insert `{!!ReCaptcha::htmlFormSnippet()!!}` inside the form wh
 ## Verify submitted data
 
 Add **recaptcha** to your rules
-
 ```php
 $v = Validator::make(request()->all(), [
     'g-recaptcha-response' => 'recaptcha',
@@ -88,7 +79,6 @@ $v = Validator::make(request()->all(), [
 ```
 
 Print form errors
-
 ```php
 dd($v->errors());
 ```
