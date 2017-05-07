@@ -5,6 +5,7 @@ Simple Google ReCaptcha package for Laravel 5
 
 You can install the package via composer:
 ```sh
+
 composer require biscolab/laravel-recaptcha:^2.0
 ```
 The service **provider** must be registered in `config/app.php`:
@@ -29,7 +30,9 @@ php artisan vendor:publish --provider="Biscolab\ReCaptcha\ReCaptchaServiceProvid
 ## Configuration
 
 ### Add your API Keys
+
 Open `config/recaptcha.php` configuration file and set `api_site_key`, `api_secret_key` and `version`:
+
 ```php
 return [
     'api_site_key'      => 'YOUR_API_SITE_KEY',
@@ -39,6 +42,7 @@ return [
 ```
 For more invermation about Site Key and Secret Key please visit [Google RaCaptcha developer documentation](https://developers.google.com/recaptcha/docs/start)
 Get more info about ReCAPTCHA version at https://developers.google.com/recaptcha/docs/versions
+
 
 ### Customize error message
 Before starting please add validation recaptcha message to `resources/lang/[LANG]/validation.php` file
@@ -56,6 +60,7 @@ return [
 Insert `htmlScriptTagJsApi($formId)` helper before closing `</head>` tag
 You can also use `ReCaptcha::htmlScriptTagJsApi($formId)`.
 `$formId` is required only if you are using **ReCAPTCHA INVISIBLE**
+
 ```blade
 <!DOCTYPE html>
 <html>
@@ -86,6 +91,7 @@ You can also use `ReCaptcha::htmlFormButton($buttonInnerHTML)` .
 <form>
     ...
     {!! htmlFormButton(/* $buttonInnerHTML - Optional */) !!}
+
 </form>
 ```
 
