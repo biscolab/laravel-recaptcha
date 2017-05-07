@@ -37,8 +37,6 @@ class ReCaptchaServiceProvider extends ServiceProvider
         );
 
         $this->registerReCaptchaBuilder();
-
-        $this->app->alias('recaptcha', 'Biscolab\ReCaptcha\ReCaptchaBuilder');
     }
 
     /**
@@ -49,7 +47,8 @@ class ReCaptchaServiceProvider extends ServiceProvider
     protected function registerReCaptchaBuilder()
     {
         $this->app->singleton('recaptcha', function ($app) {
-            return new ReCaptchaBuilder(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'));
+            if(config('recaptcha.version') == 'v2') return new ReCaptchaBuilderV2(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'), config('recaptcha.version'));
+            else return new ReCaptchaBuilderInvisible(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'), config('recaptcha.version'));
         });
     }
 
@@ -70,7 +69,7 @@ class ReCaptchaServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['recaptcha', 'Biscolab\ReCaptcha\ReCaptchaBuilder'];
+        return ['recaptcha'];
     }
  
 }

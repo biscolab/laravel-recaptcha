@@ -1,6 +1,17 @@
 <?php
 
+/**
+ *
+ * Biscolab Laravel ReCaptcha - ReCaptchaBuilder Class
+ * MIT License @ https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
+ * author: Roberto Belotti - info@robertobelotti.com
+ * web : robertobelotti.com, github.com/biscolab
+ *
+ */
+
 namespace Biscolab\ReCaptcha;
+
+use Exception;
 
 class ReCaptchaBuilder {
 
@@ -17,32 +28,41 @@ class ReCaptchaBuilder {
 	protected $api_secret_key;
 
 	/**
+	 * The chosen ReCAPTCHA version
+	 * please visit https://developers.google.com/recaptcha/docs/start	 
+	 */	
+	protected $version;
+
+	/**
 	 * The API request URI
 	 */
 	protected $api_url = 'https://www.google.com/recaptcha/api/siteverify';
 
-	public function __construct($api_site_key, $api_secret_key)
+	public function __construct($api_site_key, $api_secret_key, $version = 'v2')
 	{
 		$this->api_site_key		= $api_site_key;
 		$this->api_secret_key	= $api_secret_key;
+		$this->version 			= $version;
 	}
 	
 	/**
 	 * Write script HTML tag in you HTML code
 	 * Insert before </head> tag
+	 *
+	 * @param $formId required if you are using invisible ReCaptcha
 	 */
-	public function htmlScriptTagJsApi()
+	public function htmlScriptTagJsApi($formId = '')
 	{
-		return "<script src='https://www.google.com/recaptcha/api.js'></script>";
-	}
-
-	/**
-	 * Write HTML tag in you HTML code
-	 * Insert before </head> tag
-	 */
-	public function htmlFormSnippet()
-	{
-		return "<div class='g-recaptcha' data-sitekey='".$this->api_site_key."'></div>";
+		$html = "<script src='https://www.google.com/recaptcha/api.js' async defer></script>";
+		if($this->version != 'v2'){
+			if(!$formId) throw new Exception("formId required", 1);
+			$html.= '<script>
+		       function biscolabLaravelReCaptcha(token) {
+		         document.getElementById("'.$formId.'").submit();
+		       }
+		     </script>';
+		}
+		return $html;
 	}
 
     /**
