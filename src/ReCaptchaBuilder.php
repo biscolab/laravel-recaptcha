@@ -74,7 +74,8 @@ class ReCaptchaBuilder {
      */
     public function validate($response)
     {
-    	if(!in_array(request()->ip(), config('recaptcha.bypass_ip'))) {
+    	$bypass_ip = (config('recaptcha.bypass_ip'))? config('recaptcha.bypass_ip') : [];
+    	if(!in_array(request()->ip(), $bypass_ip)) {
 	        $params = http_build_query([
 	            'secret'   => $this->api_secret_key,
 	            'remoteip' => request()->getClientIp(),
@@ -97,12 +98,10 @@ class ReCaptchaBuilder {
 	            return false;
 	        }
 	        $response = json_decode(trim($curl_response), true);
+	        return $response['success'];
 	     }
 	     else {
-	     	$response['success'] = true;
+	     	return true;
 	     }
-
-        return $response['success'];
     }
-
 }
