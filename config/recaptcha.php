@@ -37,5 +37,12 @@ return [
      * get more info @ https://developers.google.com/recaptcha/docs/versions
      *
      */
-    'version'			=> 'v2'  
+    'version'			=> 'v2'  ,
+
+    /**
+     *
+     * IP addresses for which validation will be skipped
+     *
+     */
+    'bypass_ip'			=> [];    
 ];
