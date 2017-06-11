@@ -74,28 +74,33 @@ class ReCaptchaBuilder {
      */
     public function validate($response)
     {
-        $params = http_build_query([
-            'secret'   => $this->api_secret_key,
-            'remoteip' => request()->getClientIp(),
-            'response' => $response,
-        ]);
+    	if(!in_array(request()->ip(), config('recaptcha.bypass_ip'))) {
+	        $params = http_build_query([
+	            'secret'   => $this->api_secret_key,
+	            'remoteip' => request()->getClientIp(),
+	            'response' => $response,
+	        ]);
 
-        $url = $this->api_url. '?' . $params;
+	        $url = $this->api_url. '?' . $params;
 
-        if (function_exists('curl_version')) {
-            $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_TIMEOUT, 1);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-            $curl_response = curl_exec($curl);
-        } else {
-            $curl_response = file_get_contents($url);
-        }
-        if (is_null($curl_response) || empty( $curl_response )) {
-            return false;
-        }
-        $response = json_decode(trim($curl_response), true);
+	        if (function_exists('curl_version')) {
+	            $curl = curl_init($url);
+	            curl_setopt($curl, CURLOPT_HEADER, false);
+	            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	            curl_setopt($curl, CURLOPT_TIMEOUT, 1);
+	            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+	            $curl_response = curl_exec($curl);
+	        } else {
+	            $curl_response = file_get_contents($url);
+	        }
+	        if (is_null($curl_response) || empty( $curl_response )) {
+	            return false;
+	        }
+	        $response = json_decode(trim($curl_response), true);
+	     }
+	     else {
+	     	$response['success'] = true;
+	     }
 
         return $response['success'];
     }
