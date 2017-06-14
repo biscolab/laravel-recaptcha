@@ -35,10 +35,15 @@ return [
     'api_site_key'      => 'YOUR_API_SITE_KEY',
     'api_secret_key'    => 'YOUR_API_SECRET_KEY',
     'version'           => 'v2' // supported: v2|invisible 
+    'skip_ip'           => [] // array of IP addresses - String: dotted quad format e.g.: 127.0.0.1
 ];
 ```
 For more invermation about Site Key and Secret Key please visit [Google RaCaptcha developer documentation](https://developers.google.com/recaptcha/docs/start)
 Get more info about ReCAPTCHA version at https://developers.google.com/recaptcha/docs/versions
+**skip_ip** is a list of IP addresses that, if recognized, disable the recaptcha validation (return always true).
+
+### Have you updated?
+If you are migrating from an older version add `skip_ip` array in `recaptcha.php` configuration file.
 
 ### Customize error message
 Before starting please add validation recaptcha message to `resources/lang/[LANG]/validation.php` file
