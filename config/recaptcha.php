@@ -44,5 +44,5 @@ return [
      * IP addresses for which validation will be skipped
      *
      */
-    'bypass_ip'			=> [];    
+    'skip_ip'			=> [];    
 ];
