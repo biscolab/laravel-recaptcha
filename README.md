@@ -5,7 +5,7 @@ Simple Google ReCaptcha package for Laravel 5
 
 You can install the package via composer:
 ```sh
-composer require biscolab/laravel-recaptcha:^2.0
+composer require biscolab/laravel-recaptcha:^2.1
 ```
 The service **provider** must be registered in `config/app.php`:
 ```php
