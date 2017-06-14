@@ -18,20 +18,29 @@ class ReCaptchaBuilder {
 	/**
 	 * The Site key
 	 * please visit https://developers.google.com/recaptcha/docs/start
+	 * @var string
 	 */
 	protected $api_site_key;
 
 	/**
 	 * The Secret key
 	 * please visit https://developers.google.com/recaptcha/docs/start	 
+	 * @var string
 	 */	
 	protected $api_secret_key;
 
 	/**
 	 * The chosen ReCAPTCHA version
 	 * please visit https://developers.google.com/recaptcha/docs/start	 
+	 * @var string
 	 */	
 	protected $version;
+
+	/**
+	 * Whether is true the ReCAPTCHA is inactive
+	 * @var boolean
+	 */	
+	protected $skip_by_ip = false;
 
 	/**
 	 * The API request URI
@@ -43,6 +52,7 @@ class ReCaptchaBuilder {
 		$this->api_site_key		= $api_site_key;
 		$this->api_secret_key	= $api_secret_key;
 		$this->version 			= $version;
+		$this->skip_by_ip 		= self::skipByIp();
 	}
 	
 	/**
@@ -53,6 +63,7 @@ class ReCaptchaBuilder {
 	 */
 	public function htmlScriptTagJsApi($formId = '')
 	{
+		if($this->skip_by_ip) return '';
 		$html = "<script src='https://www.google.com/recaptcha/api.js' async defer></script>";
 		if($this->version != 'v2'){
 			if(!$formId) throw new Exception("formId required", 1);
@@ -70,38 +81,47 @@ class ReCaptchaBuilder {
      *
      * @param string $response
      *
-     * @return bool
+     * @return boolean
      */
     public function validate($response)
     {
-    	$bypass_ip = (config('recaptcha.bypass_ip'))? config('recaptcha.bypass_ip') : [];
-    	if(!in_array(request()->ip(), $bypass_ip)) {
-	        $params = http_build_query([
-	            'secret'   => $this->api_secret_key,
-	            'remoteip' => request()->getClientIp(),
-	            'response' => $response,
-	        ]);
+    	if($this->skip_by_ip) {
+    		return true;
+    	} 
 
-	        $url = $this->api_url. '?' . $params;
+        $params = http_build_query([
+            'secret'   => $this->api_secret_key,
+            'remoteip' => request()->getClientIp(),
+            'response' => $response,
+        ]);
 
-	        if (function_exists('curl_version')) {
-	            $curl = curl_init($url);
-	            curl_setopt($curl, CURLOPT_HEADER, false);
-	            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	            curl_setopt($curl, CURLOPT_TIMEOUT, 1);
-	            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-	            $curl_response = curl_exec($curl);
-	        } else {
-	            $curl_response = file_get_contents($url);
-	        }
-	        if (is_null($curl_response) || empty( $curl_response )) {
-	            return false;
-	        }
-	        $response = json_decode(trim($curl_response), true);
-	        return $response['success'];
-	     }
-	     else {
-	     	return true;
-	     }
+        $url = $this->api_url. '?' . $params;
+
+        if (function_exists('curl_version')) {
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 1);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            $curl_response = curl_exec($curl);
+        } else {
+            $curl_response = file_get_contents($url);
+        }
+        if (is_null($curl_response) || empty( $curl_response )) {
+            return false;
+        }
+        $response = json_decode(trim($curl_response), true);
+        return $response['success'];
+
+    }
+
+    /**
+     * Checks whether the user IP address is among IPs "to be skipped"
+     *
+     * @return boolean     
+     */
+    public static function skipByIp(){
+    	$skip_ip = (config('recaptcha.skip_ip'))? config('recaptcha.skip_ip') : [];
+    	return (in_array(request()->ip(), $skip_ip));
     }
 }
