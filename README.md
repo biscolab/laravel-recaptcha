@@ -1,4 +1,7 @@
 # Laravel ReCAPTCHA - v2.*
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8065e38c6dec4ea487686a2d96185a4c)](https://www.codacy.com/app/roby.belotti/laravel-recaptcha?utm_source=github.com&utm_medium=referral&utm_content=biscolab/laravel-recaptcha&utm_campaign=badger)
+
 Simple Google ReCaptcha package for Laravel 5
 
 ## Installation
