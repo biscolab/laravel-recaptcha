@@ -106,7 +106,13 @@ $v = Validator::make(request()->all(), [
 
 Print form errors
 ```php
-dd($v->errors());
+$errors = $v->errors();
+```
+
+## Test
+
+```sh
+composer test
 ```
 
 ## Changelog
