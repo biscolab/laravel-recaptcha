@@ -1,5 +1,6 @@
 {
     "name": "biscolab/laravel-recaptcha",
+    "description": "Simple ReCaptcha package for Laravel 5",
     "license": "MIT",
     "authors": [
         {
@@ -8,12 +9,12 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9|7.*",
-        "laravel/framework": "5.*"
+        "php": "^7.1",
+        "laravel/framework": "^5.5"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0",
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "6.*|7.*"
     },
     "autoload": {
         "psr-4": {

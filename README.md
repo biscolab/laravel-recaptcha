@@ -1,5 +1,10 @@
-# Laravel ReCAPTCHA - v2.*
+# Laravel ReCAPTCHA - v3
 Simple Google ReCaptcha package for Laravel 5
+
+## System requirements
+PHP 7.1 or grater
+
+Are you still using PHP 5.6? Please go to [V2](https://github.com/biscolab/laravel-recaptcha/tree/v2.0.4)
 
 ## Installation
 
