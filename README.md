@@ -114,6 +114,3 @@ $errors = $v->errors();
 ```sh
 composer test
 ```
-
-## Changelog
-[Changelog](CHANGELOG.md)
