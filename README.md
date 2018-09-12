@@ -10,7 +10,7 @@ Are you still using PHP 5.6? Please go to [V2](https://github.com/biscolab/larav
 
 You can install the package via composer:
 ```sh
-composer require biscolab/laravel-recaptcha:^2.0
+composer require biscolab/laravel-recaptcha:^3.0
 ```
 The service **provider** must be registered in `config/app.php`:
 ```php
