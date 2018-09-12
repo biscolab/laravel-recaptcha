@@ -1,6 +1,8 @@
 # Laravel ReCAPTCHA - v3
 Simple Google ReCaptcha package for Laravel 5
 
+[![Build Status](https://travis-ci.org/biscolab/laravel-recaptcha.svg?branch=master)](https://travis-ci.org/biscolab/laravel-recaptcha) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/biscolab/laravel-recaptcha/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/biscolab/laravel-recaptcha/?branch=master) ![Packagist version](https://img.shields.io/packagist/v/biscolab/laravel-recaptcha.svg)
+
 ## System requirements
 PHP 7.1 or grater
 
@@ -119,3 +121,5 @@ $errors = $v->errors();
 ```sh
 composer test
 ```
+## License
+[![MIT License](https://img.shields.io/github/license/biscolab/laravel-recaptcha.svg)](https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE)
