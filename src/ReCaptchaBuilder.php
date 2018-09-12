@@ -1,12 +1,11 @@
 <?php
-
 /**
- *
- * Biscolab Laravel ReCaptcha - ReCaptchaBuilder Class
- * MIT License @ https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
- * author: Roberto Belotti - info@robertobelotti.com
+ * Copyright (c) 2017 - present
+ * LaravelGoogleRecaptcha - ReCaptchaBuilder.php
+ * author: Roberto Belotti - roby.belotti@gmail.com
  * web : robertobelotti.com, github.com/biscolab
- *
+ * Initial version created on: 12/9/2018
+ * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
 namespace Biscolab\ReCaptcha;
@@ -15,66 +14,86 @@ use Exception;
 
 class ReCaptchaBuilder {
 
-	/**
-	 * The Site key
-	 * please visit https://developers.google.com/recaptcha/docs/start
-	 * @var string
-	 */
-	protected $api_site_key;
+    /**
+     * The Site key
+     * please visit https://developers.google.com/recaptcha/docs/start
+     * @var string
+     */
+    protected $api_site_key;
 
-	/**
-	 * The Secret key
-	 * please visit https://developers.google.com/recaptcha/docs/start	 
-	 * @var string
-	 */	
-	protected $api_secret_key;
+    /**
+     * The Secret key
+     * please visit https://developers.google.com/recaptcha/docs/start
+     * @var string
+     */
+    protected $api_secret_key;
 
-	/**
-	 * The chosen ReCAPTCHA version
-	 * please visit https://developers.google.com/recaptcha/docs/start	 
-	 * @var string
-	 */	
-	protected $version;
+    /**
+     * The chosen ReCAPTCHA version
+     * please visit https://developers.google.com/recaptcha/docs/start
+     * @var string
+     */
+    protected $version;
 
-	/**
-	 * Whether is true the ReCAPTCHA is inactive
-	 * @var boolean
-	 */	
-	protected $skip_by_ip = false;
+    /**
+     * Whether is true the ReCAPTCHA is inactive
+     * @var boolean
+     */
+    protected $skip_by_ip = false;
 
-	/**
-	 * The API request URI
-	 */
-	protected $api_url = 'https://www.google.com/recaptcha/api/siteverify';
+    /**
+     * The API request URI
+     */
+    protected $api_url = 'https://www.google.com/recaptcha/api/siteverify';
 
-	public function __construct($api_site_key, $api_secret_key, $version = 'v2')
-	{
-		$this->api_site_key		= $api_site_key;
-		$this->api_secret_key	= $api_secret_key;
-		$this->version 			= $version;
-		$this->skip_by_ip 		= self::skipByIp();
-	}
-	
-	/**
-	 * Write script HTML tag in you HTML code
-	 * Insert before </head> tag
-	 *
-	 * @param $formId required if you are using invisible ReCaptcha
-	 */
-	public function htmlScriptTagJsApi($formId = '')
-	{
-		if($this->skip_by_ip) return '';
-		$html = "<script src='https://www.google.com/recaptcha/api.js' async defer></script>";
-		if($this->version != 'v2'){
-			if(!$formId) throw new Exception("formId required", 1);
-			$html.= '<script>
+    public function __construct($api_site_key, $api_secret_key, $version = 'v2') {
+
+        $this->api_site_key = $api_site_key;
+        $this->api_secret_key = $api_secret_key;
+        $this->version = $version;
+        $this->skip_by_ip = self::skipByIp();
+    }
+
+    /**
+     * Checks whether the user IP address is among IPs "to be skipped"
+     *
+     * @return boolean
+     */
+    public static function skipByIp() {
+
+        $skip_ip = (config('recaptcha.skip_ip')) ? config('recaptcha.skip_ip') : [];
+
+        return (in_array(request()->ip(), $skip_ip));
+    }
+
+    /**
+     * Write script HTML tag in you HTML code
+     * Insert before </head> tag
+     *
+     * @param string $formId
+     *
+     * @return string
+     * @throws Exception
+     */
+    public function htmlScriptTagJsApi($formId = '') {
+
+        if ($this->skip_by_ip) {
+            return '';
+        }
+        $html = "<script src='https://www.google.com/recaptcha/api.js' async defer></script>";
+        if ($this->version != 'v2') {
+            if (!$formId) {
+                throw new Exception("formId required", 1);
+            }
+            $html .= '<script>
 		       function biscolabLaravelReCaptcha(token) {
-		         document.getElementById("'.$formId.'").submit();
+		         document.getElementById("' . $formId . '").submit();
 		       }
 		     </script>';
-		}
-		return $html;
-	}
+        }
+
+        return $html;
+    }
 
     /**
      * Call out to reCAPTCHA and process the response
@@ -83,11 +102,11 @@ class ReCaptchaBuilder {
      *
      * @return boolean
      */
-    public function validate($response)
-    {
-    	if($this->skip_by_ip) {
-    		return true;
-    	} 
+    public function validate($response) {
+
+        if ($this->skip_by_ip) {
+            return true;
+        }
 
         $params = http_build_query([
             'secret'   => $this->api_secret_key,
@@ -95,7 +114,7 @@ class ReCaptchaBuilder {
             'response' => $response,
         ]);
 
-        $url = $this->api_url. '?' . $params;
+        $url = $this->api_url . '?' . $params;
 
         if (function_exists('curl_version')) {
             $curl = curl_init($url);
@@ -107,21 +126,12 @@ class ReCaptchaBuilder {
         } else {
             $curl_response = file_get_contents($url);
         }
-        if (is_null($curl_response) || empty( $curl_response )) {
+        if (is_null($curl_response) || empty($curl_response)) {
             return false;
         }
         $response = json_decode(trim($curl_response), true);
+
         return $response['success'];
 
-    }
-
-    /**
-     * Checks whether the user IP address is among IPs "to be skipped"
-     *
-     * @return boolean     
-     */
-    public static function skipByIp(){
-    	$skip_ip = (config('recaptcha.skip_ip'))? config('recaptcha.skip_ip') : [];
-    	return (in_array(request()->ip(), $skip_ip));
     }
 }

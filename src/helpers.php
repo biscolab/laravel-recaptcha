@@ -1,20 +1,21 @@
 <?php
-
 /**
- *
- * Biscolab Laravel ReCaptcha - helpers
- * MIT License @ https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
- * author: Roberto Belotti - info@robertobelotti.com
+ * Copyright (c) 2017 - present
+ * LaravelGoogleRecaptcha - helpers.php
+ * author: Roberto Belotti - roby.belotti@gmail.com
  * web : robertobelotti.com, github.com/biscolab
- *
+ * Initial version created on: 12/9/2018
+ * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
+
+use Biscolab\ReCaptcha\Facades\ReCaptcha;
 
 if (!function_exists('recaptcha')) {
     /**
      * @return Biscolab\ReCaptcha\ReCaptchaBuilder
      */
-    function recaptcha()
-    {
+    function recaptcha() {
+
         return app('recaptcha');
     }
 }
@@ -29,10 +30,12 @@ if (!function_exists('recaptcha')) {
 if (!function_exists('htmlScriptTagJsApi')) {
 
     /**
-     * @return Biscolab\ReCaptcha\ReCaptchaBuilder::htmlScriptTagJsApi()
+     * @param string $formId
+     *
+     * @return string
      */
-    function htmlScriptTagJsApi($formId = '')
-    {
+    function htmlScriptTagJsApi($formId = '') {
+
         return ReCaptcha::htmlScriptTagJsApi($formId);
     }
 }
@@ -42,7 +45,8 @@ if (!function_exists('htmlScriptTagJsApi')) {
  * Write HTML <button> tag in your HTML code
  * Insert before </form> tag
  *
- * Warning! Using only with ReCAPTCHA INVISIBLE 
+ * Warning! Using only with ReCAPTCHA INVISIBLE
+ *
  * @param $buttonInnerHTML What you want to write on the submit button
  */
 if (!function_exists('htmlFormButton')) {
@@ -50,8 +54,8 @@ if (!function_exists('htmlFormButton')) {
     /**
      * @return Biscolab\ReCaptcha\ReCaptchaBuilder::htmlFormButton()
      */
-    function htmlFormButton($buttonInnerHTML = 'Submit')
-    {
+    function htmlFormButton($buttonInnerHTML = 'Submit') {
+
         return ReCaptcha::htmlFormButton($buttonInnerHTML);
     }
 }
@@ -68,8 +72,8 @@ if (!function_exists('htmlFormSnippet')) {
     /**
      * @return Biscolab\ReCaptcha\ReCaptchaBuilder::htmlFormSnippet()
      */
-    function htmlFormSnippet()
-    {
+    function htmlFormSnippet() {
+
         return ReCaptcha::htmlFormSnippet();
     }
 }
