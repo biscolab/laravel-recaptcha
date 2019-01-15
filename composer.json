@@ -31,5 +31,15 @@
     },
     "scripts": {
         "test": "phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Biscolab\\ReCaptcha\\ReCaptchaServiceProvider"
+            ],
+            "aliases": {
+                "ReCaptcha": "Biscolab\\ReCaptcha\\Facades\\ReCaptcha"
+            }
+        }
     }
 }
