@@ -14,3 +14,9 @@ bootstrap/cache/
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
+
+# composer
+/composer.lock
+/composer.local.*
+/composer.phar
+/coverage.clover
