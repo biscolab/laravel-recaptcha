@@ -1,10 +1,10 @@
 # Laravel ReCAPTCHA - v3
-Simple Google ReCaptcha package for Laravel 5
+Simple Google reCAPTCHA package for Laravel 5
 
 [![Build Status](https://travis-ci.org/biscolab/laravel-recaptcha.svg?branch=master)](https://travis-ci.org/biscolab/laravel-recaptcha) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/biscolab/laravel-recaptcha/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/biscolab/laravel-recaptcha/?branch=master) ![Packagist version](https://img.shields.io/packagist/v/biscolab/laravel-recaptcha.svg)
 
 ## System requirements
-PHP 7.1 or grater
+PHP 7.1 or greater
 
 Are you still using PHP 5.6? Please go to [V2](https://github.com/biscolab/laravel-recaptcha/tree/v2.0.4)
 
@@ -21,7 +21,7 @@ The service **provider** must be registered in `config/app.php`:
     Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
 ];
 ```
-You can use the facade for shorter code. Add "ReCaptcha" to your aliases:
+You can use the facade for shorter code. Add `ReCaptcha` to your aliases:
 ```php
 'aliases' => [
     ...
@@ -45,15 +45,15 @@ return [
     'skip_ip'           => [] // array of IP addresses - String: dotted quad format e.g.: 127.0.0.1
 ];
 ```
-For more invermation about Site Key and Secret Key please visit [Google RaCaptcha developer documentation](https://developers.google.com/recaptcha/docs/start)
-Get more info about ReCAPTCHA version at https://developers.google.com/recaptcha/docs/versions
-**skip_ip** is a list of IP addresses that, if recognized, disable the recaptcha validation (return always true).
+For more invermation about Site Key and Secret Key please visit [Google reCAPTCHA developer documentation](https://developers.google.com/recaptcha/docs/start)
+Get more info about reCAPTCHA version at https://developers.google.com/recaptcha/docs/versions
+**skip_ip** is a list of IP addresses that, if recognized, disable the reCAPTCHA validation (return always true).
 
 ### Have you updated?
 If you are migrating from an older version add `skip_ip` array in `recaptcha.php` configuration file.
 
 ### Customize error message
-Before starting please add validation recaptcha message to `resources/lang/[LANG]/validation.php` file
+Before starting please add the validation message to `resources/lang/[LANG]/validation.php` file
 ```php
 return [
     ...
