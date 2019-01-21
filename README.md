@@ -6,7 +6,7 @@ Simple Google reCAPTCHA package for Laravel 5
 ## System requirements
 PHP 7.1 or greater
 
-Are you still using PHP 5.6? Please go to [V2](https://github.com/biscolab/laravel-recaptcha/tree/v2.0.4)
+Are you still using PHP 5.x or 7.0? Please go to [V2](https://github.com/biscolab/laravel-recaptcha/tree/v2.0.4)
 
 ## Installation
 
