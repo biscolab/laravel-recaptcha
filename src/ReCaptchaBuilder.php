@@ -48,10 +48,61 @@ class ReCaptchaBuilder {
 
     public function __construct($api_site_key, $api_secret_key, $version = 'v2') {
 
+        $this->setApiSiteKey($api_site_key);
+        $this->setApiSecretKey($api_secret_key);
+        $this->setVersion($version);
+        $this->setSkipByIp($this->skipByIp());
+    }
+
+    /**
+     * @param string $api_site_key
+     *
+     * @return ReCaptchaBuilder
+     */
+    public function setApiSiteKey(string $api_site_key): ReCaptchaBuilder{
         $this->api_site_key = $api_site_key;
+
+        return $this;
+    }
+
+    /**
+     * @param string $api_secret_key
+     *
+     * @return ReCaptchaBuilder
+     */
+    public function setApiSecretKey(string $api_secret_key): ReCaptchaBuilder{
         $this->api_secret_key = $api_secret_key;
+
+        return $this;
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return ReCaptchaBuilder
+     */
+    public function setVersion(string $version): ReCaptchaBuilder{
         $this->version = $version;
-        $this->skip_by_ip = self::skipByIp();
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion(): string {
+        return $this->version;
+    }
+
+    /**
+     * @param bool $skip_by_ip
+     *
+     * @return ReCaptchaBuilder
+     */
+    public function setSkipByIp(bool $skip_by_ip): ReCaptchaBuilder{
+        $this->skip_by_ip = $skip_by_ip;
+
+        return $this;
     }
 
     /**
@@ -59,7 +110,7 @@ class ReCaptchaBuilder {
      *
      * @return boolean
      */
-    public static function skipByIp() {
+    public function skipByIp(): bool {
 
         $skip_ip = (config('recaptcha.skip_ip')) ? config('recaptcha.skip_ip') : [];
 
@@ -70,18 +121,27 @@ class ReCaptchaBuilder {
      * Write script HTML tag in you HTML code
      * Insert before </head> tag
      *
-     * @param string $formId
+     * @param string|null    $formId
+     * @param array|null $configuration
      *
      * @return string
      * @throws Exception
      */
-    public function htmlScriptTagJsApi($formId = '') {
+    public function htmlScriptTagJsApi(?string $formId = '', ?array $configuration = []): string {
 
         if ($this->skip_by_ip) {
             return '';
         }
-        $html = "<script src='https://www.google.com/recaptcha/api.js' async defer></script>";
-        if ($this->version != 'v2') {
+
+        switch ($this->version) {
+            case 'v3':
+                $html = "<script src=\"https://www.google.com/recaptcha/api.js?render={$this->api_site_key}\"></script>";
+                break;
+            default:
+                $html = "<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>";
+        }
+
+        if ($this->version == 'invisible') {
             if (!$formId) {
                 throw new Exception("formId required", 1);
             }
@@ -91,8 +151,50 @@ class ReCaptchaBuilder {
 		       }
 		     </script>';
         }
+        elseif ($this->version == 'v3') {
+            $action = array_get($configuration, 'action', 'homepage');
+            $js_then_callback = array_get($configuration, 'callback_then', '');
+            $js_callback_catch = array_get($configuration, 'callback_catch', '');
+
+            $js_then_callback = ($js_then_callback) ? "{$js_then_callback}(response)" : '';
+            $js_callback_catch = ($js_callback_catch) ? "{$js_callback_catch}(err)" : '';
+
+            $html .= "<script>
+                    var csrfToken = document.head.querySelector('meta[name=\"csrf-token\"]');
+                  grecaptcha.ready(function() {
+                      grecaptcha.execute('{$this->api_site_key}', {action: '{$action}'}).then(function(token) {
+                            fetch('/" . config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate') . "?" . config('recaptcha.default_token_parameter_name', 'token') . "=' + token, {
+                                headers: {
+                                  \"X-Requested-With\": \"XMLHttpRequest\",
+                                  \"X-CSRF-TOKEN\": csrfToken.content
+                                }
+                              })
+         
+                            .then(function(response) {
+                            	{$js_then_callback}
+//                            	console.log(response.status);
+//                                    response.json().then(function(data){
+//                                    console.log(data);
+//                                });
+                            })
+                            .catch(function(err) {
+                                {$js_callback_catch}
+                            });
+                      });
+                  });
+		     </script>";
+        }
 
         return $html;
+    }
+
+    /**
+     * @param array|null $configuration
+     *
+     * @return string
+     */
+    public function htmlScriptTagJsApiV3(?array $configuration = []): string {
+        return $this->htmlScriptTagJsApi('', $configuration);
     }
 
     /**
@@ -130,6 +232,10 @@ class ReCaptchaBuilder {
             return false;
         }
         $response = json_decode(trim($curl_response), true);
+
+        if($this->version == 'v3') {
+            return $response;
+        }
 
         return $response['success'];
 
