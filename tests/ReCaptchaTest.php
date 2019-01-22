@@ -30,7 +30,7 @@ class ReCaptchaTest extends TestCase {
     public function testHtmlScriptTagJsApiGetHtmlScriptTag() {
 
         $r = ReCaptcha::htmlScriptTagJsApi();
-        $this->assertEquals('<script src=\'https://www.google.com/recaptcha/api.js\' async defer></script>', $r);
+        $this->assertEquals('<script src="https://www.google.com/recaptcha/api.js" async defer></script>', $r);
     }
 
     /**
