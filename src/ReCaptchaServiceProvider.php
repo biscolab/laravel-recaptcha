@@ -32,9 +32,12 @@ class ReCaptchaServiceProvider extends ServiceProvider {
     public function boot() {
 
         $this->addValidationRule();
+        $this->loadRoutesFrom(__DIR__ . '/routes/routes.php');
+
         $this->publishes([
             __DIR__ . '/../config/recaptcha.php' => config_path('recaptcha.php'),
         ]);
+
     }
 
     /**
@@ -71,11 +74,22 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 
         $this->app->singleton('recaptcha', function ($app) {
 
-            if (config('recaptcha.version') == 'v2') {
-                return new ReCaptchaBuilderV2(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'), config('recaptcha.version'));
-            } else {
-                return new ReCaptchaBuilderInvisible(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'), config('recaptcha.version'));
+            $recaptcha_class = '';
+
+            switch (config('recaptcha.version')) {
+                case 'v3' :
+                    $recaptcha_class = ReCaptchaBuilderV3::class;
+                    break;
+                case 'v2' :
+                    $recaptcha_class = ReCaptchaBuilderV2::class;
+                    break;
+                case 'invisible':
+                    $recaptcha_class = ReCaptchaBuilderInvisible::class;
+                    break;
             }
+
+            return new $recaptcha_class(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'));
+
         });
     }
 
