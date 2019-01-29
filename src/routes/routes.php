@@ -13,4 +13,4 @@ Route::get(config('recaptcha.default_validation_route', 'biscolab-recaptcha/vali
     $token = request()->input(config('recaptcha.default_token_parameter_name', 'token'), '');
     $validation_response = recaptcha()->validate($token);
     return response()->json($validation_response);
-})->middleware('web');;
+})->middleware('web');
