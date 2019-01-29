@@ -10,7 +10,6 @@
 
 namespace Biscolab\ReCaptcha\Tests;
 
-use Biscolab\ReCaptcha\Facades\ReCaptcha;
 use Biscolab\ReCaptcha\ReCaptchaBuilderV3;
 
 /**
