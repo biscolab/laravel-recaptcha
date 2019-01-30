@@ -59,11 +59,12 @@ class ReCaptchaBuilder {
      *
      * @return boolean
      */
-    public static function skipByIp() {
-
-        $skip_ip = (config('recaptcha.skip_ip')) ? config('recaptcha.skip_ip') : [];
-
-        return (in_array(request()->ip(), $skip_ip));
+    public static function skipByIp() 
+    {
+        return in_array(
+            request()->ip(), 
+            config('recaptcha.skip_ip', [])
+	);
     }
 
     /**
