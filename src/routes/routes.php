@@ -10,7 +10,8 @@
 
 Route::get(config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate'), function () {
 
-    $token = request()->input(config('recaptcha.default_token_parameter_name', 'token'), '');
-    $validation_response = recaptcha()->validate($token);
-    return response()->json($validation_response);
+	$token = request()->input(config('recaptcha.default_token_parameter_name', 'token'), '');
+	$validation_response = recaptcha()->validate($token);
+
+	return response()->json($validation_response);
 })->middleware('web');
