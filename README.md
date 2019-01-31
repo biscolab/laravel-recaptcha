@@ -6,7 +6,7 @@ Simple Google reCAPTCHA package for Laravel 5
 ## System requirements
 PHP 7.1 or greater
 
-Are you still using PHP 5.6? Please go to [V2](https://github.com/biscolab/laravel-recaptcha/tree/v2.0.4)
+Are you still using PHP 5.x or 7.0? Please go to [V2](https://github.com/biscolab/laravel-recaptcha/tree/v2.0.4)
 
 ## Installation
 
@@ -36,11 +36,17 @@ php artisan vendor:publish --provider="Biscolab\ReCaptcha\ReCaptchaServiceProvid
 ## Configuration
 
 ### Add your API Keys
-Open `config/recaptcha.php` configuration file and set `api_site_key`, `api_secret_key` and `version`:
+Open `.env` file and set `RECAPTCHA_SITE_KEY` and `RECAPTCHA_SECRET_KEY`:
+```php
+RECAPTCHA_SITE_KEY=YOUR_API_SITE_KEY
+RECAPTCHA_SECRET_KEY=YOUR_API_SECRET_KEY
+```
+
+Open `config/recaptcha.php` configuration file and set `version`:
 ```php
 return [
-    'api_site_key'      => 'YOUR_API_SITE_KEY',
-    'api_secret_key'    => 'YOUR_API_SECRET_KEY',
+    'api_site_key'      => env('RECAPTCHA_SITE_KEY', ''),
+    'api_secret_key'    => env('RECAPTCHA_SECRET_KEY', ''),
     'version'           => 'v2' // supported: v2|invisible 
     'skip_ip'           => [] // array of IP addresses - String: dotted quad format e.g.: 127.0.0.1
 ];

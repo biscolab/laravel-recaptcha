@@ -34,9 +34,29 @@ if (!function_exists('htmlScriptTagJsApi')) {
      *
      * @return string
      */
-    function htmlScriptTagJsApi($formId = '') {
+    function htmlScriptTagJsApi($formId = ''): string {
 
         return ReCaptcha::htmlScriptTagJsApi($formId);
+    }
+}
+
+/**
+ * call ReCaptcha::htmlScriptTagJsApi()
+ * Write script HTML tag in you HTML code
+ * Insert before </head> tag
+ *
+ * @param $formId required if you are using invisible ReCaptcha
+ */
+if (!function_exists('htmlScriptTagJsApiV3')) {
+
+    /**
+     * @param array $config
+     *
+     * @return string
+     */
+    function htmlScriptTagJsApiV3($config = []): string {
+
+        return ReCaptcha::htmlScriptTagJsApiV3($config);
     }
 }
 
@@ -52,9 +72,11 @@ if (!function_exists('htmlScriptTagJsApi')) {
 if (!function_exists('htmlFormButton')) {
 
     /**
-     * @return Biscolab\ReCaptcha\ReCaptchaBuilder::htmlFormButton()
+     * @param null|string $buttonInnerHTML
+     *
+     * @return string
      */
-    function htmlFormButton($buttonInnerHTML = 'Submit') {
+    function htmlFormButton(?string $buttonInnerHTML = 'Submit'): string {
 
         return ReCaptcha::htmlFormButton($buttonInnerHTML);
     }
@@ -70,9 +92,9 @@ if (!function_exists('htmlFormButton')) {
 if (!function_exists('htmlFormSnippet')) {
 
     /**
-     * @return Biscolab\ReCaptcha\ReCaptchaBuilder::htmlFormSnippet()
+     * @return string
      */
-    function htmlFormSnippet() {
+    function htmlFormSnippet(): string {
 
         return ReCaptcha::htmlFormSnippet();
     }
