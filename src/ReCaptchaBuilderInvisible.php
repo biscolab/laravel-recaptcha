@@ -34,7 +34,7 @@ class ReCaptchaBuilderInvisible extends ReCaptchaBuilder {
      *
      * @return string
      */
-    public function htmlFormButton($buttonInnerHTML = 'Submit') {
+    public function htmlFormButton($buttonInnerHTML = 'Submit'): string {
 
         return ($this->version == 'invisible') ? '<button class="g-recaptcha" data-sitekey="' . $this->api_site_key . '" data-callback="biscolabLaravelReCaptcha">' . $buttonInnerHTML . '</button>' : '';
     }
