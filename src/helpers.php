@@ -72,9 +72,11 @@ if (!function_exists('htmlScriptTagJsApiV3')) {
 if (!function_exists('htmlFormButton')) {
 
     /**
-     * @return Biscolab\ReCaptcha\ReCaptchaBuilder::htmlFormButton()
+     * @param null|string $buttonInnerHTML
+     *
+     * @return string
      */
-    function htmlFormButton($buttonInnerHTML = 'Submit') {
+    function htmlFormButton(?string $buttonInnerHTML = 'Submit'): string {
 
         return ReCaptcha::htmlFormButton($buttonInnerHTML);
     }
@@ -90,9 +92,9 @@ if (!function_exists('htmlFormButton')) {
 if (!function_exists('htmlFormSnippet')) {
 
     /**
-     * @return Biscolab\ReCaptcha\ReCaptchaBuilder::htmlFormSnippet()
+     * @return string
      */
-    function htmlFormSnippet() {
+    function htmlFormSnippet(): string {
 
         return ReCaptcha::htmlFormSnippet();
     }
