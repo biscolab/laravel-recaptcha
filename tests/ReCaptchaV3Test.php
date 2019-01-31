@@ -57,10 +57,19 @@ class ReCaptchaV3Test extends TestCase {
     /**
      * @test
      */
-    public function testcatchCallbackFunction() {
+    public function testcCatchCallbackFunction() {
 
         $r = $this->recaptcha_v3->htmlScriptTagJsApiV3(['callback_catch' => 'functionCallbackCatch']);
         $this->assertRegexp('/functionCallbackCatch\(err\)/', $r);
+    }
+
+    /**
+     * @test
+     */
+    public function testCustomValidationFunction() {
+
+        $r = $this->recaptcha_v3->htmlScriptTagJsApiV3(['custom_validation' => 'functionCustomValidation']);
+        $this->assertRegexp('/functionCustomValidation\(token\)/', $r);
     }
 
     protected function setUp() {
