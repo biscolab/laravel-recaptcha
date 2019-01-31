@@ -99,7 +99,7 @@ class ReCaptchaBuilder {
      *
      * @return ReCaptchaBuilder
      */
-    public function setSkipByIp(bool $skip_by_ip): ReCaptchaBuilder{
+    public function setSkipByIp(bool $skip_by_ip): ReCaptchaBuilder {
         $this->skip_by_ip = $skip_by_ip;
 
         return $this;
@@ -112,9 +112,7 @@ class ReCaptchaBuilder {
      */
     public function skipByIp(): bool {
 
-        $skip_ip = (config('recaptcha.skip_ip')) ? config('recaptcha.skip_ip') : [];
-
-        return (in_array(request()->ip(), $skip_ip));
+        return (in_array(request()->ip(), config('recaptcha.skip_ip', [])));
     }
 
     /**
