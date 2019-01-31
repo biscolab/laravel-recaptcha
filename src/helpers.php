@@ -11,13 +11,13 @@
 use Biscolab\ReCaptcha\Facades\ReCaptcha;
 
 if (!function_exists('recaptcha')) {
-    /**
-     * @return Biscolab\ReCaptcha\ReCaptchaBuilder
-     */
-    function recaptcha() {
+	/**
+	 * @return Biscolab\ReCaptcha\ReCaptchaBuilder
+	 */
+	function recaptcha() {
 
-        return app('recaptcha');
-    }
+		return app('recaptcha');
+	}
 }
 
 /**
@@ -29,15 +29,15 @@ if (!function_exists('recaptcha')) {
  */
 if (!function_exists('htmlScriptTagJsApi')) {
 
-    /**
-     * @param string $formId
-     *
-     * @return string
-     */
-    function htmlScriptTagJsApi($formId = ''): string {
+	/**
+	 * @param string $formId
+	 *
+	 * @return string
+	 */
+	function htmlScriptTagJsApi($formId = ''): string {
 
-        return ReCaptcha::htmlScriptTagJsApi($formId);
-    }
+		return ReCaptcha::htmlScriptTagJsApi($formId);
+	}
 }
 
 /**
@@ -49,15 +49,15 @@ if (!function_exists('htmlScriptTagJsApi')) {
  */
 if (!function_exists('htmlScriptTagJsApiV3')) {
 
-    /**
-     * @param array $config
-     *
-     * @return string
-     */
-    function htmlScriptTagJsApiV3($config = []): string {
+	/**
+	 * @param array $config
+	 *
+	 * @return string
+	 */
+	function htmlScriptTagJsApiV3($config = []): string {
 
-        return ReCaptcha::htmlScriptTagJsApiV3($config);
-    }
+		return ReCaptcha::htmlScriptTagJsApiV3($config);
+	}
 }
 
 /**
@@ -71,15 +71,15 @@ if (!function_exists('htmlScriptTagJsApiV3')) {
  */
 if (!function_exists('htmlFormButton')) {
 
-    /**
-     * @param null|string $buttonInnerHTML
-     *
-     * @return string
-     */
-    function htmlFormButton(?string $buttonInnerHTML = 'Submit'): string {
+	/**
+	 * @param null|string $buttonInnerHTML
+	 *
+	 * @return string
+	 */
+	function htmlFormButton(?string $buttonInnerHTML = 'Submit'): string {
 
-        return ReCaptcha::htmlFormButton($buttonInnerHTML);
-    }
+		return ReCaptcha::htmlFormButton($buttonInnerHTML);
+	}
 }
 
 /**
@@ -91,12 +91,12 @@ if (!function_exists('htmlFormButton')) {
  */
 if (!function_exists('htmlFormSnippet')) {
 
-    /**
-     * @return string
-     */
-    function htmlFormSnippet(): string {
+	/**
+	 * @return string
+	 */
+	function htmlFormSnippet(): string {
 
-        return ReCaptcha::htmlFormSnippet();
-    }
+		return ReCaptcha::htmlFormSnippet();
+	}
 }
 
