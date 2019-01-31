@@ -13,52 +13,52 @@
  */
 return [
 
-    /**
-     *
-     * The site key
-     * get site key @ www.google.com/recaptcha/admin
-     *
-     */
-    'api_site_key'                 => env('RECAPTCHA_SITE_KEY', ''),
+	/**
+	 *
+	 * The site key
+	 * get site key @ www.google.com/recaptcha/admin
+	 *
+	 */
+	'api_site_key'                 => env('RECAPTCHA_SITE_KEY', ''),
 
-    /**
-     *
-     * The secret key
-     * get secret key @ www.google.com/recaptcha/admin
-     *
-     */
-    'api_secret_key'               => env('RECAPTCHA_SECRET_KEY', ''),
+	/**
+	 *
+	 * The secret key
+	 * get secret key @ www.google.com/recaptcha/admin
+	 *
+	 */
+	'api_secret_key'               => env('RECAPTCHA_SECRET_KEY', ''),
 
-    /**
-     *
-     * ReCATCHA version
-     * Supported: "v2", "invisible", "v3",
-     *
-     * get more info @ https://developers.google.com/recaptcha/docs/versions
-     *
-     */
-    'version'                      => env('RECAPTCHA_DEFAULT_VERSION', 'v2'),
+	/**
+	 *
+	 * ReCATCHA version
+	 * Supported: "v2", "invisible", "v3",
+	 *
+	 * get more info @ https://developers.google.com/recaptcha/docs/versions
+	 *
+	 */
+	'version'                      => env('RECAPTCHA_DEFAULT_VERSION', 'v2'),
 
-    /**
-     *
-     * IP addresses for which validation will be skipped
-     *
-     */
-    'skip_ip'                      => [],
+	/**
+	 *
+	 * IP addresses for which validation will be skipped
+	 *
+	 */
+	'skip_ip'                      => [],
 
-    /**
-     *
-     * Default route called to check the Google reCAPTCHA token
-     * @since v3.2.0
-     *
-     */
-    'default_validation_route'     => env('RECAPTCHA_DEFAULT_VALIDATION_ROUTE', 'biscolab-recaptcha/validate'),
+	/**
+	 *
+	 * Default route called to check the Google reCAPTCHA token
+	 * @since v3.2.0
+	 *
+	 */
+	'default_validation_route'     => env('RECAPTCHA_DEFAULT_VALIDATION_ROUTE', 'biscolab-recaptcha/validate'),
 
-    /**
-     *
-     * The name of the parameter used to send Google reCAPTCHA token to verify route
-     * @since v3.2.0
-     *
-     */
-    'default_token_parameter_name' => env('RECAPTCHA_DEFAULT_TOKEN_PARAMETER_NAME', 'token')
+	/**
+	 *
+	 * The name of the parameter used to send Google reCAPTCHA token to verify route
+	 * @since v3.2.0
+	 *
+	 */
+	'default_token_parameter_name' => env('RECAPTCHA_DEFAULT_TOKEN_PARAMETER_NAME', 'token')
 ];

@@ -20,29 +20,29 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
  */
 class TestCase extends OrchestraTestCase {
 
-    /**
-     * Load package alias
-     *
-     * @param  \Illuminate\Foundation\Application $app
-     *
-     * @return array
-     */
-    protected function getPackageAliases($app) {
+	/**
+	 * Load package alias
+	 *
+	 * @param  \Illuminate\Foundation\Application $app
+	 *
+	 * @return array
+	 */
+	protected function getPackageAliases($app) {
 
-        return [
-            'ReCaptcha' => ReCaptcha::class,
-        ];
-    }
+		return [
+			'ReCaptcha' => ReCaptcha::class,
+		];
+	}
 
-    /**
-     * Load package service provider
-     *
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app) {
+	/**
+	 * Load package service provider
+	 *
+	 * @param \Illuminate\Foundation\Application $app
+	 *
+	 * @return array
+	 */
+	protected function getPackageProviders($app) {
 
-        return [ReCaptchaServiceProvider::class];
-    }
+		return [ReCaptchaServiceProvider::class];
+	}
 }
