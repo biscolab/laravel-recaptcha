@@ -216,7 +216,7 @@ class ReCaptchaBuilder {
 	 *
 	 * @param string $response
 	 *
-	 * @return boolean
+	 * @return boolean|array
 	 */
 	public function validate($response) {
 
