@@ -8,10 +8,7 @@
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-Route::get(config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate'), function () {
-
-	$token = request()->input(config('recaptcha.default_token_parameter_name', 'token'), '');
-	$validation_response = recaptcha()->validate($token);
-
-	return response()->json($validation_response);
-})->middleware('web');
+Route::get(
+	config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate'),
+	['uses' => 'Biscolab\ReCaptcha\Controllers\ReCaptchaController@validateV3']
+)->middleware('web');
