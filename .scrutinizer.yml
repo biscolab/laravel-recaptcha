@@ -2,6 +2,8 @@ build:
   nodes:
     coverage:
       tests:
+        before:
+          - 'composer install --no-interaction'
         override:
           - command: vendor/bin/phpunit --coverage-clover=clover.xml
             coverage:
