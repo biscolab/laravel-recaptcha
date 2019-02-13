@@ -111,13 +111,26 @@ class ReCaptchaBuilder {
 	}
 
 	/**
+	 * @return array|mixed
+	 */
+	public function getIpWhitelist() {
+		$whitelist = config('recaptcha.skip_ip', []);
+
+		if(!is_array($whitelist)) {
+			$whitelist = explode(',', $whitelist);
+		}
+
+		return $whitelist;
+	}
+
+	/**
 	 * Checks whether the user IP address is among IPs "to be skipped"
 	 *
 	 * @return boolean
 	 */
 	public function skipByIp(): bool {
 
-		return (in_array(request()->ip(), config('recaptcha.skip_ip', [])));
+		return (in_array(request()->ip(), $this->getIpWhitelist()));
 	}
 
 	/**
@@ -221,6 +234,15 @@ class ReCaptchaBuilder {
 	public function validate($response) {
 
 		if ($this->skip_by_ip) {
+			if ($this->returnArray()) {
+				// Add 'skip_by_ip' field to response
+				return [
+					'skip_by_ip' => true,
+					'score'      => 0.9,
+					'success'    => true
+				];
+			}
+
 			return true;
 		}
 
@@ -243,16 +265,34 @@ class ReCaptchaBuilder {
 		else {
 			$curl_response = file_get_contents($url);
 		}
+
 		if (is_null($curl_response) || empty($curl_response)) {
+			if ($this->returnArray()) {
+				// Add 'error' field to response
+				return [
+					'error'   => 'cURL response empty',
+					'score'   => 0.1,
+					'success' => false
+				];
+			}
+
 			return false;
 		}
 		$response = json_decode(trim($curl_response), true);
 
-		if ($this->version == 'v3') {
+		if ($this->returnArray()) {
 			return $response;
 		}
 
 		return $response['success'];
 
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function returnArray(): bool {
+
+		return ($this->version == 'v3');
 	}
 }
