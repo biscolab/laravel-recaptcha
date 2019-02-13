@@ -113,7 +113,7 @@ class ReCaptchaBuilder {
 	/**
 	 * @return array|mixed
 	 */
-	protected function getIpWhitelist() {
+	public function getIpWhitelist() {
 		$whitelist = config('recaptcha.skip_ip', []);
 
 		if(!is_array($whitelist)) {
