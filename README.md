@@ -1,7 +1,12 @@
-# Laravel ReCAPTCHA - v3
+# Laravel ReCAPTCHA v3
 Simple and painless Google reCAPTCHA package for Laravel 5
 
-[![Build Status](https://travis-ci.org/biscolab/laravel-recaptcha.svg?branch=master)](https://travis-ci.org/biscolab/laravel-recaptcha) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/biscolab/laravel-recaptcha/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/biscolab/laravel-recaptcha/?branch=master) ![Packagist version](https://img.shields.io/packagist/v/biscolab/laravel-recaptcha.svg)
+Available reCAPTCHA versions:
+* v2 Invisible
+* v2 Checkbox
+* v3
+
+[![Build Status](https://travis-ci.org/biscolab/laravel-recaptcha.svg?branch=master)](https://travis-ci.org/biscolab/laravel-recaptcha) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/biscolab/laravel-recaptcha/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/biscolab/laravel-recaptcha/?branch=master) [![Packagist version](https://img.shields.io/packagist/v/biscolab/laravel-recaptcha.svg#img-thumbnail)](https://packagist.org/packages/biscolab/laravel-recaptcha)
 
 ## System requirements
 | Package version | PHP version | Laravel version |
