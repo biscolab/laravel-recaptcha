@@ -10,6 +10,7 @@
 
 namespace Biscolab\ReCaptcha;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -32,8 +33,8 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 	public function boot() {
 
 		$this->addValidationRule();
-		$this->loadRoutesFrom(__DIR__ . '/routes/routes.php');
-
+//		$this->loadRoutesFrom(__DIR__ . '/routes/routes.php');
+		$this->registerRoutes();
 		$this->publishes([
 			__DIR__ . '/../config/recaptcha.php' => config_path('recaptcha.php'),
 		]);
@@ -66,6 +67,31 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 	}
 
 	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides(): array {
+
+		return ['recaptcha'];
+	}
+
+	/**
+	 * @return ReCaptchaServiceProvider
+	 *
+	 * @since v3.4.1
+	 */
+	protected function registerRoutes(): ReCaptchaServiceProvider {
+
+		Route::get(
+			config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate'),
+			['uses' => 'Biscolab\ReCaptcha\Controllers\ReCaptchaController@validateV3']
+		)->middleware('web');
+
+		return $this;
+	}
+
+	/**
 	 * Register the HTML builder instance.
 	 *
 	 * @return void
@@ -91,16 +117,6 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 			return new $recaptcha_class(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'));
 
 		});
-	}
-
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides() {
-
-		return ['recaptcha'];
 	}
 
 }
