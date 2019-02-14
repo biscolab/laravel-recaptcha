@@ -78,6 +78,8 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 
 	/**
 	 * @return ReCaptchaServiceProvider
+	 *
+	 * @since v3.4.1
 	 */
 	protected function registerRoutes(): ReCaptchaServiceProvider {
 
