@@ -11,10 +11,10 @@ Available reCAPTCHA versions:
 [![Packagist version](https://img.shields.io/packagist/v/biscolab/laravel-recaptcha.svg#img-thumbnail)](https://packagist.org/packages/biscolab/laravel-recaptcha)
 
 ## System requirements
-| Package version | PHP version | Laravel version | Docs |
-|-----------------|-------------|-----------------|-------------------|
-| 3.x             | 7.1 or greater | 5.5 or greater | [latest](https://laravel-recaptcha-docs.biscolab.com) |
-| 2.x             | 5.5.9, 7.0 or greater | 5.0 or greater | [v2.0.4](https://laravel-recaptcha-docs.biscolab.com/docs/2.0.4/intro) |
+| Package | reCAPTCHA | PHP | Laravel | Docs |
+|-----------------|-------------|-------------|-----------------|-------------------|
+| 3.x             |v3, v2 Invisible, v2 Checkbox | 7.1 or greater | 5.5 or greater | [latest](https://laravel-recaptcha-docs.biscolab.com) |
+| 2.x             | v2 Invisible, v2 Checkbox | 5.5.9, 7.0 or greater | 5.0 or greater | [v2.0.4](https://laravel-recaptcha-docs.biscolab.com/docs/2.0.4/intro) |
 
 ## !!! Documentation !!!
 
