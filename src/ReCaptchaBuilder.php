@@ -36,6 +36,13 @@ class ReCaptchaBuilder {
 	protected $version;
 
 	/**
+	 * The chosen ReCAPTCHA language
+	 * please visit https://developers.google.com/recaptcha/docs/language
+	 * @var string
+	 */
+	protected $language;
+
+	/**
 	 * Whether is true the ReCAPTCHA is inactive
 	 * @var boolean
 	 */
@@ -46,11 +53,12 @@ class ReCaptchaBuilder {
 	 */
 	protected $api_url = 'https://www.google.com/recaptcha/api/siteverify';
 
-	public function __construct($api_site_key, $api_secret_key, $version = 'v2') {
+	public function __construct($api_site_key, $api_secret_key, $version = 'v2', $language = 'en') {
 
 		$this->setApiSiteKey($api_site_key);
 		$this->setApiSecretKey($api_secret_key);
 		$this->setVersion($version);
+		$this->setLanguage($language);
 		$this->setSkipByIp($this->skipByIp());
 	}
 
@@ -91,11 +99,31 @@ class ReCaptchaBuilder {
 	}
 
 	/**
+	 * @param string $language
+	 *
+	 * @return ReCaptchaBuilder
+	 */
+	public function setLanguage(string $language): ReCaptchaBuilder {
+
+		$this->language = $language;
+
+		return $this;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getVersion(): string {
 
 		return $this->version;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLanguage(): string {
+
+		return $this->language;
 	}
 
 	/**
@@ -151,10 +179,10 @@ class ReCaptchaBuilder {
 
 		switch ($this->version) {
 			case 'v3':
-				$html = "<script src=\"https://www.google.com/recaptcha/api.js?render={$this->api_site_key}\"></script>";
+				$html = "<script src=\"https://www.google.com/recaptcha/api.js?hl={$this->language}&render={$this->api_site_key}\"></script>";
 				break;
 			default:
-				$html = "<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>";
+				$html = "<script src=\"https://www.google.com/recaptcha/api.js?hl={$this->language}\" async defer></script>";
 		}
 
 		if ($this->version == 'invisible') {

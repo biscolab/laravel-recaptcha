@@ -41,6 +41,15 @@ return [
 
 	/**
 	 *
+	 * ReCATCHA language
+	 *
+	 * get more info @ https://developers.google.com/recaptcha/docs/language
+	 *
+	 */
+	'language'                      => env('RECAPTCHA_DEFAULT_LANGUAGE', 'en'),
+
+	/**
+	 *
 	 * IP addresses for which validation will be skipped
 	 *
 	 */

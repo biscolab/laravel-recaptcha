@@ -24,7 +24,7 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder {
 	 */
 	public function __construct(string $api_site_key, string $api_secret_key) {
 
-		parent::__construct($api_site_key, $api_secret_key, 'v3');
+		parent::__construct($api_site_key, $api_secret_key, 'v3',config('recaptcha.language'));
 	}
 
 }
