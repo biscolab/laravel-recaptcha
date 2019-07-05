@@ -36,6 +36,13 @@ class ReCaptchaBuilder {
 	protected $version;
 
 	/**
+	 * The curl timeout
+	 * please visit https://curl.haxx.se/libcurl/c/CURLOPT_TIMEOUT.html
+	 * @var int
+	 */
+	protected $curl_timeout;
+
+	/**
 	 * Whether is true the ReCAPTCHA is inactive
 	 * @var boolean
 	 */
@@ -46,11 +53,12 @@ class ReCaptchaBuilder {
 	 */
 	protected $api_url = 'https://www.google.com/recaptcha/api/siteverify';
 
-	public function __construct($api_site_key, $api_secret_key, $version = 'v2') {
+	public function __construct($api_site_key, $api_secret_key, $version = 'v2', $curl_timeout = 3) {
 
 		$this->setApiSiteKey($api_site_key);
 		$this->setApiSecretKey($api_secret_key);
 		$this->setVersion($version);
+		$this->setCurlTimeout($curl_timeout);
 		$this->setSkipByIp($this->skipByIp());
 	}
 
@@ -76,6 +84,25 @@ class ReCaptchaBuilder {
 		$this->api_secret_key = $api_secret_key;
 
 		return $this;
+	}
+
+	/**
+	 * @param int $curl_timeout
+	 * @return ReCaptchaBuilder
+	 */
+	public function setCurlTimeout(int $curl_timeout): ReCaptchaBuilder {
+
+		$this->curl_timeout = $curl_timeout;
+
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getCurlTimeout(): int {
+
+		return $this->curl_timeout;
 	}
 
 	/**
@@ -258,7 +285,7 @@ class ReCaptchaBuilder {
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_HEADER, false);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_TIMEOUT, 1);
+			curl_setopt($curl, CURLOPT_TIMEOUT, $this->curl_timeout);
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 			$curl_response = curl_exec($curl);
 		}

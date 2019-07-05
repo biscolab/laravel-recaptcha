@@ -41,6 +41,13 @@ return [
 
 	/**
 	 *
+	 * The curl timout in seconds to validate a recaptcha token
+	 *
+	 */
+	'curl_timeout'                 => env('RECAPTCHA_CURL_TIMEOUT', 3),
+
+	/**
+	 *
 	 * IP addresses for which validation will be skipped
 	 *
 	 */
