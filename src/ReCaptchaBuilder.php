@@ -11,8 +11,23 @@
 namespace Biscolab\ReCaptcha;
 
 use Exception;
+use Illuminate\Support\Arr;
 
+/**
+ * Class ReCaptchaBuilder
+ * @package Biscolab\ReCaptcha
+ */
 class ReCaptchaBuilder {
+
+	/**
+	 * @var string
+	 */
+	const DEFAULT_API_VERSION = 'v2';
+
+	/**
+	 * @var int
+	 */
+	const DEFAULT_CURL_TIMEOUT = 10;
 
 	/**
 	 * The Site key
@@ -36,6 +51,13 @@ class ReCaptchaBuilder {
 	protected $version;
 
 	/**
+	 * The curl timeout
+	 * please visit https://curl.haxx.se/libcurl/c/CURLOPT_TIMEOUT.html
+	 * @var int
+	 */
+	protected $curl_timeout;
+
+	/**
 	 * Whether is true the ReCAPTCHA is inactive
 	 * @var boolean
 	 */
@@ -46,11 +68,25 @@ class ReCaptchaBuilder {
 	 */
 	protected $api_url = 'https://www.google.com/recaptcha/api/siteverify';
 
-	public function __construct($api_site_key, $api_secret_key, $version = 'v2') {
+	/**
+	 * ReCaptchaBuilder constructor.
+	 *
+	 * @param string      $api_site_key
+	 * @param string      $api_secret_key
+	 * @param null|string $version
+	 * @param int|null    $curl_timeout
+	 */
+	public function __construct(
+		string $api_site_key,
+		string $api_secret_key,
+		?string $version = self::DEFAULT_API_VERSION,
+		?int $curl_timeout = self::DEFAULT_CURL_TIMEOUT
+	) {
 
 		$this->setApiSiteKey($api_site_key);
 		$this->setApiSecretKey($api_secret_key);
 		$this->setVersion($version);
+		$this->setCurlTimeout($curl_timeout);
 		$this->setSkipByIp($this->skipByIp());
 	}
 
@@ -76,6 +112,26 @@ class ReCaptchaBuilder {
 		$this->api_secret_key = $api_secret_key;
 
 		return $this;
+	}
+
+	/**
+	 * @param int $curl_timeout
+	 *
+	 * @return ReCaptchaBuilder
+	 */
+	public function setCurlTimeout(int $curl_timeout): ReCaptchaBuilder {
+
+		$this->curl_timeout = $curl_timeout;
+
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getCurlTimeout(): int {
+
+		return $this->curl_timeout;
 	}
 
 	/**
@@ -114,9 +170,10 @@ class ReCaptchaBuilder {
 	 * @return array|mixed
 	 */
 	public function getIpWhitelist() {
+
 		$whitelist = config('recaptcha.skip_ip', []);
 
-		if(!is_array($whitelist)) {
+		if (!is_array($whitelist)) {
 			$whitelist = explode(',', $whitelist);
 		}
 
@@ -169,9 +226,9 @@ class ReCaptchaBuilder {
 		}
 		elseif ($this->version == 'v3') {
 
-			$action = array_get($configuration, 'action', 'homepage');
+			$action = Arr::get($configuration, 'action', 'homepage');
 
-			$js_custom_validation = array_get($configuration, 'custom_validation', '');
+			$js_custom_validation = Arr::get($configuration, 'custom_validation', '');
 
 			// Check if set custom_validation. That function will override default fetch validation function
 			if ($js_custom_validation) {
@@ -180,14 +237,16 @@ class ReCaptchaBuilder {
 			}
 			else {
 
-				$js_then_callback = array_get($configuration, 'callback_then', '');
-				$js_callback_catch = array_get($configuration, 'callback_catch', '');
+				$js_then_callback = Arr::get($configuration, 'callback_then', '');
+				$js_callback_catch = Arr::get($configuration, 'callback_catch', '');
 
 				$js_then_callback = ($js_then_callback) ? "{$js_then_callback}(response)" : '';
 				$js_callback_catch = ($js_callback_catch) ? "{$js_callback_catch}(err)" : '';
 
 				$validate_function = "
-                fetch('/" . config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate') . "?" . config('recaptcha.default_token_parameter_name', 'token') . "=' + token, {
+                fetch('/" . config('recaptcha.default_validation_route',
+						'biscolab-recaptcha/validate') . "?" . config('recaptcha.default_token_parameter_name',
+						'token') . "=' + token, {
                     headers: {
                         \"X-Requested-With\": \"XMLHttpRequest\",
                         \"X-CSRF-TOKEN\": csrfToken.content
@@ -258,7 +317,7 @@ class ReCaptchaBuilder {
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_HEADER, false);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_TIMEOUT, 1);
+			curl_setopt($curl, CURLOPT_TIMEOUT, $this->curl_timeout);
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 			$curl_response = curl_exec($curl);
 		}
