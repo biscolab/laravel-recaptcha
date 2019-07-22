@@ -14,6 +14,7 @@ use Biscolab\ReCaptcha\Facades\ReCaptcha;
 use Biscolab\ReCaptcha\ReCaptchaBuilder;
 use Biscolab\ReCaptcha\ReCaptchaBuilderInvisible;
 use Biscolab\ReCaptcha\ReCaptchaBuilderV2;
+use Biscolab\ReCaptcha\ReCaptchaBuilderV3;
 
 /**
  * Class ReCaptchaTest
@@ -21,9 +22,20 @@ use Biscolab\ReCaptcha\ReCaptchaBuilderV2;
  */
 class ReCaptchaTest extends TestCase {
 
+	/**
+	 * @var ReCaptchaBuilderInvisible
+	 */
 	protected $recaptcha_invisible = null;
 
-	protected $recaptcha_v2        = null;
+	/**
+	 * @var ReCaptchaBuilderV2
+	 */
+	protected $recaptcha_v2 = null;
+
+	/**
+	 * @var ReCaptchaBuilderV3
+	 */
+	protected $recaptcha_v3 = null;
 
 	/**
 	 * @tests
@@ -41,7 +53,8 @@ class ReCaptchaTest extends TestCase {
 
 		$recaptcha = $this->recaptcha_invisible;
 		$html_button = $recaptcha->htmlFormButton();
-		$this->assertEquals('<button class="g-recaptcha" data-sitekey="api_site_key" data-callback="biscolabLaravelReCaptcha">Submit</button>', $html_button);
+		$this->assertEquals('<button class="g-recaptcha" data-sitekey="api_site_key" data-callback="biscolabLaravelReCaptcha">Submit</button>',
+			$html_button);
 	}
 
 	/**
@@ -51,7 +64,8 @@ class ReCaptchaTest extends TestCase {
 
 		$recaptcha = $this->recaptcha_invisible;
 		$html_button = $recaptcha->htmlFormButton('Custom Text');
-		$this->assertEquals('<button class="g-recaptcha" data-sitekey="api_site_key" data-callback="biscolabLaravelReCaptcha">Custom Text</button>', $html_button);
+		$this->assertEquals('<button class="g-recaptcha" data-sitekey="api_site_key" data-callback="biscolabLaravelReCaptcha">Custom Text</button>',
+			$html_button);
 	}
 
 	/**
@@ -77,8 +91,10 @@ class ReCaptchaTest extends TestCase {
 	 * @test
 	 */
 	public function testDefaultCurlTimeout() {
+
 		$this->assertEquals($this->recaptcha_invisible->getCurlTimeout(), ReCaptchaBuilder::DEFAULT_CURL_TIMEOUT);
 		$this->assertEquals($this->recaptcha_v2->getCurlTimeout(), ReCaptchaBuilder::DEFAULT_CURL_TIMEOUT);
+		$this->assertEquals($this->recaptcha_v3->getCurlTimeout(), ReCaptchaBuilder::DEFAULT_CURL_TIMEOUT);
 	}
 
 	/**
@@ -96,6 +112,7 @@ class ReCaptchaTest extends TestCase {
 
 		$this->recaptcha_invisible = new ReCaptchaBuilderInvisible('api_site_key', 'api_secret_key');
 		$this->recaptcha_v2 = new ReCaptchaBuilderV2('api_site_key', 'api_secret_key');
+		$this->recaptcha_v3 = new ReCaptchaBuilderV3('api_site_key', 'api_secret_key');
 
 	}
 }
