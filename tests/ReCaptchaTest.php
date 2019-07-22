@@ -73,6 +73,9 @@ class ReCaptchaTest extends TestCase {
 		$this->recaptcha_invisible->htmlFormSnippet();
 	}
 
+	/**
+	 * @test
+	 */
 	public function testDefaultCurlTimeout() {
 		$this->assertEquals($this->recaptcha_invisible->getCurlTimeout(), ReCaptchaBuilder::DEFAULT_CURL_TIMEOUT);
 		$this->assertEquals($this->recaptcha_v2->getCurlTimeout(), ReCaptchaBuilder::DEFAULT_CURL_TIMEOUT);
