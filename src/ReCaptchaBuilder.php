@@ -11,6 +11,7 @@
 namespace Biscolab\ReCaptcha;
 
 use Exception;
+use Illuminate\Support\Arr;
 
 /**
  * Class ReCaptchaBuilder
@@ -225,9 +226,9 @@ class ReCaptchaBuilder {
 		}
 		elseif ($this->version == 'v3') {
 
-			$action = array_get($configuration, 'action', 'homepage');
+			$action = Arr::get($configuration, 'action', 'homepage');
 
-			$js_custom_validation = array_get($configuration, 'custom_validation', '');
+			$js_custom_validation = Arr::get($configuration, 'custom_validation', '');
 
 			// Check if set custom_validation. That function will override default fetch validation function
 			if ($js_custom_validation) {
@@ -236,8 +237,8 @@ class ReCaptchaBuilder {
 			}
 			else {
 
-				$js_then_callback = array_get($configuration, 'callback_then', '');
-				$js_callback_catch = array_get($configuration, 'callback_catch', '');
+				$js_then_callback = Arr::get($configuration, 'callback_then', '');
+				$js_callback_catch = Arr::get($configuration, 'callback_catch', '');
 
 				$js_then_callback = ($js_then_callback) ? "{$js_then_callback}(response)" : '';
 				$js_callback_catch = ($js_callback_catch) ? "{$js_callback_catch}(err)" : '';
