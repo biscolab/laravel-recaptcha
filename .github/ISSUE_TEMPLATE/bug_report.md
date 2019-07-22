@@ -24,8 +24,10 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Environment:**
- - OS: [e.g. Ubuntu 16.04]
+ - OS and server: [e.g. Ubuntu 16.04 / Nginx] (If you are using a VM on Windows DON'T "say" Windows)
  - PHP version [7.1.x]
+ - Laravel version [e.g. 5.5]
+ - Package version [e.g. 3.4.1]
 
 **Additional context**
-Add any other context about the problem here.
+Add any other context about the problem here, like code snippets.
