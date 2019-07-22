@@ -114,7 +114,7 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 					break;
 			}
 
-			return new $recaptcha_class(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'));
+			return new $recaptcha_class(config('recaptcha.api_site_key'), config('recaptcha.api_secret_key'), config('recaptcha.curl_timeout'));
 
 		});
 	}
