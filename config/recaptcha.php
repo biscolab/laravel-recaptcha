@@ -42,9 +42,10 @@ return [
 	/**
 	 *
 	 * The curl timout in seconds to validate a recaptcha token
+	 * @since v3.4.3
 	 *
 	 */
-	'curl_timeout'                 => env('RECAPTCHA_CURL_TIMEOUT', 3),
+	'curl_timeout'                 => env('RECAPTCHA_CURL_TIMEOUT', 10),
 
 	/**
 	 *
