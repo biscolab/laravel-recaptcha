@@ -115,12 +115,15 @@ class ReCaptchaBuilder {
 	}
 
 	/**
-	 * @param int $curl_timeout
+	 * @param int|null $curl_timeout
 	 *
 	 * @return ReCaptchaBuilder
 	 */
-	public function setCurlTimeout(int $curl_timeout): ReCaptchaBuilder {
+	public function setCurlTimeout(?int $curl_timeout = null): ReCaptchaBuilder {
 
+		if($curl_timeout === null) {
+			$curl_timeout = config('recaptcha.curl_timeout', ReCaptchaBuilder::DEFAULT_CURL_TIMEOUT);
+		}
 		$this->curl_timeout = $curl_timeout;
 
 		return $this;
