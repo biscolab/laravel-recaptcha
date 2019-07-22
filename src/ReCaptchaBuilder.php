@@ -12,7 +12,21 @@ namespace Biscolab\ReCaptcha;
 
 use Exception;
 
+/**
+ * Class ReCaptchaBuilder
+ * @package Biscolab\ReCaptcha
+ */
 class ReCaptchaBuilder {
+
+	/**
+	 * @var string
+	 */
+	const DEFAULT_API_VERSION = 'v2';
+
+	/**
+	 * @var int
+	 */
+	const DEFAULT_CURL_TIMEOUT = 10;
 
 	/**
 	 * The Site key
@@ -53,7 +67,20 @@ class ReCaptchaBuilder {
 	 */
 	protected $api_url = 'https://www.google.com/recaptcha/api/siteverify';
 
-	public function __construct($api_site_key, $api_secret_key, $version = 'v2', $curl_timeout = 3) {
+	/**
+	 * ReCaptchaBuilder constructor.
+	 *
+	 * @param string      $api_site_key
+	 * @param string      $api_secret_key
+	 * @param null|string $version
+	 * @param int|null    $curl_timeout
+	 */
+	public function __construct(
+		string $api_site_key,
+		string $api_secret_key,
+		?string $version = self::DEFAULT_API_VERSION,
+		?int $curl_timeout = self::DEFAULT_CURL_TIMEOUT
+	) {
 
 		$this->setApiSiteKey($api_site_key);
 		$this->setApiSecretKey($api_secret_key);
@@ -88,6 +115,7 @@ class ReCaptchaBuilder {
 
 	/**
 	 * @param int $curl_timeout
+	 *
 	 * @return ReCaptchaBuilder
 	 */
 	public function setCurlTimeout(int $curl_timeout): ReCaptchaBuilder {
@@ -141,9 +169,10 @@ class ReCaptchaBuilder {
 	 * @return array|mixed
 	 */
 	public function getIpWhitelist() {
+
 		$whitelist = config('recaptcha.skip_ip', []);
 
-		if(!is_array($whitelist)) {
+		if (!is_array($whitelist)) {
 			$whitelist = explode(',', $whitelist);
 		}
 
@@ -214,7 +243,9 @@ class ReCaptchaBuilder {
 				$js_callback_catch = ($js_callback_catch) ? "{$js_callback_catch}(err)" : '';
 
 				$validate_function = "
-                fetch('/" . config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate') . "?" . config('recaptcha.default_token_parameter_name', 'token') . "=' + token, {
+                fetch('/" . config('recaptcha.default_validation_route',
+						'biscolab-recaptcha/validate') . "?" . config('recaptcha.default_token_parameter_name',
+						'token') . "=' + token, {
                     headers: {
                         \"X-Requested-With\": \"XMLHttpRequest\",
                         \"X-CSRF-TOKEN\": csrfToken.content
