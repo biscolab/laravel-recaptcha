@@ -21,10 +21,11 @@ class ReCaptchaBuilderInvisible extends ReCaptchaBuilder {
 	 *
 	 * @param string $api_site_key
 	 * @param string $api_secret_key
+	 * @param int $curl_timeout
 	 */
-	public function __construct(string $api_site_key, string $api_secret_key) {
+	public function __construct(string $api_site_key, string $api_secret_key, int $curl_timeout) {
 
-		parent::__construct($api_site_key, $api_secret_key, 'invisible');
+		parent::__construct($api_site_key, $api_secret_key, 'invisible', $curl_timeout);
 	}
 
 	/**
