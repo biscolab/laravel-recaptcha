@@ -21,11 +21,11 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder {
 	 *
 	 * @param string   $api_site_key
 	 * @param string   $api_secret_key
-	 * @param int|null $curl_timeout
 	 */
-	public function __construct(string $api_site_key, string $api_secret_key, ?int $curl_timeout = null) {
+	public function __construct(string $api_site_key, string $api_secret_key)
+	{
 
-		parent::__construct($api_site_key, $api_secret_key, 'v3', $curl_timeout);
+		parent::__construct($api_site_key, $api_secret_key, 'v3');
 	}
 
 }

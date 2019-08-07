@@ -51,13 +51,6 @@ class ReCaptchaBuilder {
 	protected $version;
 
 	/**
-	 * The curl timeout
-	 * please visit https://curl.haxx.se/libcurl/c/CURLOPT_TIMEOUT.html
-	 * @var int
-	 */
-	protected $curl_timeout;
-
-	/**
 	 * Whether is true the ReCAPTCHA is inactive
 	 * @var boolean
 	 */
@@ -74,19 +67,16 @@ class ReCaptchaBuilder {
 	 * @param string      $api_site_key
 	 * @param string      $api_secret_key
 	 * @param null|string $version
-	 * @param int|null    $curl_timeout
 	 */
 	public function __construct(
 		string $api_site_key,
 		string $api_secret_key,
-		?string $version = self::DEFAULT_API_VERSION,
-		?int $curl_timeout = self::DEFAULT_CURL_TIMEOUT
+		?string $version = self::DEFAULT_API_VERSION
 	) {
 
 		$this->setApiSiteKey($api_site_key);
 		$this->setApiSecretKey($api_secret_key);
 		$this->setVersion($version);
-		$this->setCurlTimeout($curl_timeout);
 		$this->setSkipByIp($this->skipByIp());
 	}
 
@@ -115,26 +105,11 @@ class ReCaptchaBuilder {
 	}
 
 	/**
-	 * @param int|null $curl_timeout
-	 *
-	 * @return ReCaptchaBuilder
-	 */
-	public function setCurlTimeout(?int $curl_timeout = null): ReCaptchaBuilder {
-
-		if($curl_timeout === null) {
-			$curl_timeout = config('recaptcha.curl_timeout', ReCaptchaBuilder::DEFAULT_CURL_TIMEOUT);
-		}
-		$this->curl_timeout = $curl_timeout;
-
-		return $this;
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getCurlTimeout(): int {
 
-		return $this->curl_timeout;
+		return config('recaptcha.curl_timeout', self::DEFAULT_CURL_TIMEOUT);
 	}
 
 	/**
@@ -322,7 +297,7 @@ class ReCaptchaBuilder {
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_HEADER, false);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_TIMEOUT, $this->curl_timeout);
+			curl_setopt($curl, CURLOPT_TIMEOUT, $this->getCurlTimeout());
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 			$curl_response = curl_exec($curl);
 		}
