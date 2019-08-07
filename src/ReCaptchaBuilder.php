@@ -214,7 +214,9 @@ class ReCaptchaBuilder {
 				$html = "<script src=\"https://www.google.com/recaptcha/api.js?render={$this->api_site_key}\"></script>";
 				break;
 			default:
-				$html = "<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>";
+				$language = config('recaptcha.default_language', null);
+				$query = ($language) ? "?hl=" . $language : "";
+				$html = "<script src=\"https://www.google.com/recaptcha/api.js" . $query . "\" async defer></script>";
 		}
 
 		if ($this->version == 'invisible') {
@@ -348,6 +350,24 @@ class ReCaptchaBuilder {
 
 		return $response['success'];
 
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getApiSiteKey(): string
+	{
+
+		return $this->api_site_key;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getApiSecretKey(): string
+	{
+
+		return $this->api_secret_key;
 	}
 
 	/**
