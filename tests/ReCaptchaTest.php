@@ -96,6 +96,58 @@ class ReCaptchaTest extends TestCase
 	/**
 	 * @test
 	 */
+	public function testSkipByIpAndReturnArrayReturnsDefaultArray()
+	{
+
+		$mock = $this->getMockBuilder(ReCaptchaBuilder::class)
+			->setConstructorArgs([
+				"api_site_key",
+				"api_secret_key"
+			])
+			->setMethods([
+				'returnArray'
+			])
+			->getMock();
+
+		$mock->method('returnArray')
+			->willReturn(true);
+
+		$this->setSkipByIp($this->recaptcha_v3, true);
+
+		$validate = $this->recaptcha_v3->validate("");
+
+		$this->assertEquals([
+			"skip_by_ip" => true,
+			"score"      => 0.9,
+			"success"    => true
+		], $validate);
+	}
+
+	/**
+	 * @test
+	 */
+	public function testSlipByIpReturnsValidResponse()
+	{
+
+		$this->setSkipByIp($this->recaptcha_invisible, true);
+		$validate = $this->recaptcha_invisible->validate("");
+
+		$this->assertTrue($validate);
+	}
+
+	/**
+	 * @test
+	 * @expectedException     \Exception
+	 */
+	public function testReCaptchaInvisibleHtmlScriptTagJsApiShouldThrowError()
+	{
+
+		$this->recaptcha_invisible->htmlScriptTagJsApi();
+	}
+
+	/**
+	 * @test
+	 */
 	public function testDefaultCurlTimeout()
 	{
 
@@ -112,6 +164,15 @@ class ReCaptchaTest extends TestCase
 	{
 
 		$this->recaptcha_v2->htmlFormButton();
+	}
+
+	protected function setSkipByIp(ReCaptchaBuilder $builder, bool $value)
+	{
+
+		$reflection = new \ReflectionClass($builder);
+		$reflection_property = $reflection->getProperty('skip_by_ip');
+		$reflection_property->setAccessible(true);
+		$reflection_property->setValue($builder, $value);
 	}
 
 	/**

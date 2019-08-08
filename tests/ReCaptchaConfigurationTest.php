@@ -28,6 +28,20 @@ class ReCaptchaConfigurationTest extends TestCase
 	/**
 	 * @test
 	 */
+	public function testGetApiSiteKey() {
+		$this->assertEquals("api_site_key", $this->recaptcha->getApiSiteKey());
+	}
+
+	/**
+	 * @test
+	 */
+	public function testGetApiSecretKey() {
+		$this->assertEquals("api_secret_key", $this->recaptcha->getApiSecretKey());
+	}
+
+	/**
+	 * @test
+	 */
 	public function testSkipIpWhiteListIsArray()
 	{
 
