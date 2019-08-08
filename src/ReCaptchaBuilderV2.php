@@ -14,13 +14,14 @@ namespace Biscolab\ReCaptcha;
  * Class ReCaptchaBuilderV2
  * @package Biscolab\ReCaptcha
  */
-class ReCaptchaBuilderV2 extends ReCaptchaBuilder {
+class ReCaptchaBuilderV2 extends ReCaptchaBuilder
+{
 
 	/**
 	 * ReCaptchaBuilderV2 constructor.
 	 *
-	 * @param string   $api_site_key
-	 * @param string   $api_secret_key
+	 * @param string $api_site_key
+	 * @param string $api_secret_key
 	 */
 	public function __construct(string $api_site_key, string $api_secret_key)
 	{
@@ -33,7 +34,8 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder {
 	 * Insert before </form> tag
 	 * @return string
 	 */
-	public function htmlFormSnippet(): string {
+	public function htmlFormSnippet(): string
+	{
 
 		return ($this->version == 'v2') ? '<div class="g-recaptcha" data-sitekey="' . $this->api_site_key . '"></div>' : '';
 	}

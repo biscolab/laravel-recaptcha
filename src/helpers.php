@@ -14,7 +14,8 @@ if (!function_exists('recaptcha')) {
 	/**
 	 * @return Biscolab\ReCaptcha\ReCaptchaBuilder
 	 */
-	function recaptcha() {
+	function recaptcha()
+	{
 
 		return app('recaptcha');
 	}
@@ -34,7 +35,8 @@ if (!function_exists('htmlScriptTagJsApi')) {
 	 *
 	 * @return string
 	 */
-	function htmlScriptTagJsApi($formId = ''): string {
+	function htmlScriptTagJsApi($formId = ''): string
+	{
 
 		return ReCaptcha::htmlScriptTagJsApi($formId);
 	}
@@ -54,7 +56,8 @@ if (!function_exists('htmlScriptTagJsApiV3')) {
 	 *
 	 * @return string
 	 */
-	function htmlScriptTagJsApiV3($config = []): string {
+	function htmlScriptTagJsApiV3($config = []): string
+	{
 
 		return ReCaptcha::htmlScriptTagJsApiV3($config);
 	}
@@ -76,7 +79,8 @@ if (!function_exists('htmlFormButton')) {
 	 *
 	 * @return string
 	 */
-	function htmlFormButton(?string $buttonInnerHTML = 'Submit'): string {
+	function htmlFormButton(?string $buttonInnerHTML = 'Submit'): string
+	{
 
 		return ReCaptcha::htmlFormButton($buttonInnerHTML);
 	}
@@ -94,7 +98,8 @@ if (!function_exists('htmlFormSnippet')) {
 	/**
 	 * @return string
 	 */
-	function htmlFormSnippet(): string {
+	function htmlFormSnippet(): string
+	{
 
 		return ReCaptcha::htmlFormSnippet();
 	}

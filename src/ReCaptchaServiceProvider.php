@@ -18,7 +18,8 @@ use Validator;
  * Class ReCaptchaServiceProvider
  * @package Biscolab\ReCaptcha
  */
-class ReCaptchaServiceProvider extends ServiceProvider {
+class ReCaptchaServiceProvider extends ServiceProvider
+{
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -30,7 +31,8 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 	/**
 	 *
 	 */
-	public function boot() {
+	public function boot()
+	{
 
 		$this->addValidationRule();
 //		$this->loadRoutesFrom(__DIR__ . '/routes/routes.php');
@@ -44,7 +46,8 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 	/**
 	 * Extends Validator to include a recaptcha type
 	 */
-	public function addValidationRule() {
+	public function addValidationRule()
+	{
 
 		Validator::extendImplicit('recaptcha', function ($attribute, $value, $parameters, $validator) {
 
@@ -57,7 +60,8 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function register() {
+	public function register()
+	{
 
 		$this->mergeConfigFrom(
 			__DIR__ . '/../config/recaptcha.php', 'recaptcha'
@@ -71,7 +75,8 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 	 *
 	 * @return array
 	 */
-	public function provides(): array {
+	public function provides(): array
+	{
 
 		return ['recaptcha'];
 	}
@@ -81,7 +86,8 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 	 *
 	 * @since v3.4.1
 	 */
-	protected function registerRoutes(): ReCaptchaServiceProvider {
+	protected function registerRoutes(): ReCaptchaServiceProvider
+	{
 
 		Route::get(
 			config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate'),
@@ -96,7 +102,8 @@ class ReCaptchaServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	protected function registerReCaptchaBuilder() {
+	protected function registerReCaptchaBuilder()
+	{
 
 		$this->app->singleton('recaptcha', function ($app) {
 

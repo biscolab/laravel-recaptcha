@@ -14,13 +14,14 @@ namespace Biscolab\ReCaptcha;
  * Class ReCaptchaBuilderInvisible
  * @package Biscolab\ReCaptcha
  */
-class ReCaptchaBuilderInvisible extends ReCaptchaBuilder {
+class ReCaptchaBuilderInvisible extends ReCaptchaBuilder
+{
 
 	/**
 	 * ReCaptchaBuilderInvisible constructor.
 	 *
-	 * @param string   $api_site_key
-	 * @param string   $api_secret_key
+	 * @param string $api_site_key
+	 * @param string $api_secret_key
 	 */
 	public function __construct(string $api_site_key, string $api_secret_key)
 	{
@@ -36,7 +37,8 @@ class ReCaptchaBuilderInvisible extends ReCaptchaBuilder {
 	 *
 	 * @return string
 	 */
-	public function htmlFormButton($buttonInnerHTML = 'Submit'): string {
+	public function htmlFormButton($buttonInnerHTML = 'Submit'): string
+	{
 
 		return ($this->version == 'invisible') ? '<button class="g-recaptcha" data-sitekey="' . $this->api_site_key . '" data-callback="biscolabLaravelReCaptcha">' . $buttonInnerHTML . '</button>' : '';
 	}

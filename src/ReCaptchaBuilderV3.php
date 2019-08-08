@@ -14,13 +14,14 @@ namespace Biscolab\ReCaptcha;
  * Class ReCaptchaBuilderV3
  * @package Biscolab\ReCaptcha
  */
-class ReCaptchaBuilderV3 extends ReCaptchaBuilder {
+class ReCaptchaBuilderV3 extends ReCaptchaBuilder
+{
 
 	/**
 	 * ReCaptchaBuilderV3 constructor.
 	 *
-	 * @param string   $api_site_key
-	 * @param string   $api_secret_key
+	 * @param string $api_site_key
+	 * @param string $api_secret_key
 	 */
 	public function __construct(string $api_site_key, string $api_secret_key)
 	{
