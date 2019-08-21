@@ -68,5 +68,15 @@ return [
 	 * @since v3.2.0
 	 *
 	 */
-	'default_token_parameter_name' => env('RECAPTCHA_DEFAULT_TOKEN_PARAMETER_NAME', 'token')
+	'default_token_parameter_name' => env('RECAPTCHA_DEFAULT_TOKEN_PARAMETER_NAME', 'token'),
+
+	/**
+	 *
+	 * The default Google reCAPTCHA language code
+	 * It has no effect with v3
+	 * @see   https://developers.google.com/recaptcha/docs/language
+	 * @since v3.6.0
+	 *
+	 */
+	'default_language'             => env('RECAPTCHA_DEFAULT_LANGUAGE', null)
 ];

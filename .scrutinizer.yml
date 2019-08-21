@@ -7,3 +7,7 @@ build:
             coverage:
               file: clover.xml
               format: clover
+tools:
+    php_code_sniffer:
+        config:
+            standard: PSR2

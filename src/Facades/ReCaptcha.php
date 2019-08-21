@@ -16,14 +16,16 @@ use Illuminate\Support\Facades\Facade;
  * Class ReCaptcha
  * @package Biscolab\ReCaptcha\Facades
  */
-class ReCaptcha extends Facade {
+class ReCaptcha extends Facade
+{
 
 	/**
 	 * Get the registered name of the component.
 	 *
 	 * @return string
 	 */
-	protected static function getFacadeAccessor() {
+	protected static function getFacadeAccessor()
+	{
 
 		return 'recaptcha';
 	}
