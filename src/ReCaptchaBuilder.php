@@ -17,7 +17,8 @@ use Illuminate\Support\Arr;
  * Class ReCaptchaBuilder
  * @package Biscolab\ReCaptcha
  */
-class ReCaptchaBuilder {
+class ReCaptchaBuilder
+{
 
 	/**
 	 * @var string
@@ -51,13 +52,6 @@ class ReCaptchaBuilder {
 	protected $version;
 
 	/**
-	 * The curl timeout
-	 * please visit https://curl.haxx.se/libcurl/c/CURLOPT_TIMEOUT.html
-	 * @var int
-	 */
-	protected $curl_timeout;
-
-	/**
 	 * Whether is true the ReCAPTCHA is inactive
 	 * @var boolean
 	 */
@@ -74,19 +68,16 @@ class ReCaptchaBuilder {
 	 * @param string      $api_site_key
 	 * @param string      $api_secret_key
 	 * @param null|string $version
-	 * @param int|null    $curl_timeout
 	 */
 	public function __construct(
 		string $api_site_key,
 		string $api_secret_key,
-		?string $version = self::DEFAULT_API_VERSION,
-		?int $curl_timeout = self::DEFAULT_CURL_TIMEOUT
+		?string $version = self::DEFAULT_API_VERSION
 	) {
 
 		$this->setApiSiteKey($api_site_key);
 		$this->setApiSecretKey($api_secret_key);
 		$this->setVersion($version);
-		$this->setCurlTimeout($curl_timeout);
 		$this->setSkipByIp($this->skipByIp());
 	}
 
@@ -95,7 +86,8 @@ class ReCaptchaBuilder {
 	 *
 	 * @return ReCaptchaBuilder
 	 */
-	public function setApiSiteKey(string $api_site_key): ReCaptchaBuilder {
+	public function setApiSiteKey(string $api_site_key): ReCaptchaBuilder
+	{
 
 		$this->api_site_key = $api_site_key;
 
@@ -107,7 +99,8 @@ class ReCaptchaBuilder {
 	 *
 	 * @return ReCaptchaBuilder
 	 */
-	public function setApiSecretKey(string $api_secret_key): ReCaptchaBuilder {
+	public function setApiSecretKey(string $api_secret_key): ReCaptchaBuilder
+	{
 
 		$this->api_secret_key = $api_secret_key;
 
@@ -115,26 +108,12 @@ class ReCaptchaBuilder {
 	}
 
 	/**
-	 * @param int|null $curl_timeout
-	 *
-	 * @return ReCaptchaBuilder
-	 */
-	public function setCurlTimeout(?int $curl_timeout = null): ReCaptchaBuilder {
-
-		if($curl_timeout === null) {
-			$curl_timeout = config('recaptcha.curl_timeout', ReCaptchaBuilder::DEFAULT_CURL_TIMEOUT);
-		}
-		$this->curl_timeout = $curl_timeout;
-
-		return $this;
-	}
-
-	/**
 	 * @return int
 	 */
-	public function getCurlTimeout(): int {
+	public function getCurlTimeout(): int
+	{
 
-		return $this->curl_timeout;
+		return config('recaptcha.curl_timeout', self::DEFAULT_CURL_TIMEOUT);
 	}
 
 	/**
@@ -142,7 +121,8 @@ class ReCaptchaBuilder {
 	 *
 	 * @return ReCaptchaBuilder
 	 */
-	public function setVersion(string $version): ReCaptchaBuilder {
+	public function setVersion(string $version): ReCaptchaBuilder
+	{
 
 		$this->version = $version;
 
@@ -152,7 +132,8 @@ class ReCaptchaBuilder {
 	/**
 	 * @return string
 	 */
-	public function getVersion(): string {
+	public function getVersion(): string
+	{
 
 		return $this->version;
 	}
@@ -162,7 +143,8 @@ class ReCaptchaBuilder {
 	 *
 	 * @return ReCaptchaBuilder
 	 */
-	public function setSkipByIp(bool $skip_by_ip): ReCaptchaBuilder {
+	public function setSkipByIp(bool $skip_by_ip): ReCaptchaBuilder
+	{
 
 		$this->skip_by_ip = $skip_by_ip;
 
@@ -172,7 +154,8 @@ class ReCaptchaBuilder {
 	/**
 	 * @return array|mixed
 	 */
-	public function getIpWhitelist() {
+	public function getIpWhitelist()
+	{
 
 		$whitelist = config('recaptcha.skip_ip', []);
 
@@ -188,7 +171,8 @@ class ReCaptchaBuilder {
 	 *
 	 * @return boolean
 	 */
-	public function skipByIp(): bool {
+	public function skipByIp(): bool
+	{
 
 		return (in_array(request()->ip(), $this->getIpWhitelist()));
 	}
@@ -203,7 +187,8 @@ class ReCaptchaBuilder {
 	 * @return string
 	 * @throws Exception
 	 */
-	public function htmlScriptTagJsApi(?string $formId = '', ?array $configuration = []): string {
+	public function htmlScriptTagJsApi(?string $formId = '', ?array $configuration = []): string
+	{
 
 		if ($this->skip_by_ip) {
 			return '';
@@ -214,7 +199,9 @@ class ReCaptchaBuilder {
 				$html = "<script src=\"https://www.google.com/recaptcha/api.js?render={$this->api_site_key}\"></script>";
 				break;
 			default:
-				$html = "<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>";
+				$language = config('recaptcha.default_language', null);
+				$query = ($language) ? "?hl=" . $language : "";
+				$html = "<script src=\"https://www.google.com/recaptcha/api.js" . $query . "\" async defer></script>";
 		}
 
 		if ($this->version == 'invisible') {
@@ -226,8 +213,7 @@ class ReCaptchaBuilder {
 		         document.getElementById("' . $formId . '").submit();
 		       }
 		     </script>';
-		}
-		elseif ($this->version == 'v3') {
+		} elseif ($this->version == 'v3') {
 
 			$action = Arr::get($configuration, 'action', 'homepage');
 
@@ -237,8 +223,7 @@ class ReCaptchaBuilder {
 			if ($js_custom_validation) {
 
 				$validate_function = ($js_custom_validation) ? "{$js_custom_validation}(token);" : '';
-			}
-			else {
+			} else {
 
 				$js_then_callback = Arr::get($configuration, 'callback_then', '');
 				$js_callback_catch = Arr::get($configuration, 'callback_catch', '');
@@ -281,7 +266,8 @@ class ReCaptchaBuilder {
 	 *
 	 * @return string
 	 */
-	public function htmlScriptTagJsApiV3(?array $configuration = []): string {
+	public function htmlScriptTagJsApiV3(?array $configuration = []): string
+	{
 
 		return $this->htmlScriptTagJsApi('', $configuration);
 	}
@@ -293,7 +279,8 @@ class ReCaptchaBuilder {
 	 *
 	 * @return boolean|array
 	 */
-	public function validate($response) {
+	public function validate($response)
+	{
 
 		if ($this->skip_by_ip) {
 			if ($this->returnArray()) {
@@ -317,14 +304,14 @@ class ReCaptchaBuilder {
 		$url = $this->api_url . '?' . $params;
 
 		if (function_exists('curl_version')) {
+
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_HEADER, false);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_TIMEOUT, $this->curl_timeout);
+			curl_setopt($curl, CURLOPT_TIMEOUT, $this->getCurlTimeout());
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 			$curl_response = curl_exec($curl);
-		}
-		else {
+		} else {
 			$curl_response = file_get_contents($url);
 		}
 
@@ -351,9 +338,28 @@ class ReCaptchaBuilder {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getApiSiteKey(): string
+	{
+
+		return $this->api_site_key;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getApiSecretKey(): string
+	{
+
+		return $this->api_secret_key;
+	}
+
+	/**
 	 * @return bool
 	 */
-	protected function returnArray(): bool {
+	protected function returnArray(): bool
+	{
 
 		return ($this->version == 'v3');
 	}

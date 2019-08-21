@@ -14,18 +14,19 @@ namespace Biscolab\ReCaptcha;
  * Class ReCaptchaBuilderV3
  * @package Biscolab\ReCaptcha
  */
-class ReCaptchaBuilderV3 extends ReCaptchaBuilder {
+class ReCaptchaBuilderV3 extends ReCaptchaBuilder
+{
 
 	/**
 	 * ReCaptchaBuilderV3 constructor.
 	 *
-	 * @param string   $api_site_key
-	 * @param string   $api_secret_key
-	 * @param int|null $curl_timeout
+	 * @param string $api_site_key
+	 * @param string $api_secret_key
 	 */
-	public function __construct(string $api_site_key, string $api_secret_key, ?int $curl_timeout = null) {
+	public function __construct(string $api_site_key, string $api_secret_key)
+	{
 
-		parent::__construct($api_site_key, $api_secret_key, 'v3', $curl_timeout);
+		parent::__construct($api_site_key, $api_secret_key, 'v3');
 	}
 
 }
