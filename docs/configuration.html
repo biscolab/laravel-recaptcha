@@ -75,7 +75,7 @@
 <pre><code class="hljs css language-php"><span class="hljs-comment"># in your .env file</span>
 RECAPTCHA_SITE_KEY=YOUR_API_SITE_KEY
 RECAPTCHA_SECRET_KEY=YOUR_API_SECRET_KEY
-<span class="hljs-comment"># RECAPTCHA_VERSION</span>
+<span class="hljs-comment"># RECAPTCHA_DEFAULT_VERSION</span>
 <span class="hljs-comment"># RECAPTCHA_CURL_TIMEOUT</span>
 <span class="hljs-comment"># RECAPTCHA_DEFAULT_VALIDATION_ROUTE</span>
 <span class="hljs-comment"># RECAPTCHA_DEFAULT_TOKEN_PARAMETER_NAME</span>
@@ -86,7 +86,8 @@ RECAPTCHA_SECRET_KEY=YOUR_API_SECRET_KEY
 <pre><code class="hljs css language-php"><span class="hljs-keyword">return</span> [
     <span class="hljs-string">'api_site_key'</span>      =&gt; env(<span class="hljs-string">'RECAPTCHA_SITE_KEY'</span>, <span class="hljs-string">''</span>),
     <span class="hljs-string">'api_secret_key'</span>    =&gt; env(<span class="hljs-string">'RECAPTCHA_SECRET_KEY'</span>, <span class="hljs-string">''</span>),
-    <span class="hljs-string">'version'</span>           =&gt; env(<span class="hljs-string">'RECAPTCHA_VERSION'</span>, <span class="hljs-string">'v2'</span>), <span class="hljs-comment">// supported: v3|v2|invisible </span>
+    <span class="hljs-comment">// Errata corrige: is RECAPTCHA_DEFAULT_VERSION, was RECAPTCHA_VERSION</span>
+    <span class="hljs-string">'version'</span>           =&gt; env(<span class="hljs-string">'RECAPTCHA_DEFAULT_VERSION'</span>, <span class="hljs-string">'v2'</span>), <span class="hljs-comment">// supported: v3|v2|invisible </span>
     <span class="hljs-comment">// @since v3.4.3</span>
     <span class="hljs-string">'curl_timeout'</span>      =&gt; env(<span class="hljs-string">'RECAPTCHA_CURL_TIMEOUT'</span>, <span class="hljs-number">10</span>),
     <span class="hljs-string">'skip_ip'</span>           =&gt; [], <span class="hljs-comment">// array of IP addresses - String: dotted quad format e.g.: 127.0.0.1</span>
