@@ -13,8 +13,10 @@ Available reCAPTCHA versions:
 ## System requirements
 | Package | reCAPTCHA | PHP | Laravel | Docs |
 |-----------------|-------------|-------------|-----------------|-------------------|
-| 3.x             |v3, v2 Invisible, v2 Checkbox | 7.1 or greater | 5.5 or greater | [latest](https://laravel-recaptcha-docs.biscolab.com) |
+| 3.x             |v3, v2 Invisible, v2 Checkbox | 7.1 or greater | 5.5 or greater, 6 or greater (*) | [latest](https://laravel-recaptcha-docs.biscolab.com) |
 | 2.x             | v2 Invisible, v2 Checkbox | 5.5.9, 7.0 or greater | 5.0 or greater | [v2.0.4](https://laravel-recaptcha-docs.biscolab.com/docs/2.0.4/intro) |
+
+> (*) Latest version (>= 3.6.1) is Laravel 6 ready
 
 ## !!! Documentation !!!
 
