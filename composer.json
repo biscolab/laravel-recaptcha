@@ -5,12 +5,12 @@
     "authors": [
         {
             "name": "Roberto Belotti",
-            "email": "boby.belotti@gmail.com"
+            "email": "roby.belotti@gmail.com"
         }
     ],
     "require": {
         "php": "^7.1",
-        "laravel/framework": "^5.5"
+        "laravel/framework": "^5.5|^6.0"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0",
