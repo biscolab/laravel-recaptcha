@@ -8,80 +8,91 @@
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-
 namespace Biscolab\ReCaptcha\Tests;
 
 use Biscolab\ReCaptcha\Facades\ReCaptcha;
-use Biscolab\ReCaptcha\ReCaptchaServiceProvider;
 
 class ReCaptchaHelpersInvisibleTest extends TestCase
 {
 
-	/**
-	 * @test
-	 */
-	public function testHtmlScriptTagJsApiCalledByFacade()
-	{
-		ReCaptcha::shouldReceive('htmlScriptTagJsApi')
-			->once()
-			->with("key");
+    /**
+     * @test
+     */
+    public function testHtmlScriptTagJsApiCalledByFacade()
+    {
 
-		htmlScriptTagJsApi("key");
+        ReCaptcha::shouldReceive('htmlScriptTagJsApi')
+            ->once()
+            ->with(["form_id" => "test-form"]);
 
-	}
+        htmlScriptTagJsApi(["form_id" => "test-form"]);
 
-	/**
-	 * @test
-	 */
-	public function testHtmlScriptTagJsApiV3CalledByFacade()
-	{
-		ReCaptcha::shouldReceive('htmlScriptTagJsApiV3')
-			->once()
-			->with([]);
+    }
 
-		htmlScriptTagJsApiV3([]);
+    /**
+     * @test
+     */
+    public function testHtmlFormButtonCalledByFacade()
+    {
 
-	}
+        ReCaptcha::shouldReceive('htmlFormButton')
+            ->once()
+            ->with("Inner text", ['id' => 'button_id']);
 
-	/**
-	 * @test
-	 */
-	public function testHtmlFormButtonCalledByFacade()
-	{
-		ReCaptcha::shouldReceive('htmlFormButton')
-			->once()
-			->with("key");
+        htmlFormButton("Inner text", ['id' => 'button_id']);
 
-		htmlFormButton("key");
+    }
 
-	}
+    /**
+     * @test
+     */
+    public function testGetFormIdCalledByFacade()
+    {
 
-	/**
-	 * @test
-	 * @expectedException \TypeError
-	 */
-	public function testHtmlFormSnippetCalledByFacade()
-	{
-		ReCaptcha::shouldReceive('htmlFormSnippet')
-			->once();
+        ReCaptcha::shouldReceive('getFormId')
+            ->once();
 
-		htmlFormSnippet();
+        getFormId();
 
-	}
+    }
 
+    public function testHtmlFormButtonConfiguration() {
+        $button_html = htmlFormButton("Inner text", ['id' => 'button_id', 'class' => 'button_class', 'data-sitekey' => 'custom-data-sitekey', 'data-callback' => 'myCallback']);
 
-	/**
-	 * Define environment setup.
-	 *
-	 * @param  \Illuminate\Foundation\Application $app
-	 *
-	 * @return void
-	 */
-	protected function getEnvironmentSetUp($app)
-	{
+        $this->assertEquals('<button class="button_class g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key" id="button_id">Inner text</button>', $button_html);
+    }
 
-		$app['config']->set('recaptcha.api_site_key', 'api_site_key');
-		$app['config']->set('recaptcha.api_site_key', 'api_site_key');
-		$app['config']->set('recaptcha.version', 'invisible');
-	}
+    /**
+     * @test
+     * @expectedException \TypeError
+     */
+    public function testHtmlFormSnippetCalledByFacade()
+    {
+
+        ReCaptcha::shouldReceive('htmlFormSnippet')
+            ->once();
+
+        htmlFormSnippet();
+
+    }
+
+    public function testGetFormIdReturnDefaultFormIdValue()
+    {
+        $this->assertEquals('biscolab-recaptcha-invisible-form', getFormId());
+    }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application $app
+     *
+     * @return void
+     */
+    protected function getEnvironmentSetUp($app)
+    {
+
+        $app['config']->set('recaptcha.api_site_key', 'api_site_key');
+        $app['config']->set('recaptcha.api_site_key', 'api_site_key');
+        $app['config']->set('recaptcha.version', 'invisible');
+    }
 }

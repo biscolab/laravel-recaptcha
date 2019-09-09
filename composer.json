@@ -1,11 +1,22 @@
 {
     "name": "biscolab/laravel-recaptcha",
-    "description": "Simple ReCaptcha package for Laravel 5",
+    "description": "Simple ReCaptcha package for Laravel 5 and 6",
+    "version": "4.0.0",
     "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "recaptcha",
+        "captcha",
+        "laravel",
+        "validation"
+    ],
+    "homepage": "https://biscolab.com/laravel-recaptcha",
     "authors": [
         {
             "name": "Roberto Belotti",
-            "email": "roby.belotti@gmail.com"
+            "email": "roby.belotti@gmail.com",
+            "homepage": "https://biscolab.com",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -30,7 +41,7 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "vendor/bin/phpunit --colors=always"
     },
     "extra": {
         "laravel": {
