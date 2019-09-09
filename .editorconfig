@@ -5,10 +5,7 @@ insert_final_newline=false
 indent_style=space
 indent_size=4
 
-[{*.hphp,*.phtml,*.module,*.php,*.php5,*.php4,*.inc}]
-indent_style=tab
-tab_width=4
-
 [{*.yml,*.yaml}]
 indent_style=space
 indent_size=2
+
