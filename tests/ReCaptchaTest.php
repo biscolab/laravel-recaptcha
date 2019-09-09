@@ -56,7 +56,7 @@ class ReCaptchaTest extends TestCase
 
 		$recaptcha = $this->recaptcha_invisible;
 		$html_button = $recaptcha->htmlFormButton();
-		$this->assertEquals('<button class="g-recaptcha" data-sitekey="api_site_key" data-callback="biscolabLaravelReCaptcha">Submit</button>',
+		$this->assertEquals('<button class="g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key">Submit</button>',
 			$html_button);
 	}
 
@@ -68,7 +68,7 @@ class ReCaptchaTest extends TestCase
 
 		$recaptcha = $this->recaptcha_invisible;
 		$html_button = $recaptcha->htmlFormButton('Custom Text');
-		$this->assertEquals('<button class="g-recaptcha" data-sitekey="api_site_key" data-callback="biscolabLaravelReCaptcha">Custom Text</button>',
+		$this->assertEquals('<button class="g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key">Custom Text</button>',
 			$html_button);
 	}
 
@@ -80,7 +80,7 @@ class ReCaptchaTest extends TestCase
 
 		$recaptcha = $this->recaptcha_v2;
 		$html_snippet = $recaptcha->htmlFormSnippet();
-		$this->assertEquals('<div class="g-recaptcha" data-sitekey="api_site_key"></div>', $html_snippet);
+		$this->assertEquals('<div class="g-recaptcha" data-sitekey="api_site_key" data-theme="light" data-size="normal" id="recaptcha-element"></div>', $html_snippet);
 	}
 
 	/**
@@ -137,16 +137,6 @@ class ReCaptchaTest extends TestCase
 
 	/**
 	 * @test
-	 * @expectedException     \Exception
-	 */
-	public function testReCaptchaInvisibleHtmlScriptTagJsApiShouldThrowError()
-	{
-
-		$this->recaptcha_invisible->htmlScriptTagJsApi();
-	}
-
-	/**
-	 * @test
 	 */
 	public function testDefaultCurlTimeout()
 	{
@@ -165,6 +155,20 @@ class ReCaptchaTest extends TestCase
 
 		$this->recaptcha_v2->htmlFormButton();
 	}
+
+    /**
+     * @test
+     */
+	public function testRecaptchaFieldNameHelperReturnsReCaptchaBuilderDefaultFieldName() {
+        $this->assertEquals(ReCaptchaBuilder::DEFAULT_RECAPTCHA_FIELD_NAME, recaptchaFieldName());
+    }
+
+    /**
+     * @test
+     */
+	public function testRecaptchaRuleNameHelperReturnsReCaptchaBuilderDefaultRuleName() {
+        $this->assertEquals(ReCaptchaBuilder::DEFAULT_RECAPTCHA_RULE_NAME, recaptchaRuleName());
+    }
 
 	protected function setSkipByIp(ReCaptchaBuilder $builder, bool $value)
 	{
