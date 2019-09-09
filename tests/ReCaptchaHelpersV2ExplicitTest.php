@@ -1,46 +1,43 @@
 <?php
 /**
  * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - ReCaptchaHelpersV2Test.php
+ * LaravelGoogleRecaptcha - ReCaptchaHelpersV2ExplicitTest.php
  * author: Roberto Belotti - roby.belotti@gmail.com
  * web : robertobelotti.com, github.com/biscolab
- * Initial version created on: 8/8/2019
+ * Initial version created on: 2/9/2019
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
 namespace Biscolab\ReCaptcha\Tests;
 
-use Biscolab\ReCaptcha\Facades\ReCaptcha;
 use Biscolab\ReCaptcha\ReCaptchaBuilderV2;
 
-class ReCaptchaHelpersV2Test extends TestCase
+class ReCaptchaHelpersV2ExplicitTest extends TestCase
 {
 
     /**
      * @test
      */
-    public function testHtmlScriptTagJsApiCalledByFacade()
+    public function testGetOnLoadCallbackFunction()
     {
 
-        ReCaptcha::shouldReceive('htmlScriptTagJsApi')
-            ->once()
-            ->with(["key" => "val"]);
+        $recaptcha = \recaptcha();
 
-        htmlScriptTagJsApi(["key" => "val"]);
+        $callback = $recaptcha->getOnLoadCallback();
 
+        $this->assertEquals('<script>var biscolabOnloadCallback = function() {grecaptcha.render(\'recaptcha-element\', {"sitekey":"api_site_key","theme":"dark","size":"compact","tabindex":"2","callback":"callbackFunction","expired-callback":"expiredCallbackFunction","error-callback":"errorCallbackFunction"});};</script>', $callback);
     }
 
     /**
      * @test
      */
-    public function testHtmlFormSnippetCalledByFacade()
+    public function testHtmlScriptTagJsApiHasJavascriptRenderFunction()
     {
 
-        ReCaptcha::shouldReceive('htmlFormSnippet')
-            ->once();
+        $html = htmlScriptTagJsApi();
 
-        htmlFormSnippet();
-
+        $this->assertEquals('<script>var biscolabOnloadCallback = function() {grecaptcha.render(\'recaptcha-element\', {"sitekey":"api_site_key","theme":"dark","size":"compact","tabindex":"2","callback":"callbackFunction","expired-callback":"expiredCallbackFunction","error-callback":"errorCallbackFunction"});};</script><script src="https://www.google.com/recaptcha/api.js?render=explicit&onload=biscolabOnloadCallback" async defer></script>',
+            $html);
     }
 
     /**
@@ -53,8 +50,8 @@ class ReCaptchaHelpersV2Test extends TestCase
 
         $tag_attributes = $recaptcha->getTagAttributes();
 
-        $this->assertArrayHasKey('sitekey', $recaptcha->getTagAttributes());
-        $this->assertArrayHasKey('theme', $recaptcha->getTagAttributes());
+        $this->assertArrayHasKey('sitekey', $tag_attributes);
+        $this->assertArrayHasKey('theme', $tag_attributes);
         $this->assertArrayHasKey('size', $tag_attributes);
         $this->assertArrayHasKey('tabindex', $tag_attributes);
         $this->assertArrayHasKey('callback', $tag_attributes);
@@ -77,15 +74,6 @@ class ReCaptchaHelpersV2Test extends TestCase
     {
 
         $this->assertInstanceOf(ReCaptchaBuilderV2::class, \recaptcha());
-    }
-
-    /**
-     * @expectedException     \Error
-     */
-    public function testExpectExceptionWhenGetFormIdFunctionIsCalled()
-    {
-
-        getFormId();
     }
 
     /**
@@ -112,6 +100,7 @@ class ReCaptchaHelpersV2Test extends TestCase
 
         $app['config']->set('recaptcha.api_site_key', 'api_site_key');
         $app['config']->set('recaptcha.version', 'v2');
+        $app['config']->set('recaptcha.explicit', true);
         $app['config']->set('recaptcha.tag_attributes', [
             'theme'            => 'dark',
             'size'             => 'compact',
