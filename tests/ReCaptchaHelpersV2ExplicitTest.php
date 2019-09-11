@@ -22,10 +22,11 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
     {
 
         $recaptcha = \recaptcha();
-
+        /** @scrutinizer ignore-call */
         $callback = $recaptcha->getOnLoadCallback();
 
-        $this->assertEquals('<script>var biscolabOnloadCallback = function() {grecaptcha.render(\'recaptcha-element\', {"sitekey":"api_site_key","theme":"dark","size":"compact","tabindex":"2","callback":"callbackFunction","expired-callback":"expiredCallbackFunction","error-callback":"errorCallbackFunction"});};</script>', $callback);
+        $this->assertEquals('<script>var biscolabOnloadCallback = function() {grecaptcha.render(\'recaptcha-element\', {"sitekey":"api_site_key","theme":"dark","size":"compact","tabindex":"2","callback":"callbackFunction","expired-callback":"expiredCallbackFunction","error-callback":"errorCallbackFunction"});};</script>',
+            $callback);
     }
 
     /**
@@ -47,7 +48,7 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
     {
 
         $recaptcha = \recaptcha();
-
+        /** @scrutinizer ignore-call */
         $tag_attributes = $recaptcha->getTagAttributes();
 
         $this->assertArrayHasKey('sitekey', $tag_attributes);
@@ -82,6 +83,7 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
     public function testHtmlFormSnippet()
     {
 
+        /** @scrutinizer ignore-call */
         $html_snippet = \recaptcha()->htmlFormSnippet();
         $this->assertEquals('<div class="g-recaptcha" data-sitekey="api_site_key" data-theme="dark" data-size="compact" data-tabindex="2" data-callback="callbackFunction" data-expired-callback="expiredCallbackFunction" data-error-callback="errorCallbackFunction" id="recaptcha-element"></div>',
             $html_snippet);
