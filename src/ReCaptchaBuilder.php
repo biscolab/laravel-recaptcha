@@ -213,7 +213,7 @@ class ReCaptchaBuilder
 
         // Language: "hl" parameter
         // resources $configuration parameter overrides default language
-        $language = Arr::get($configuration, 'resources');
+        $language = Arr::get($configuration, 'lang');
         if (!$language) {
             $language = config('recaptcha.default_language', null);
         }
@@ -227,6 +227,7 @@ class ReCaptchaBuilder
             Arr::set($query, 'render', 'explicit');
             Arr::set($query, 'onload', self::DEFAULT_ONLOAD_JS_FUNCTION);
 
+            /** @scrutinizer ignore-call */
             $html = $this->getOnLoadCallback();
         }
 

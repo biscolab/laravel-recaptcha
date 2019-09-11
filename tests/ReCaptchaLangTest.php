@@ -38,6 +38,16 @@ class ReCaptchaLangTest extends TestCase
 	}
 
 	/**
+	 * @tests
+	 */
+	public function testHtmlScriptTagJsApiGetHtmlScriptOverridingHlParam()
+	{
+
+		$r = ReCaptcha::htmlScriptTagJsApi(['lang' => 'en']);
+		$this->assertEquals('<script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>', $r);
+	}
+
+	/**
 	 * Define environment setup.
 	 *
 	 * @param  \Illuminate\Foundation\Application $app
