@@ -1,7 +1,7 @@
 {
     "name": "biscolab/laravel-recaptcha",
     "description": "Simple ReCaptcha package for Laravel 5 and 6",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "license": "MIT",
     "type": "library",
     "keywords": [

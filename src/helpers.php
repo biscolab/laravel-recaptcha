@@ -43,27 +43,6 @@ if (!function_exists('htmlScriptTagJsApi')) {
 }
 
 /**
- * call ReCaptcha::htmlScriptTagJsApi()
- * Write script HTML tag in you HTML code
- * Insert before </head> tag
- *
- */
-if (!function_exists('htmlScriptTagJsApiV3')) {
-
-    /**
-     * @param array $config
-     *
-     * @return string
-     * @deprecated
-     */
-    function htmlScriptTagJsApiV3(?array $config = []): string
-    {
-
-        return ReCaptcha::htmlScriptTagJsApiV3($config);
-    }
-}
-
-/**
  * call ReCaptcha::htmlFormButton()
  * Write HTML <button> tag in your HTML code
  * Insert before </form> tag
