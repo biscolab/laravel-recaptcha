@@ -31,7 +31,7 @@ return [
 
     /**
      *
-     * ReCATCHA version
+     * ReCAPTCHA version
      * Supported: "v2", "invisible", "v3",
      *
      * get more info @ https://developers.google.com/recaptcha/docs/versions
