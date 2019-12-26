@@ -41,7 +41,7 @@ return [
 
     /**
      *
-     * The curl timout in seconds to validate a recaptcha token
+     * The curl timeout in seconds to validate a recaptcha token
      * @since v3.5.0
      *
      */
