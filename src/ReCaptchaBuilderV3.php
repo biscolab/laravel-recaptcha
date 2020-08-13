@@ -46,7 +46,7 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
             return '';
         }
 
-        $html = "<script src=\"https://www.google.com/recaptcha/api.js?render={$this->api_site_key}\"></script>";
+        $html = "<script src=\"https://".config('recaptcha.baseurl','www.google.com')."/recaptcha/api.js?render={$this->api_site_key}\"></script>";
 
         $action = Arr::get($configuration, 'action', 'homepage');
 

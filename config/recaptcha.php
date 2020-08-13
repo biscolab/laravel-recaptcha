@@ -41,6 +41,16 @@ return [
 
     /**
      *
+     * ReCATCHA Base URL
+     * Supported: "www.google.com", "www.recaptcha.net",
+     *
+     * get more info @ https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
+     *
+     */
+    'baseurl' => 'www.google.com',
+
+    /**
+     *
      * The curl timout in seconds to validate a recaptcha token
      * @since v3.5.0
      *

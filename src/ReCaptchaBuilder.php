@@ -93,6 +93,7 @@ class ReCaptchaBuilder
         $this->setApiSecretKey($api_secret_key);
         $this->setVersion($version);
         $this->setSkipByIp($this->skipByIp());
+        $this->setAPIURL();
     }
 
     /**
@@ -166,6 +167,17 @@ class ReCaptchaBuilder
     }
 
     /**
+     *
+     * @return ReCaptchaBuilder
+     */
+    public function setAPIURL(): ReCaptchaBuilder
+    {
+        $this->api_url = 'https://'.config('recaptcha.baseurl','www.google.com').'/recaptcha/api/siteverify';
+
+        return $this;
+    }
+
+    /**
      * @return array|mixed
      */
     public function getIpWhitelist()
@@ -231,9 +243,11 @@ class ReCaptchaBuilder
             $html = $this->getOnLoadCallback();
         }
 
+        $baseURL = config('recaptcha.baseurl','www.google.com');
+
         // Create query string
         $query = ($query) ? '?' . http_build_query($query) : "";
-        $html .= "<script src=\"https://www.google.com/recaptcha/api.js" . $query . "\" async defer></script>";
+        $html .= "<script src=\"https://".$baseURL."/recaptcha/api.js" . $query . "\" async defer></script>";
 
         return $html;
     }
