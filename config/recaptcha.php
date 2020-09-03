@@ -47,7 +47,7 @@ return [
      * get more info @ https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
      *
      */
-    'baseurl' => 'www.google.com',
+    'baseurl' => env('RECAPTCHA_BASEURL', 'www.google.com'),
 
     /**
      *
