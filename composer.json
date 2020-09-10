@@ -1,7 +1,7 @@
 {
     "name": "biscolab/laravel-recaptcha",
-    "description": "Simple and painless Google reCAPTCHA package for Laravel 5, 6 and 7",
-    "version": "4.1.0",
+    "description": "Simple and painless Google reCAPTCHA package for Laravel 5.5 or greater",
+    "version": "4.2.0",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "laravel/framework": "^5.5|^6.0|^7.0"
+        "laravel/framework": "^5.5|^6.0|^7.0|^8.0"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0",
@@ -44,7 +44,7 @@
         "test": "vendor/bin/phpunit --colors=always"
     },
     "suggest": {
-        "biscolab/laravel-authlog": "Allows logged-in users management and forced log-out"
+        "biscolab/laravel-authlog": "It allows to handle logged-in users and force log-out if needed"
     },
     "extra": {
         "laravel": {
