@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - ReCaptchaTest.php
@@ -56,8 +57,10 @@ class ReCaptchaTest extends TestCase
 
 		$recaptcha = $this->recaptcha_invisible;
 		$html_button = $recaptcha->htmlFormButton();
-		$this->assertEquals('<button class="g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key">Submit</button>',
-			$html_button);
+		$this->assertEquals(
+			'<button class="g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key">Submit</button>',
+			$html_button
+		);
 	}
 
 	/**
@@ -68,8 +71,10 @@ class ReCaptchaTest extends TestCase
 
 		$recaptcha = $this->recaptcha_invisible;
 		$html_button = $recaptcha->htmlFormButton('Custom Text');
-		$this->assertEquals('<button class="g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key">Custom Text</button>',
-			$html_button);
+		$this->assertEquals(
+			'<button class="g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key">Custom Text</button>',
+			$html_button
+		);
 	}
 
 	/**
@@ -156,19 +161,31 @@ class ReCaptchaTest extends TestCase
 		$this->recaptcha_v2->htmlFormButton();
 	}
 
-    /**
-     * @test
-     */
-	public function testRecaptchaFieldNameHelperReturnsReCaptchaBuilderDefaultFieldName() {
-        $this->assertEquals(ReCaptchaBuilder::DEFAULT_RECAPTCHA_FIELD_NAME, recaptchaFieldName());
-    }
+	/**
+	 * @test
+	 */
+	public function testRecaptchaFieldNameHelperReturnsReCaptchaBuilderDefaultFieldName()
+	{
+		$this->assertEquals(ReCaptchaBuilder::DEFAULT_RECAPTCHA_FIELD_NAME, recaptchaFieldName());
+	}
 
-    /**
-     * @test
-     */
-	public function testRecaptchaRuleNameHelperReturnsReCaptchaBuilderDefaultRuleName() {
-        $this->assertEquals(ReCaptchaBuilder::DEFAULT_RECAPTCHA_RULE_NAME, recaptchaRuleName());
-    }
+	/**
+	 * @test
+	 */
+	public function testRecaptchaRuleNameHelperReturnsReCaptchaBuilderDefaultRuleName()
+	{
+		$this->assertEquals(ReCaptchaBuilder::DEFAULT_RECAPTCHA_RULE_NAME, recaptchaRuleName());
+	}
+
+	/**
+	 * @test
+	 */
+	public function testDefaultRecaptchaApiDomainIsGoogleDotCom()
+	{
+		$this->assertEquals("www.google.com", $this->recaptcha_v2->getApiDomain());
+		$this->assertEquals("www.google.com", $this->recaptcha_invisible->getApiDomain());
+		$this->assertEquals("www.google.com", $this->recaptcha_v3->getApiDomain());
+	}
 
 	protected function setSkipByIp(ReCaptchaBuilder $builder, bool $value)
 	{
@@ -190,6 +207,5 @@ class ReCaptchaTest extends TestCase
 		$this->recaptcha_invisible = new ReCaptchaBuilderInvisible('api_site_key', 'api_secret_key');
 		$this->recaptcha_v2 = new ReCaptchaBuilderV2('api_site_key', 'api_secret_key');
 		$this->recaptcha_v3 = new ReCaptchaBuilderV3('api_site_key', 'api_secret_key');
-
 	}
 }
