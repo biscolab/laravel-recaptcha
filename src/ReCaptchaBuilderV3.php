@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - ReCaptchaBuilderV3.php
@@ -46,7 +47,7 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
             return '';
         }
 
-        $html = "<script src=\"https://www.google.com/recaptcha/api.js?render={$this->api_site_key}\"></script>";
+        $html = "<script src=\"" . $this->api_js_url . "?render={$this->api_site_key}\"></script>";
 
         $action = Arr::get($configuration, 'action', 'homepage');
 
@@ -65,9 +66,13 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
             $js_callback_catch = ($js_callback_catch) ? "{$js_callback_catch}(err)" : '';
 
             $validate_function = "
-                fetch('/" . config('recaptcha.default_validation_route',
-                    'biscolab-recaptcha/validate') . "?" . config('recaptcha.default_token_parameter_name',
-                    'token') . "=' + token, {
+                fetch('/" . config(
+                'recaptcha.default_validation_route',
+                'biscolab-recaptcha/validate'
+            ) . "?" . config(
+                'recaptcha.default_token_parameter_name',
+                'token'
+            ) . "=' + token, {
                     headers: {
                         \"X-Requested-With\": \"XMLHttpRequest\",
                         \"X-CSRF-TOKEN\": csrfToken.content
@@ -92,5 +97,4 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
 
         return $html;
     }
-
 }
