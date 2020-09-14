@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - ReCaptchaBuilder.php
@@ -45,6 +46,11 @@ class ReCaptchaBuilder
     const DEFAULT_RECAPTCHA_FIELD_NAME = 'g-recaptcha-response';
 
     /**
+     * @var string
+     */
+    const DEFAULT_RECAPTCHA_API_DOMAIN = 'www.google.com';
+
+    /**
      * The Site key
      * please visit https://developers.google.com/recaptcha/docs/start
      * @var string
@@ -72,9 +78,22 @@ class ReCaptchaBuilder
     protected $skip_by_ip = false;
 
     /**
-     * The API request URI
+     * The API domain (default: retrieved from config file)
+     * @var string
      */
-    protected $api_url = 'https://www.google.com/recaptcha/api/siteverify';
+    protected $api_domain = '';
+
+    /**
+     * The API request URI
+     * @var string
+     */
+    protected $api_url = '';
+
+    /**
+     * The URI of the API Javascript file to embed in you pages
+     * @var string
+     */
+    protected $api_js_url = '';
 
     /**
      * ReCaptchaBuilder constructor.
@@ -93,6 +112,8 @@ class ReCaptchaBuilder
         $this->setApiSecretKey($api_secret_key);
         $this->setVersion($version);
         $this->setSkipByIp($this->skipByIp());
+        $this->setApiDomain();
+        $this->setApiUrls();
     }
 
     /**
@@ -166,6 +187,40 @@ class ReCaptchaBuilder
     }
 
     /**
+     * @param null|string $api_domain
+     *
+     * @return ReCaptchaBuilder
+     */
+    public function setApiDomain(?string $api_domain = null): ReCaptchaBuilder
+    {
+
+        $this->api_domain = $api_domain ?? config('recaptcha.api_domain', self::DEFAULT_RECAPTCHA_API_DOMAIN);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiDomain(): string
+    {
+
+        return $this->api_domain;
+    }
+
+    /**
+     * @return ReCaptchaBuilder
+     */
+    public function setApiUrls(): ReCaptchaBuilder
+    {
+
+        $this->api_url = 'https://' . $this->api_domain . '/recaptcha/api/siteverify';
+        $this->api_js_url = 'https://' . $this->api_domain . '/recaptcha/api.js';
+
+        return $this;
+    }
+
+    /**
      * @return array|mixed
      */
     public function getIpWhitelist()
@@ -233,7 +288,7 @@ class ReCaptchaBuilder
 
         // Create query string
         $query = ($query) ? '?' . http_build_query($query) : "";
-        $html .= "<script src=\"https://www.google.com/recaptcha/api.js" . $query . "\" async defer></script>";
+        $html .= "<script src=\"" . $this->api_js_url .  $query . "\" async defer></script>";
 
         return $html;
     }
@@ -300,7 +355,6 @@ class ReCaptchaBuilder
         }
 
         return $response['success'];
-
     }
 
     /**
