@@ -101,6 +101,17 @@ return [
 
     /**
      *
+     * Set API domain. You can use "www.recaptcha.net" in case "www.google.com" is not accessible.
+     * (no check will be made on the entered value)
+     * @see   https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
+     * @since v4.3.0
+     * Default 'www.google.com' (ReCaptchaBuilder::DEFAULT_RECAPTCHA_API_DOMAIN)
+     *
+     */
+    'api_domain'                   => 'www.google.com',
+
+    /**
+     *
      * g-recaptcha tag attributes and grecaptcha.render parameters (v2 only)
      * @see   https://developers.google.com/recaptcha/docs/display#render_param
      * @since v4.0.0
