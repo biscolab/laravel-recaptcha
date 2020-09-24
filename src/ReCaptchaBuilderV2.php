@@ -26,7 +26,7 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
         "size",
         "tabindex",
         "callback",
-        "cexpired-allback",
+        "expired-callback",
         "error-callback",
     ];
 
