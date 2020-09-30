@@ -95,14 +95,37 @@
 
     ...
     </span><span class="hljs-template-variable">{!! htmlFormSnippet() !!}</span><span class="xml">
+    <span class="hljs-comment">&lt;!-- OR --&gt;</span>
+    </span><span class="hljs-template-variable">{!! htmlFormSnippet($attributes) !!}</span><span class="xml">
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </span></code></pre>
 <blockquote>
 <p>DO NOT forget <code>@csrf</code> blade directive</p>
 </blockquote>
-<h4><a class="anchor" aria-hidden="true" id="htmlformsnippet"></a><a href="#htmlformsnippet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>htmlFormSnippet()</h4>
-<p><code>htmlFormSnippet()</code> function does not require attributes.</p>
+<h4><a class="anchor" aria-hidden="true" id="htmlformsnippet-array-attributes"></a><a href="#htmlformsnippet-array-attributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>htmlFormSnippet([, array $attributes = [] ])</h4>
+<p><code>htmlFormSnippet()</code> function does not require attributes but you can override default config <code>data-</code> attributes:</p>
+<pre><code class="hljs css language-php">{!! htmlFormSnippet([
+    <span class="hljs-string">"theme"</span> =&gt; <span class="hljs-string">"light"</span>,
+    <span class="hljs-string">"size"</span> =&gt; <span class="hljs-string">"normal"</span>,
+    <span class="hljs-string">"tabindex"</span> =&gt; <span class="hljs-string">"3"</span>,
+    <span class="hljs-string">"callback"</span> =&gt; <span class="hljs-string">"callbackFunction"</span>,
+    <span class="hljs-string">"expired-callback"</span> =&gt; <span class="hljs-string">"expiredCallbackFunction"</span>,
+    <span class="hljs-string">"error-callback"</span> =&gt; <span class="hljs-string">"errorCallbackFunction"</span>,
+]) !!}
+</code></pre>
+<p><code>htmlFormSnippet</code> methos allows are only folowing attribute names:</p>
+<ul>
+<li>theme</li>
+<li>size</li>
+<li>tabindex</li>
+<li>callback</li>
+<li>expired-callback</li>
+<li>error-callback</li>
+</ul>
+<blockquote>
+<p>Any different attribute name will be rejected</p>
+</blockquote>
 <h4><a class="anchor" aria-hidden="true" id="customization"></a><a href="#customization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customization</h4>
 <p>In <code>config/recaptcha.php</code> you can customize reCAPTCHA widget setting <code>tag_attributes</code> array values. Take a look to <code>tag_attributes</code> section in <a href="/docs/next/configuration#complete-configuration">Complete configuration</a></p>
 <h3><a class="anchor" aria-hidden="true" id="recaptcha-v2-invisible"></a><a href="#recaptcha-v2-invisible" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ReCAPTCHA v2 Invisible</h3>
@@ -117,10 +140,7 @@
 <p>You can also use <code>ReCaptcha::htmlFormButton($button_label, $properties)</code> .</p>
 <p><code>$button_label</code> is what you want to write on the submit button</p>
 <pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"{{ getFormId() }}"</span>&gt;</span>
-    @csrf
-
-    ...
-    {!! htmlFormButton($button_label, $properties) !!}
+  @csrf ... {!! htmlFormButton($button_label, $properties) !!}
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 </code></pre>
 <blockquote>
@@ -137,7 +157,7 @@
 <li><code>$button_label</code>: (string: optional) the button lable. For example: <code>Subscribe!</code>;</li>
 <li><code>$properties</code>: (array: optional) the HTML button properties. For example:</li>
 </ul>
-<pre><code class="hljs css language-php"><span class="hljs-comment">// $properties = </span>
+<pre><code class="hljs css language-php"><span class="hljs-comment">// $properties =</span>
 [
     <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-info'</span>,
     <span class="hljs-string">'data-foo'</span> =&gt; <span class="hljs-string">'bar'</span>
@@ -164,4 +184,4 @@
     $errors = $validator-&gt;errors();
 }
 </code></pre>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/9/2019 by Roberto</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/configuration"><span class="arrow-prev">← </span><span>Configuration</span></a><a class="docs-next button" href="/docs/next/how-to-use-v3"><span>How to use v3</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#embed-in-blade">Embed in Blade</a><ul class="toc-headings"><li><a href="#recaptcha-v2-checkbox">ReCAPTCHA v2 Checkbox</a></li><li><a href="#recaptcha-v2-invisible">ReCAPTCHA v2 Invisible</a></li></ul></li><li><a href="#verify-submitted-data">Verify submitted data</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/biscolab_white.svg" alt="Laravel reCAPTCHA" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/intro">Getting Started</a><a href="/versions">Versions</a></div><div><h5>Community</h5><a href="https://github.com/biscolab/laravel-recaptcha/issues" target="_blank">Issue tracker</a><a href="/docs/contributing" target="_blank">Contributing</a><a href="https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE" target="_blank">License</a><a href="https://packagist.org/packages/biscolab/laravel-recaptcha" target="_blank">Packagist</a></div><div><h5>More</h5><a class="github-button" href="https://github.com/biscolab/laravel-recaptcha" aria-label="Star biscolab/laravel-recaptcha on GitHub">Github</a><a href="https://www.google.com/recaptcha" target="_blank">Official page</a></div></section><section class="copyright"><a href="https://www.google.com/recaptcha" target="_blank">reCAPTCHA is property of Google Inc.</a><br/>Laravel reCAPTCHA is distributable under the terms of the <a href="https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE" target="_blank">MIT license</a><br/>Laravel reCAPTCHA is a project of <a href="https://robertobelotti.com" target="_blank">Roberto Belotti</a></section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/30/2020 by Roberto Belotti</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/next/configuration"><span class="arrow-prev">← </span><span>Configuration</span></a><a class="docs-next button" href="/docs/next/how-to-use-v3"><span>How to use v3</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#embed-in-blade">Embed in Blade</a><ul class="toc-headings"><li><a href="#recaptcha-v2-checkbox">ReCAPTCHA v2 Checkbox</a></li><li><a href="#recaptcha-v2-invisible">ReCAPTCHA v2 Invisible</a></li></ul></li><li><a href="#verify-submitted-data">Verify submitted data</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/biscolab_white.svg" alt="Laravel reCAPTCHA" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/intro">Getting Started</a><a href="/versions">Versions</a></div><div><h5>Community</h5><a href="https://github.com/biscolab/laravel-recaptcha/issues" target="_blank">Issue tracker</a><a href="/docs/contributing" target="_blank">Contributing</a><a href="https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE" target="_blank">License</a><a href="https://packagist.org/packages/biscolab/laravel-recaptcha" target="_blank">Packagist</a></div><div><h5>More</h5><a class="github-button" href="https://github.com/biscolab/laravel-recaptcha" aria-label="Star biscolab/laravel-recaptcha on GitHub">Github</a><a href="https://www.google.com/recaptcha" target="_blank">Official page</a></div></section><section class="copyright"><a href="https://www.google.com/recaptcha" target="_blank">reCAPTCHA is property of Google Inc.</a><br/>Laravel reCAPTCHA is distributable under the terms of the <a href="https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE" target="_blank">MIT license</a><br/>Laravel reCAPTCHA is a project of <a href="https://robertobelotti.com" target="_blank">Roberto Belotti</a></section></footer></div></body></html>
