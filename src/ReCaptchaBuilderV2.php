@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - ReCaptchaBuilderV2.php
@@ -20,6 +21,15 @@ use Illuminate\Support\Arr;
 class ReCaptchaBuilderV2 extends ReCaptchaBuilder
 {
 
+    protected static $allowed_data_attribute = [
+        "theme",
+        "size",
+        "tabindex",
+        "callback",
+        "expired-callback",
+        "error-callback",
+    ];
+
     /**
      * ReCaptchaBuilderV2 constructor.
      *
@@ -35,14 +45,16 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
     /**
      * Write ReCAPTCHA HTML tag in your FORM
      * Insert before </form> tag
+     * 
+     * @param null|array $attributes
      * @return string
      */
-    public function htmlFormSnippet(): string
+    public function htmlFormSnippet(?array $attributes = []): string
     {
 
         $data_attributes = [];
-        $config_data_attributes = $this->getTagAttributes();
-
+        $config_data_attributes = array_merge($this->getTagAttributes(), self::cleanAttributes($attributes));
+        ksort($config_data_attributes);
         foreach ($config_data_attributes as $k => $v) {
             if ($v) {
                 $data_attributes[] = 'data-' . $k . '="' . $v . '"';
@@ -93,4 +105,16 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
         return "<script>var biscolabOnloadCallback = function() {grecaptcha.render('recaptcha-element', " . json_encode($attributes) . ");};</script>";
     }
 
+    /**
+     * Compare given attributes with allowed attributes
+     *
+     * @param array|null $attributes
+     * @return array
+     */
+    public static function cleanAttributes(?array $attributes = []): array
+    {
+        return array_filter($attributes, function ($k) {
+            return in_array($k, self::$allowed_data_attribute);
+        }, ARRAY_FILTER_USE_KEY);
+    }
 }

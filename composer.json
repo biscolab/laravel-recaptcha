@@ -1,7 +1,7 @@
 {
     "name": "biscolab/laravel-recaptcha",
     "description": "Simple and painless Google reCAPTCHA package for Laravel 5.5 or greater",
-    "version": "4.2.0",
+    "version": "4.4.0",
     "license": "MIT",
     "type": "library",
     "keywords": [

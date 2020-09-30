@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - helpers.php
@@ -76,12 +77,13 @@ if (!function_exists('htmlFormButton')) {
 if (!function_exists('htmlFormSnippet')) {
 
     /**
+     * @param null|array $attributes
      * @return string
      */
-    function htmlFormSnippet(): string
+    function htmlFormSnippet(?array $attributes = []): string
     {
 
-        return ReCaptcha::htmlFormSnippet();
+        return ReCaptcha::htmlFormSnippet($attributes);
     }
 }
 
@@ -133,4 +135,3 @@ if (!function_exists('recaptchaFieldName')) {
         return \Biscolab\ReCaptcha\ReCaptchaBuilder::DEFAULT_RECAPTCHA_FIELD_NAME;
     }
 }
-
