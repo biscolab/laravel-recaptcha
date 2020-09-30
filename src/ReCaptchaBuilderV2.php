@@ -54,7 +54,7 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
 
         $data_attributes = [];
         $config_data_attributes = array_merge($this->getTagAttributes(), self::cleanAttributes($attributes));
-
+        ksort($config_data_attributes);
         foreach ($config_data_attributes as $k => $v) {
             if ($v) {
                 $data_attributes[] = 'data-' . $k . '="' . $v . '"';
@@ -111,7 +111,7 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
      * @param array|null $attributes
      * @return array
      */
-    protected static function cleanAttributes(?array $attributes = []): array
+    public static function cleanAttributes(?array $attributes = []): array
     {
         return array_filter($attributes, function ($k) {
             return in_array($k, self::$allowed_data_attribute);
