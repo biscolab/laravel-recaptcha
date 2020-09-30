@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - ReCaptchaHelpersV2Test.php
@@ -27,7 +28,6 @@ class ReCaptchaHelpersV2Test extends TestCase
             ->with(["key" => "val"]);
 
         htmlScriptTagJsApi(["key" => "val"]);
-
     }
 
     /**
@@ -40,7 +40,6 @@ class ReCaptchaHelpersV2Test extends TestCase
             ->once();
 
         htmlFormSnippet();
-
     }
 
     /**
@@ -95,9 +94,51 @@ class ReCaptchaHelpersV2Test extends TestCase
     {
 
         $html_snippet = \recaptcha()->htmlFormSnippet();
-        $this->assertEquals('<div class="g-recaptcha" data-sitekey="api_site_key" data-theme="dark" data-size="compact" data-tabindex="2" data-callback="callbackFunction" data-expired-callback="expiredCallbackFunction" data-error-callback="errorCallbackFunction" id="recaptcha-element"></div>',
-            $html_snippet);
+        $this->assertEquals(
+            '<div class="g-recaptcha" data-callback="callbackFunction" data-error-callback="errorCallbackFunction" data-expired-callback="expiredCallbackFunction" data-sitekey="api_site_key" data-size="compact" data-tabindex="2" data-theme="dark" id="recaptcha-element"></div>',
+            $html_snippet
+        );
+    }
 
+    /**
+     * @test
+     */
+    public function testHtmlFormSnippetOverridesDefaultAttributes()
+    {
+
+        $html_snippet = \recaptcha()->htmlFormSnippet([
+            "theme" => "dark",
+            "size" => "compact",
+            "tabindex" => "2",
+            "callback" => "callbackFunction",
+            "expired-callback" => "expiredCallbackFunction",
+            "error-callback" => "errorCallbackFunction",
+            "not-allowed-attribute" => "error",
+        ]);
+        $this->assertEquals(
+            '<div class="g-recaptcha" data-callback="callbackFunction" data-error-callback="errorCallbackFunction" data-expired-callback="expiredCallbackFunction" data-sitekey="api_site_key" data-size="compact" data-tabindex="2" data-theme="dark" id="recaptcha-element"></div>',
+            $html_snippet
+        );
+    }
+
+    public function testCleanAttributesReturnsOnlyAllowedAttributes()
+    {
+        $attributes = ReCaptchaBuilderV2::cleanAttributes([
+            "theme" => "theme",
+            "size" => "size",
+            "tabindex" => "tabindex",
+            "callback" => "callback",
+            "expired-callback" => "expired-callback",
+            "error-callback" => "error-callback",
+            "not-allowed-attribute" => "error",
+        ]);
+        $this->assertArrayHasKey("theme", $attributes);
+        $this->assertArrayHasKey("size", $attributes);
+        $this->assertArrayHasKey("tabindex", $attributes);
+        $this->assertArrayHasKey("callback", $attributes);
+        $this->assertArrayHasKey("expired-callback", $attributes);
+        $this->assertArrayHasKey("error-callback", $attributes);
+        $this->assertArrayNotHasKey("not-allowed-attribute", $attributes);
     }
 
     /**

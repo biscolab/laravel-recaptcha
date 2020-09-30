@@ -85,7 +85,7 @@ class ReCaptchaTest extends TestCase
 
 		$recaptcha = $this->recaptcha_v2;
 		$html_snippet = $recaptcha->htmlFormSnippet();
-		$this->assertEquals('<div class="g-recaptcha" data-sitekey="api_site_key" data-theme="light" data-size="normal" id="recaptcha-element"></div>', $html_snippet);
+		$this->assertEquals('<div class="g-recaptcha" data-sitekey="api_site_key" data-size="normal" data-theme="light" id="recaptcha-element"></div>', $html_snippet);
 	}
 
 	/**
