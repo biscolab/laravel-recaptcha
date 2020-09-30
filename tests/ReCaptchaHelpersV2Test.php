@@ -107,20 +107,23 @@ class ReCaptchaHelpersV2Test extends TestCase
     {
 
         $html_snippet = \recaptcha()->htmlFormSnippet([
-            "theme" => "dark",
-            "size" => "compact",
-            "tabindex" => "2",
-            "callback" => "callbackFunction",
-            "expired-callback" => "expiredCallbackFunction",
-            "error-callback" => "errorCallbackFunction",
+            "theme" => "light",
+            "size" => "normal",
+            "tabindex" => "3",
+            "callback" => "callbackFunctionNew",
+            "expired-callback" => "expiredCallbackFunctionNew",
+            "error-callback" => "errorCallbackFunctionNew",
             "not-allowed-attribute" => "error",
         ]);
         $this->assertEquals(
-            '<div class="g-recaptcha" data-callback="callbackFunction" data-error-callback="errorCallbackFunction" data-expired-callback="expiredCallbackFunction" data-sitekey="api_site_key" data-size="compact" data-tabindex="2" data-theme="dark" id="recaptcha-element"></div>',
+            '<div class="g-recaptcha" data-callback="callbackFunctionNew" data-error-callback="errorCallbackFunctionNew" data-expired-callback="expiredCallbackFunctionNew" data-sitekey="api_site_key" data-size="normal" data-tabindex="3" data-theme="light" id="recaptcha-element"></div>',
             $html_snippet
         );
     }
 
+    /**
+     * @test
+     */
     public function testCleanAttributesReturnsOnlyAllowedAttributes()
     {
         $attributes = ReCaptchaBuilderV2::cleanAttributes([
@@ -139,6 +142,22 @@ class ReCaptchaHelpersV2Test extends TestCase
         $this->assertArrayHasKey("expired-callback", $attributes);
         $this->assertArrayHasKey("error-callback", $attributes);
         $this->assertArrayNotHasKey("not-allowed-attribute", $attributes);
+    }
+
+    /**
+     * @test
+     */
+    public function testHtmlFormSnippetKeepsDefaultConfigValuesUnlessOtherwiseStated()
+    {
+        $html_snippet = \recaptcha()->htmlFormSnippet([
+            'callback'         => 'callbackFunction',
+            'expired-callback' => 'expiredCallbackFunction',
+            'error-callback'   => 'errorCallbackFunction',
+        ]);
+        $this->assertEquals(
+            '<div class="g-recaptcha" data-callback="callbackFunction" data-error-callback="errorCallbackFunction" data-expired-callback="expiredCallbackFunction" data-sitekey="api_site_key" data-size="compact" data-tabindex="2" data-theme="dark" id="recaptcha-element"></div>',
+            $html_snippet
+        );
     }
 
     /**
