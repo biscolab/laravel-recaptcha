@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - ReCaptchaHelpersV2ExplicitTest.php
@@ -25,8 +26,10 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
         /** @scrutinizer ignore-call */
         $callback = $recaptcha->getOnLoadCallback();
 
-        $this->assertEquals('<script>var biscolabOnloadCallback = function() {grecaptcha.render(\'recaptcha-element\', {"sitekey":"api_site_key","theme":"dark","size":"compact","tabindex":"2","callback":"callbackFunction","expired-callback":"expiredCallbackFunction","error-callback":"errorCallbackFunction"});};</script>',
-            $callback);
+        $this->assertEquals(
+            '<script>var biscolabOnloadCallback = function() {grecaptcha.render(\'recaptcha-element\', {"sitekey":"api_site_key","theme":"dark","size":"compact","tabindex":"2","callback":"callbackFunction","expired-callback":"expiredCallbackFunction","error-callback":"errorCallbackFunction"});};</script>',
+            $callback
+        );
     }
 
     /**
@@ -37,8 +40,10 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
 
         $html = htmlScriptTagJsApi();
 
-        $this->assertEquals('<script>var biscolabOnloadCallback = function() {grecaptcha.render(\'recaptcha-element\', {"sitekey":"api_site_key","theme":"dark","size":"compact","tabindex":"2","callback":"callbackFunction","expired-callback":"expiredCallbackFunction","error-callback":"errorCallbackFunction"});};</script><script src="https://www.google.com/recaptcha/api.js?render=explicit&onload=biscolabOnloadCallback" async defer></script>',
-            $html);
+        $this->assertEquals(
+            '<script>var biscolabOnloadCallback = function() {grecaptcha.render(\'recaptcha-element\', {"sitekey":"api_site_key","theme":"dark","size":"compact","tabindex":"2","callback":"callbackFunction","expired-callback":"expiredCallbackFunction","error-callback":"errorCallbackFunction"});};</script><script src="https://www.google.com/recaptcha/api.js?render=explicit&onload=biscolabOnloadCallback" async defer></script>',
+            $html
+        );
     }
 
     /**
@@ -85,9 +90,10 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
 
         /** @scrutinizer ignore-call */
         $html_snippet = \recaptcha()->htmlFormSnippet();
-        $this->assertEquals('<div class="g-recaptcha" data-sitekey="api_site_key" data-theme="dark" data-size="compact" data-tabindex="2" data-callback="callbackFunction" data-expired-callback="expiredCallbackFunction" data-error-callback="errorCallbackFunction" id="recaptcha-element"></div>',
-            $html_snippet);
-
+        $this->assertEquals(
+            '<div class="g-recaptcha" data-callback="callbackFunction" data-error-callback="errorCallbackFunction" data-expired-callback="expiredCallbackFunction" data-sitekey="api_site_key" data-size="compact" data-tabindex="2" data-theme="dark" id="recaptcha-element"></div>',
+            $html_snippet
+        );
     }
 
     /**
