@@ -94,7 +94,7 @@ class ReCaptchaTest extends TestCase
 	 */
 	public function testReCaptchaInvisibleHtmlFormSnippetShouldThrowError()
 	{
-
+		$this->expectException('\Error');
 		$this->recaptcha_invisible->htmlFormSnippet();
 	}
 
@@ -157,7 +157,7 @@ class ReCaptchaTest extends TestCase
 	 */
 	public function testReCaptchaV2htmlFormButtonShouldThrowError()
 	{
-
+		$this->expectException('\Error');
 		$this->recaptcha_v2->htmlFormButton();
 	}
 

@@ -83,7 +83,7 @@ class ReCaptchaHelpersV2Test extends TestCase
      */
     public function testExpectExceptionWhenGetFormIdFunctionIsCalled()
     {
-
+        $this->expectException('\Error');
         getFormId();
     }
 
