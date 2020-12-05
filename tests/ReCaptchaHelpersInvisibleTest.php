@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - ReCaptchaHelpersInvisibleTest.phpp
@@ -26,7 +27,6 @@ class ReCaptchaHelpersInvisibleTest extends TestCase
             ->with(["form_id" => "test-form"]);
 
         htmlScriptTagJsApi(["form_id" => "test-form"]);
-
     }
 
     /**
@@ -40,7 +40,6 @@ class ReCaptchaHelpersInvisibleTest extends TestCase
             ->with("Inner text", ['id' => 'button_id']);
 
         htmlFormButton("Inner text", ['id' => 'button_id']);
-
     }
 
     /**
@@ -53,10 +52,10 @@ class ReCaptchaHelpersInvisibleTest extends TestCase
             ->once();
 
         getFormId();
-
     }
 
-    public function testHtmlFormButtonConfiguration() {
+    public function testHtmlFormButtonConfiguration()
+    {
         $button_html = htmlFormButton("Inner text", ['id' => 'button_id', 'class' => 'button_class', 'data-sitekey' => 'custom-data-sitekey', 'data-callback' => 'myCallback']);
 
         $this->assertEquals('<button class="button_class g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key" id="button_id">Inner text</button>', $button_html);
@@ -69,11 +68,11 @@ class ReCaptchaHelpersInvisibleTest extends TestCase
     public function testHtmlFormSnippetCalledByFacade()
     {
 
+        $this->expectException('\TypeError');
         ReCaptcha::shouldReceive('htmlFormSnippet')
             ->once();
 
         htmlFormSnippet();
-
     }
 
     public function testGetFormIdReturnDefaultFormIdValue()
