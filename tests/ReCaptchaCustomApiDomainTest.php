@@ -49,9 +49,9 @@ class ReCaptchaCustomApiDomainTest extends TestCase
      */
     public function testRecaptchaApiDomainChangesByConfigInHtmlScriptTagJsApi()
     {
-        $this->assertContains("https://www.recaptcha.net/recaptcha/api.js", $this->recaptcha_v2->htmlScriptTagJsApi());
-        $this->assertContains("https://www.recaptcha.net/recaptcha/api.js", $this->recaptcha_invisible->htmlScriptTagJsApi());
-        $this->assertContains("https://www.recaptcha.net/recaptcha/api.js", $this->recaptcha_v3->htmlScriptTagJsApi());
+        $this->assertStringContainsString("https://www.recaptcha.net/recaptcha/api.js", $this->recaptcha_v2->htmlScriptTagJsApi());
+        $this->assertStringContainsString("https://www.recaptcha.net/recaptcha/api.js", $this->recaptcha_invisible->htmlScriptTagJsApi());
+        $this->assertStringContainsString("https://www.recaptcha.net/recaptcha/api.js", $this->recaptcha_v3->htmlScriptTagJsApi());
     }
 
     /**

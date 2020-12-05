@@ -14,3 +14,7 @@ vendor/
 coverage.xml
 clover.xml
 report/
+
+# testing
+.phpunit.result.cache
+phpunit.xml.dist.bak
