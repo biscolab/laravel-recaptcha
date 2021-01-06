@@ -1,0 +1,32 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        php: ['7.3', '7.4', '8.0']
+        
+    name: PHP ${{ matrix.php }} Test on ${{ matrix.os }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{matrix.php}} 
+ 
+    - name: Install dependencies
+      uses: php-actions/composer@v5
+      with:
+        args: --prefer-source --no-interaction
+
+    - name: Run composer test script
+      uses: php-actions/composer@v5
+      with:
+        command: test 
