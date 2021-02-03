@@ -58,7 +58,7 @@ class ReCaptchaHelpersInvisibleTest extends TestCase
     {
         $button_html = htmlFormButton("Inner text", ['id' => 'button_id', 'class' => 'button_class', 'data-sitekey' => 'custom-data-sitekey', 'data-callback' => 'myCallback']);
 
-        $this->assertEquals('<button class="button_class g-recaptcha" data-callback="biscolabLaravelReCaptcha" data-sitekey="api_site_key" id="button_id">Inner text</button>', $button_html);
+        $this->assertEquals('<button class="button_class g-recaptcha" data-callback="myCallback" data-sitekey="api_site_key" id="button_id">Inner text</button>', $button_html);
     }
 
     /**
