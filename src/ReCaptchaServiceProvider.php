@@ -51,7 +51,7 @@ class ReCaptchaServiceProvider extends ServiceProvider
         Validator::extendImplicit(recaptchaRuleName(), function ($attribute, $value) {
 
             return app('recaptcha')->validate($value);
-		}, trans('validation.recaptcha'));
+        });
     }
 
     /**
