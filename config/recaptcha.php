@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2017 - present
  * LaravelGoogleRecaptcha - recaptcha.php
@@ -109,6 +110,24 @@ return [
      *
      */
     'api_domain'                   => 'www.google.com',
+
+    /**
+     *
+     * Set `true` when the error message must be null
+     * @since v5.1.0
+     * Default false
+     *
+     */
+    'empty_message' => false,
+
+    /**
+     *
+     * Set either the error message or the errom message translation key
+     * @since v5.1.0
+     * Default 'validation.recaptcha'
+     *
+     */
+    'error_message_key' => 'validation.recaptcha',
 
     /**
      *
