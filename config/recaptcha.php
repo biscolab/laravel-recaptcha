@@ -122,7 +122,7 @@ return [
 
     /**
      *
-     * Set either the error message or the errom message translation key
+     * Set either the error message or the error message translation key
      * @since v5.1.0
      * Default 'validation.recaptcha'
      *
