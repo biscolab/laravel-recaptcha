@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+# name=$([ "$1" ] && echo "$1" || echo default)
+version="7.4"
+declare -a versions=("7.3" "7.4" "8.0")
+
+if [[ " ${versions[*]} " == *"$1"* ]]; 
+then
+    version="$1"
+else
+    echo "PHP version '$1' is not supported."
+    IFS=', ';echo "We suggest to select one of the following options: ${versions[*]}"
+    echo "Test will run using default version $version"
+fi
+
+echo $version
+
+# for version in "${versions[@]}"
+# do
+    docker run -it --rm \
+    	-e "TERM=xterm-256color" \
+    	-v "$PWD":/usr/src \
+    	-w /usr/src \
+    	php:"$version"-cli-alpine \
+    	vendor/bin/phpunit
+# done
