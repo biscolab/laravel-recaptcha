@@ -131,7 +131,7 @@ class ReCaptchaTest extends TestCase
 	/**
 	 * @test
 	 */
-	public function testSlipByIpReturnsValidResponse()
+	public function testSkipByIpReturnsValidResponse()
 	{
 
 		$this->setSkipByIp($this->recaptcha_invisible, true);
