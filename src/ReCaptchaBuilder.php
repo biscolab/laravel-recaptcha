@@ -12,6 +12,7 @@
 namespace Biscolab\ReCaptcha;
 
 use Illuminate\Support\Arr;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 /**
  * Class ReCaptchaBuilder
@@ -247,8 +248,7 @@ class ReCaptchaBuilder
      */
     public function skipByIp(): bool
     {
-
-        return (in_array(request()->ip(), $this->getIpWhitelist()));
+        return IpUtils::checkIp(request()->ip(), $this->getIpWhitelist());
     }
 
     /**
