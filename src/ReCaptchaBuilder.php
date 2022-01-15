@@ -383,4 +383,13 @@ class ReCaptchaBuilder
 
         return ($this->version == 'v3');
     }
+
+    /**
+     * @return string
+     */
+    public function getOnLoadCallback(): string
+    {
+
+        return "";
+    }
 }
