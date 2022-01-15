@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>How to use v2 · Laravel reCAPTCHA</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Embed in Blade"/><meta name="docsearch:version" content="5.0.x"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="How to use v2 · Laravel reCAPTCHA"/><meta property="og:type" content="website"/><meta property="og:url" content="https://laravel-recaptcha-docs.biscolab.com/"/><meta property="og:description" content="## Embed in Blade"/><meta property="og:image" content="https://laravel-recaptcha-docs.biscolab.com/img/avatar_500x500.jpg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://laravel-recaptcha-docs.biscolab.com/img/avatar_500x500.jpg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-5439279-35"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'UA-5439279-35');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="http://chs03.cookie-script.com/s/5462f0b70af569a29b401589fc180ce6.js"></script><script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-ad-client="ca-pub-5617748205146757" async=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/biscolab_white.svg" alt="Laravel reCAPTCHA"/><h2 class="headerTitleWithLogo">Laravel reCAPTCHA</h2></a><a href="/versions"><h3>5.0.x</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/5.0.x/intro" target="_self">Docs</a></li><li class=""><a href="https://github.com/biscolab/laravel-recaptcha" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.0.x/intro">Intro</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/whats-new">What&#x27;s new?</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/configuration">Configuration</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/5.0.x/how-to-use-v2">How to use v2</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/how-to-use-v3">How to use v3</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contribute</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.0.x/code-of-conduct">Code of conduct</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/contributing">Contributing</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">How to use v2</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="embed-in-blade"></a><a href="#embed-in-blade" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Embed in Blade</h2>
+<p>Insert <code>htmlScriptTagJsApi()</code> helper before closing <code>&lt;/head&gt;</code> tag.</p>
+<p>You can also use <code>ReCaptcha::htmlScriptTagJsApi()</code>.</p>
+<pre><code class="hljs css language-blade"><span class="xml"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        ...
+        </span><span class="hljs-template-variable">{!! htmlScriptTagJsApi($configuration) !!}</span><span class="xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+</span></code></pre>
+<h4><a class="anchor" aria-hidden="true" id="htmlscripttagjsapi"></a><a href="#htmlscripttagjsapi" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>htmlScriptTagJsApi</h4>
+<p><code>htmlScriptTagJsApi</code> function accepts <code>$configuration</code> argument. <code>$configuration</code> has different keys depending on which ReCAPTCHA you are using:</p>
+<ul>
+<li><a href="#recaptcha-v2-checkbox">Checkbox</a></li>
+<li><a href="#recaptcha-v2-invisible">Invisible</a></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="recaptcha-v2-checkbox"></a><a href="#recaptcha-v2-checkbox" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ReCAPTCHA v2 Checkbox</h3>
+<h4><a class="anchor" aria-hidden="true" id="htmlscripttagjsapi-configuration"></a><a href="#htmlscripttagjsapi-configuration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>htmlScriptTagJsApi($configuration)</h4>
+<p><code>$configuration</code> argument can have following keys:</p>
+<ul>
+<li><code>lang</code> set reCAPTCHA language. This will override <code>default_language</code> in <code>config/recaptcha.php</code>. Here you ca find the complete list of availeble languages <a href="https://developers.google.com/recaptcha/docs/language">https://developers.google.com/recaptcha/docs/language</a></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="form-set-up"></a><a href="#form-set-up" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Form set-up</h4>
+<p>After you have to insert <code>htmlFormSnippet()</code> helper inside the form where you want to use the field <code>g-recaptcha-response</code>.</p>
+<p>You can also use <code>ReCaptcha::htmlFormSnippet()</code> .</p>
+<pre><code class="hljs css language-blade"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+    @csrf
+
+    ...
+    </span><span class="hljs-template-variable">{!! htmlFormSnippet() !!}</span><span class="xml">
+    <span class="hljs-comment">&lt;!-- OR --&gt;</span>
+    </span><span class="hljs-template-variable">{!! htmlFormSnippet($attributes) !!}</span><span class="xml">
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</span></code></pre>
+<blockquote>
+<p>DO NOT forget <code>@csrf</code> blade directive</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="htmlformsnippet-array-attributes"></a><a href="#htmlformsnippet-array-attributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>htmlFormSnippet([, array $attributes = [] ])</h4>
+<p><code>htmlFormSnippet()</code> function does not require attributes but you can override default config <code>data-</code> attributes:</p>
+<pre><code class="hljs css language-php">{!! htmlFormSnippet([
+    <span class="hljs-string">"theme"</span> =&gt; <span class="hljs-string">"light"</span>,
+    <span class="hljs-string">"size"</span> =&gt; <span class="hljs-string">"normal"</span>,
+    <span class="hljs-string">"tabindex"</span> =&gt; <span class="hljs-string">"3"</span>,
+    <span class="hljs-string">"callback"</span> =&gt; <span class="hljs-string">"callbackFunction"</span>,
+    <span class="hljs-string">"expired-callback"</span> =&gt; <span class="hljs-string">"expiredCallbackFunction"</span>,
+    <span class="hljs-string">"error-callback"</span> =&gt; <span class="hljs-string">"errorCallbackFunction"</span>,
+]) !!}
+</code></pre>
+<p><code>htmlFormSnippet</code> methos allows are only folowing attribute names:</p>
+<ul>
+<li>theme</li>
+<li>size</li>
+<li>tabindex</li>
+<li>callback</li>
+<li>expired-callback</li>
+<li>error-callback</li>
+</ul>
+<blockquote>
+<p>Any different attribute name will be rejected</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="customization"></a><a href="#customization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Customization</h4>
+<p>In <code>config/recaptcha.php</code> you can customize reCAPTCHA widget setting <code>tag_attributes</code> array values. Take a look to <code>tag_attributes</code> section in <a href="/docs/5.0.x/configuration#complete-configuration">Complete configuration</a></p>
+<h3><a class="anchor" aria-hidden="true" id="recaptcha-v2-invisible"></a><a href="#recaptcha-v2-invisible" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ReCAPTCHA v2 Invisible</h3>
+<h4><a class="anchor" aria-hidden="true" id="htmlscripttagjsapi-configuration-1"></a><a href="#htmlscripttagjsapi-configuration-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>htmlScriptTagJsApi($configuration)</h4>
+<p><code>$configuration</code> argument can have following keys:</p>
+<ul>
+<li><code>form_id</code> set reCAPTCHA form ID. This will override <code>default_form_id</code> in <code>config/recaptcha.php</code>. This value will be returned by <code>getFormId()</code> function in order to set the form tag <code>id</code> property.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="form-set-up-1"></a><a href="#form-set-up-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Form set-up</h4>
+<p>After you have to insert <code>htmlFormButton($button_label, $properties)</code> helper inside the form where you want to use reCAPTCHA.</p>
+<p>This function creates submit button therefore you don't have to insert <code>&lt;input type=&quot;submit&quot;&gt;</code> or similar.</p>
+<p>You can also use <code>ReCaptcha::htmlFormButton($button_label, $properties)</code> .</p>
+<p><code>$button_label</code> is what you want to write on the submit button</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"{{ getFormId() }}"</span>&gt;</span>
+  @csrf ... {!! htmlFormButton($button_label, $properties) !!}
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p>DO NOT forget <code>@csrf</code> blade directive</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="getformid"></a><a href="#getformid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getFormId()</h4>
+<p><code>getFormId</code> function returns the default form ID value. This is the value of either <code>default_form_id</code> in <code>config/recaptcha.php</code> or <code>$configuration['form_id']</code> previously set as arguments of <code>htmlScriptTagJsApi</code> helper.</p>
+<blockquote>
+<p><code>$configuration['form_id']</code> overrides default settings.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="htmlformbutton"></a><a href="#htmlformbutton" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>htmlFormButton()</h4>
+<p><code>htmlFormButton</code> function accepts 2 arguments:</p>
+<ul>
+<li><code>$button_label</code>: (string: optional) the button lable. For example: <code>Subscribe!</code>;</li>
+<li><code>$properties</code>: (array: optional) the HTML button properties. For example:</li>
+</ul>
+<pre><code class="hljs css language-php"><span class="hljs-comment">// $properties =</span>
+[
+    <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'btn btn-info'</span>,
+    <span class="hljs-string">'data-foo'</span> =&gt; <span class="hljs-string">'bar'</span>
+]
+</code></pre>
+<blockquote>
+<p>If <code>data-sitekey</code> and <code>data-callback</code> properties are set, they will be overwritten</p>
+</blockquote>
+<blockquote>
+<p>If <code>class</code> property is set the value <code>g-recaptcha</code> will be appended</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="verify-submitted-data"></a><a href="#verify-submitted-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Verify submitted data</h2>
+<p>Add <code>recaptcha</code> to your rules</p>
+<pre><code class="hljs css language-php">$validator = Validator::make(request()-&gt;all(), [
+    ...
+    <span class="hljs-string">'g-recaptcha-response'</span> =&gt; <span class="hljs-string">'recaptcha'</span>,
+    <span class="hljs-comment">// OR since v4.0.0</span>
+    recaptchaFieldName() =&gt; recaptchaRuleName()
+]);
+
+<span class="hljs-comment">// check if validator fails</span>
+<span class="hljs-keyword">if</span>($validator-&gt;fails()) {
+    ...
+    $errors = $validator-&gt;errors();
+}
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/9/2019 by Roberto</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/5.0.x/configuration"><span class="arrow-prev">← </span><span>Configuration</span></a><a class="docs-next button" href="/docs/5.0.x/how-to-use-v3"><span>How to use v3</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#embed-in-blade">Embed in Blade</a><ul class="toc-headings"><li><a href="#recaptcha-v2-checkbox">ReCAPTCHA v2 Checkbox</a></li><li><a href="#recaptcha-v2-invisible">ReCAPTCHA v2 Invisible</a></li></ul></li><li><a href="#verify-submitted-data">Verify submitted data</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/biscolab_white.svg" alt="Laravel reCAPTCHA" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/intro">Getting Started</a><a href="/versions">Versions</a></div><div><h5>Community</h5><a href="https://github.com/biscolab/laravel-recaptcha/issues" target="_blank">Issue tracker</a><a href="/docs/contributing" target="_blank">Contributing</a><a href="https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE" target="_blank">License</a><a href="https://packagist.org/packages/biscolab/laravel-recaptcha" target="_blank">Packagist</a></div><div><h5>More</h5><a class="github-button" href="https://github.com/biscolab/laravel-recaptcha" aria-label="Star biscolab/laravel-recaptcha on GitHub">Github</a><a href="https://www.google.com/recaptcha" target="_blank">Official page</a></div></section><section class="copyright"><a href="https://www.google.com/recaptcha" target="_blank">reCAPTCHA is property of Google Inc.</a><br/>Laravel reCAPTCHA is distributable under the terms of the <a href="https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE" target="_blank">MIT license</a><br/>Laravel reCAPTCHA is a project of <a href="https://robertobelotti.com" target="_blank">Roberto Belotti</a></section></footer></div></body></html>

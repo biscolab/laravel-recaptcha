@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>What&#x27;s new? · Laravel reCAPTCHA</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## New features in v5.x"/><meta name="docsearch:version" content="5.0.x"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="What&#x27;s new? · Laravel reCAPTCHA"/><meta property="og:type" content="website"/><meta property="og:url" content="https://laravel-recaptcha-docs.biscolab.com/"/><meta property="og:description" content="## New features in v5.x"/><meta property="og:image" content="https://laravel-recaptcha-docs.biscolab.com/img/avatar_500x500.jpg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://laravel-recaptcha-docs.biscolab.com/img/avatar_500x500.jpg"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-5439279-35"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'UA-5439279-35');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="http://chs03.cookie-script.com/s/5462f0b70af569a29b401589fc180ce6.js"></script><script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-ad-client="ca-pub-5617748205146757" async=""></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/biscolab_white.svg" alt="Laravel reCAPTCHA"/><h2 class="headerTitleWithLogo">Laravel reCAPTCHA</h2></a><a href="/versions"><h3>5.0.x</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/5.0.x/intro" target="_self">Docs</a></li><li class=""><a href="https://github.com/biscolab/laravel-recaptcha" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.0.x/intro">Intro</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/5.0.x/whats-new">What&#x27;s new?</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/configuration">Configuration</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/how-to-use-v2">How to use v2</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/how-to-use-v3">How to use v3</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Contribute</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/5.0.x/code-of-conduct">Code of conduct</a></li><li class="navListItem"><a class="navItem" href="/docs/5.0.x/contributing">Contributing</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">What&#x27;s new?</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="new-features-in-v5x"></a><a href="#new-features-in-v5x" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>New features in v5.x</h2>
+<h3><a class="anchor" aria-hidden="true" id="laravel-versions"></a><a href="#laravel-versions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Laravel versions</h3>
+<p>Laravel versions older than 7 are no longer supported.</p>
+<h3><a class="anchor" aria-hidden="true" id="tests-updated"></a><a href="#tests-updated" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Tests updated</h3>
+<p>Dev dependencies updated to fix deprecation errors:</p>
+<pre><code class="hljs"><span class="hljs-string">"orchestra/testbench"</span>: <span class="hljs-string">"5.*|6.*"</span>,
+<span class="hljs-string">"phpunit/phpunit"</span>: <span class="hljs-string">"^9.1"</span>
+</code></pre>
+<p>Minimum PHP version is now 7.3.</p>
+<h2><a class="anchor" aria-hidden="true" id="new-features-in-v4x"></a><a href="#new-features-in-v4x" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>New features in v4.x</h2>
+<h3><a class="anchor" aria-hidden="true" id="v2-checkbox-explicit-render"></a><a href="#v2-checkbox-explicit-render" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>v2 checkbox explicit render</h3>
+<p>Now you can defer the widget render setting <code>explicit</code> to <code>true</code> in <code>config/recaptcha.php</code>.</p>
+<p>Further info: <a href="https://developers.google.com/recaptcha/docs/display#explicit_render">https://developers.google.com/recaptcha/docs/display#explicit_render</a></p>
+<h3><a class="anchor" aria-hidden="true" id="v2-checkbox-customization"></a><a href="#v2-checkbox-customization" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>v2 checkbox customization</h3>
+<p>Now you can customize the widget using render parameters (or tag attributes). Set <code>tag_attrobutes</code> values in <code>config/recaptcha.php</code>.</p>
+<p>Further info: <a href="https://developers.google.com/recaptcha/docs/display#render_param">https://developers.google.com/recaptcha/docs/display#render_param</a></p>
+<h3><a class="anchor" aria-hidden="true" id="v2-checkbox-language"></a><a href="#v2-checkbox-language" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>v2 checkbox language</h3>
+<p>You can override the default widget language passing the proper configuration attribute to <code>htmlScriptTagJsApi()</code>:</p>
+<pre><code class="hljs css language-php">{!! htmlScriptTagJsApi([
+    <span class="hljs-string">'lang'</span> =&gt; <span class="hljs-string">'it'</span>
+]) !!}
+</code></pre>
+<p>See <a href="https://developers.google.com/recaptcha/docs/language">https://developers.google.com/recaptcha/docs/language</a> for the list of available languages</p>
+<h3><a class="anchor" aria-hidden="true" id="v2-invisible-default-form-id"></a><a href="#v2-invisible-default-form-id" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>v2 invisible default form ID</h3>
+<p><code>default_form_id</code> value is now set in <code>config/recaptcha.php</code>, default value is <code>'biscolab-recaptcha-invisible-form'</code>. You can retrieve it using <code>getFormId()</code> helper function.
+You can also override the default value passing the proper configuration attribute to <code>htmlScriptTagJsApi()</code>:</p>
+<pre><code class="hljs css language-php">{!! htmlScriptTagJsApi([
+    <span class="hljs-string">'form_id'</span> =&gt; <span class="hljs-string">'my-custom-form-id'</span>
+]) !!}
+</code></pre>
+<blockquote>
+<p>Overriding default form ID <code>getFormId()</code> helper will return <code>'my-custom-form-id'</code>.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="costumizable-api_domain"></a><a href="#costumizable-api_domain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Costumizable <code>api_domain</code></h3>
+<p>Since v4.3.0 you can customize API domain setting <code>api_domain</code> in <code>recaptcha.php</code> config file. Default value is <code>www.google.com</code>, but, when &quot;<a href="http://www.google.com">www.google.com</a>&quot; is not accessible you can change that value to <code>www.recaptcha.net</code></p>
+<h3><a class="anchor" aria-hidden="true" id="override-data-attributes-in-recaptchabuilderv2-htmlformsnippet"></a><a href="#override-data-attributes-in-recaptchabuilderv2-htmlformsnippet" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Override <code>data-</code> attributes in <code>ReCaptchaBuilderV2::htmlFormSnippet</code></h3>
+<p>Since v4.4.0 you can override default config data attributes passing customized values to either <code>ReCaptchaBuilderV2::htmlFormSnippet</code> method or <code>htmlFormSnippet</code> helper.</p>
+<pre><code class="hljs css language-php">{!! htmlFormSnippet([
+    <span class="hljs-string">"theme"</span> =&gt; <span class="hljs-string">"theme"</span>,
+    <span class="hljs-string">"size"</span> =&gt; <span class="hljs-string">"size"</span>,
+    <span class="hljs-string">"tabindex"</span> =&gt; <span class="hljs-string">"tabindex"</span>,
+    <span class="hljs-string">"callback"</span> =&gt; <span class="hljs-string">"callback"</span>,
+    <span class="hljs-string">"expired-callback"</span> =&gt; <span class="hljs-string">"expired-callback"</span>,
+    <span class="hljs-string">"error-callback"</span> =&gt; <span class="hljs-string">"error-callback"</span>,
+    <span class="hljs-string">"not-allowed-attribute"</span> =&gt; <span class="hljs-string">"error"</span>,
+]) !!}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="new-functions"></a><a href="#new-functions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>New functions</h2>
+<h3><a class="anchor" aria-hidden="true" id="getformid-helper-and-method"></a><a href="#getformid-helper-and-method" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>getFormId()</code> helper and method</h3>
+<p><code>getFormId()</code> returns the <code>form</code> ID property using <strong>invisible</strong> reCAPTCHA. To set value take a look <a href="#v2-invisible-default-form-id">here</a>.</p>
+<p>Use this helper in blade files</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"{{getFormId()}}"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="recaptcharulename-and-recaptchafieldname-helpers"></a><a href="#recaptcharulename-and-recaptchafieldname-helpers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>recaptchaRuleName()</code> and <code>recaptchaFieldName()</code> helpers</h3>
+<ul>
+<li><code>recaptchaRuleName()</code> returns the default validation rule name</li>
+<li><code>recaptchaFieldName()</code> returns the default form field name (server side will be the request input name)</li>
+</ul>
+<p>You can use them together:</p>
+<pre><code class="hljs css language-php">$valid = Validator::make(request()-&gt;all(), [
+            recaptchaFieldName() =&gt; recaptchaRuleName()
+        ]);
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="backward-incompatible-changes"></a><a href="#backward-incompatible-changes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Backward incompatible changes</h2>
+<h3><a class="anchor" aria-hidden="true" id="formid-attribute-removed-from-htmlscripttagjsapi"></a><a href="#formid-attribute-removed-from-htmlscripttagjsapi" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>$formId</code> attribute removed from <code>htmlScriptTagJsApi()</code></h3>
+<p><code>htmlScriptTagJsApi</code> method and helper now accept only one attribute <code>$config</code> of type <code>array</code>. <code>$formId</code> has been removed.</p>
+<h3><a class="anchor" aria-hidden="true" id="htmlscripttagjsapiv3-helper-and-method-removed"></a><a href="#htmlscripttagjsapiv3-helper-and-method-removed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>htmlScriptTagJsApiV3</code> helper and method removed</h3>
+<p><code>htmlScriptTagJsApiV3</code> method and helper have been replaced by <code>htmlScriptTagJsApi</code> method and helper. That means there are no longer differences between v2 and v3 in <strong>Blade</strong> embed.</p>
+<h3><a class="anchor" aria-hidden="true" id="environment-variables-removed"></a><a href="#environment-variables-removed" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Environment variables removed</h3>
+<p>Following environment variables have been removed:</p>
+<ul>
+<li>RECAPTCHA_DEFAULT_VERSION</li>
+<li>RECAPTCHA_CURL_TIMEOUT</li>
+<li>RECAPTCHA_DEFAULT_VALIDATION_ROUTE</li>
+<li>RECAPTCHA_DEFAULT_TOKEN_PARAMETER_NAME</li>
+<li>RECAPTCHA_DEFAULT_LANGUAGE</li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 9/14/2020 by Roberto Belotti</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/5.0.x/intro"><span class="arrow-prev">← </span><span>Intro</span></a><a class="docs-next button" href="/docs/5.0.x/installation"><span>Installation</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#new-features-in-v5x">New features in v5.x</a><ul class="toc-headings"><li><a href="#laravel-versions">Laravel versions</a></li><li><a href="#tests-updated">Tests updated</a></li></ul></li><li><a href="#new-features-in-v4x">New features in v4.x</a><ul class="toc-headings"><li><a href="#v2-checkbox-explicit-render">v2 checkbox explicit render</a></li><li><a href="#v2-checkbox-customization">v2 checkbox customization</a></li><li><a href="#v2-checkbox-language">v2 checkbox language</a></li><li><a href="#v2-invisible-default-form-id">v2 invisible default form ID</a></li><li><a href="#costumizable-api_domain">Costumizable <code>api_domain</code></a></li><li><a href="#override-data-attributes-in-recaptchabuilderv2-htmlformsnippet">Override <code>data-</code> attributes in <code>ReCaptchaBuilderV2::htmlFormSnippet</code></a></li></ul></li><li><a href="#new-functions">New functions</a><ul class="toc-headings"><li><a href="#getformid-helper-and-method"><code>getFormId()</code> helper and method</a></li><li><a href="#recaptcharulename-and-recaptchafieldname-helpers"><code>recaptchaRuleName()</code> and <code>recaptchaFieldName()</code> helpers</a></li></ul></li><li><a href="#backward-incompatible-changes">Backward incompatible changes</a><ul class="toc-headings"><li><a href="#formid-attribute-removed-from-htmlscripttagjsapi"><code>$formId</code> attribute removed from <code>htmlScriptTagJsApi()</code></a></li><li><a href="#htmlscripttagjsapiv3-helper-and-method-removed"><code>htmlScriptTagJsApiV3</code> helper and method removed</a></li><li><a href="#environment-variables-removed">Environment variables removed</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/biscolab_white.svg" alt="Laravel reCAPTCHA" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/intro">Getting Started</a><a href="/versions">Versions</a></div><div><h5>Community</h5><a href="https://github.com/biscolab/laravel-recaptcha/issues" target="_blank">Issue tracker</a><a href="/docs/contributing" target="_blank">Contributing</a><a href="https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE" target="_blank">License</a><a href="https://packagist.org/packages/biscolab/laravel-recaptcha" target="_blank">Packagist</a></div><div><h5>More</h5><a class="github-button" href="https://github.com/biscolab/laravel-recaptcha" aria-label="Star biscolab/laravel-recaptcha on GitHub">Github</a><a href="https://www.google.com/recaptcha" target="_blank">Official page</a></div></section><section class="copyright"><a href="https://www.google.com/recaptcha" target="_blank">reCAPTCHA is property of Google Inc.</a><br/>Laravel reCAPTCHA is distributable under the terms of the <a href="https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE" target="_blank">MIT license</a><br/>Laravel reCAPTCHA is a project of <a href="https://robertobelotti.com" target="_blank">Roberto Belotti</a></section></footer></div></body></html>
