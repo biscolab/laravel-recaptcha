@@ -8,9 +8,15 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php: ['7.3', '7.4', '8.0']
-        
-    name: PHP ${{ matrix.php }} Test on ${{ matrix.os }}
+        php: [ 7.3, 7.4, '8.0', 8.1 ]
+        laravel: [ 7, 8, 9 ]
+        exclude:
+          - php: 7.3
+            laravel: 9
+          - php: 7.4
+            laravel: 9
+
+    name: PHP ${{ matrix.php }} Test on ${{ matrix.os }} – Laravel ${{ matrix.laravel }}
 
     steps:
     - name: Checkout
@@ -19,8 +25,8 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{matrix.php}} 
- 
+        php-version: ${{matrix.php}}
+
     - name: Install dependencies
       uses: php-actions/composer@v5
       with:
@@ -29,4 +35,4 @@ jobs:
     - name: Run composer test script
       uses: php-actions/composer@v5
       with:
-        command: test 
+        command: test

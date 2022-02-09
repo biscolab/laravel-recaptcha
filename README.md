@@ -14,14 +14,14 @@ Available reCAPTCHA versions:
 
 ## System requirements
 
-| Package        | reCAPTCHA                     | PHP                   | Laravel                      | Docs                                                                   |
-| -------------- | ----------------------------- | --------------------- | ---------------------------- | ---------------------------------------------------------------------- |
-| 5.x            | v3, v2 Invisible, v2 Checkbox | 7.3 or greater        | 7, 8                         | [latest](https://laravel-recaptcha-docs.biscolab.com)                  |
-| 4.2.x to 4.4.x | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6, 7, 8      | [v4.4.x](https://laravel-recaptcha-docs.biscolab.com/docs/4.4.x/intro) |
-| 4.1.x          | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6, 7         | [v4.1.x](https://laravel-recaptcha-docs.biscolab.com/docs/4.1.x/intro) |
-| 4.0.x          | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6            | [v4.0.x](https://laravel-recaptcha-docs.biscolab.com/docs/4.0.x/intro) |
-| 3.x            | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6 ready (\*) | [v3.6.1](https://laravel-recaptcha-docs.biscolab.com/docs/3.6.1/intro) |
-| 2.x            | v2 Invisible, v2 Checkbox     | 5.5.9, 7.0 or greater | 5.0 or greater               | [v2.0.4](https://laravel-recaptcha-docs.biscolab.com/docs/2.0.4/intro) |
+| Package        | reCAPTCHA                     | PHP                   | Laravel                                  | Docs                                                                   |
+| -------------- | ----------------------------- | --------------------- |------------------------------------------| ---------------------------------------------------------------------- |
+| 5.x            | v3, v2 Invisible, v2 Checkbox | 7.3 or greater        | 7, 8 & 9 (requires PHP 8.0.2 or greater) | [latest](https://laravel-recaptcha-docs.biscolab.com)                  |
+| 4.2.x to 4.4.x | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6, 7, 8                  | [v4.4.x](https://laravel-recaptcha-docs.biscolab.com/docs/4.4.x/intro) |
+| 4.1.x          | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6, 7                     | [v4.1.x](https://laravel-recaptcha-docs.biscolab.com/docs/4.1.x/intro) |
+| 4.0.x          | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6                        | [v4.0.x](https://laravel-recaptcha-docs.biscolab.com/docs/4.0.x/intro) |
+| 3.x            | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6 ready (\*)             | [v3.6.1](https://laravel-recaptcha-docs.biscolab.com/docs/3.6.1/intro) |
+| 2.x            | v2 Invisible, v2 Checkbox     | 5.5.9, 7.0 or greater | 5.0 or greater                           | [v2.0.4](https://laravel-recaptcha-docs.biscolab.com/docs/2.0.4/intro) |
 
 > (\*) Latest version (3.6.1) is Laravel 6 ready
 
