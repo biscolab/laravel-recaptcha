@@ -3,9 +3,32 @@ language: php
 php:
   - 7.3
   - 7.4
+  - 8.0
+# PHP 8.1 isn't currently support by Travis CI
+#  - 8.1
 
-before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --prefer-source --no-interaction
+env:
+  - ILLUMINATE_VERSION=^7.0 TESTBENCH_VERSION=5.*
+  - ILLUMINATE_VERSION=^8.0 TESTBENCH_VERSION=6.*
+  - ILLUMINATE_VERSION=^9.0 TESTBENCH_VERSION=^7.0
+
+matrix:
+  exclude:
+    # Don't test Laravel 9 on PHP 7.3 or PHP 7.4, as the mininmum
+    # required PHP version for this Laravel version is 8.0.2
+    - php: 7.3
+      env: ILLUMINATE_VERSION=^9.0 TESTBENCH_VERSION=^7.0
+    - php: 7.4
+      env: ILLUMINATE_VERSION=^9.0 TESTBENCH_VERSION=^7.0
+
+before_install:
+  - composer require "illuminate/routing:${ILLUMINATE_VERSION}" --no-update --prefer-dist
+  - composer require "illuminate/support:${ILLUMINATE_VERSION}" --no-update --prefer-dist
+  - composer require "orchestra/testbench:${TESTBENCH_VERSION}" --no-update --prefer-dist
+
+install: travis_retry composer install --prefer-source --no-interaction
+
+script:
+  - composer test
 
 fast_finish: true
