@@ -23,7 +23,7 @@ matrix:
 before_install:
   - composer require "illuminate/routing:${ILLUMINATE_VERSION}" --no-update --prefer-dist
   - composer require "illuminate/support:${ILLUMINATE_VERSION}" --no-update --prefer-dist
-  - composer require "orchestra/testbench:${TESTBENCH_VERSION/5\./3\.}" --no-update --prefer-dist
+  - composer require "orchestra/testbench:${TESTBENCH_VERSION}" --no-update --prefer-dist
 
 install: travis_retry composer install --prefer-source --no-interaction
 
