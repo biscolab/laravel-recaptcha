@@ -4,7 +4,8 @@ php:
   - 7.3
   - 7.4
   - 8.0
-  - 8.1
+# PHP 8.1 isn't currently support by Travis CI
+#  - 8.1
 
 env:
   - ILLUMINATE_VERSION=^7.0 TESTBENCH_VERSION=5.*
