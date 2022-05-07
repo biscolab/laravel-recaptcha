@@ -32,6 +32,33 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
         parent::__construct($api_site_key, $api_secret_key, 'v3');
     }
 
+    public function getTokenParameterName(): string
+    {
+        return config(
+            'recaptcha.default_token_parameter_name',
+            'token'
+        );
+    }
+
+    public function getValidationUrl(): string
+    {
+        return url(config(
+            'recaptcha.default_validation_route',
+            'biscolab-recaptcha/validate'
+        ));
+    }
+
+    public function getValidationUrlWithToken(): string
+    {
+        return implode(
+            "?",
+            [
+                $this->getValidationUrl(),
+                $this->getTokenParameterName()
+            ]
+        );
+    }
+
     /**
      * Write script HTML tag in you HTML code
      * Insert before </head> tag
@@ -66,13 +93,7 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
             $js_callback_catch = ($js_callback_catch) ? "{$js_callback_catch}(err)" : '';
 
             $validate_function = "
-                fetch('/" . config(
-                'recaptcha.default_validation_route',
-                'biscolab-recaptcha/validate'
-            ) . "?" . config(
-                'recaptcha.default_token_parameter_name',
-                'token'
-            ) . "=' + token, {
+                fetch('" . $this->getValidationUrlWithToken() . "=' + token, {
                     headers: {
                         \"X-Requested-With\": \"XMLHttpRequest\",
                         \"X-CSRF-TOKEN\": csrfToken.content
