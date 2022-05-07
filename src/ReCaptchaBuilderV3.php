@@ -66,10 +66,10 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
             $js_callback_catch = ($js_callback_catch) ? "{$js_callback_catch}(err)" : '';
 
             $validate_function = "
-                fetch('/" . config(
+                fetch('" . url(config(
                 'recaptcha.default_validation_route',
                 'biscolab-recaptcha/validate'
-            ) . "?" . config(
+            )) . "?" . config(
                 'recaptcha.default_token_parameter_name',
                 'token'
             ) . "=' + token, {
