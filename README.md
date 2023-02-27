@@ -17,9 +17,9 @@ You can find further info at <a href="https://developers.google.com/recaptcha/in
 
 At this moment there are 3 versions available (for web applications):
 
-- **v3**, the latest (<a href="https://developers.google.com/recaptcha/docs/v3" target="_blank">reCAPTCHA v3</a>)
-- **v2 checkbox** or simply reCAPTCHA v2 (<a href="https://developers.google.com/recaptcha/docs/display" target="_blank">reCAPTCHA v2</a>)
-- **v2 invisible** (<a href="https://developers.google.com/recaptcha/docs/invisible" target="_blank">Invisible reCAPTCHA</a>)
+-   **v3**, the latest (<a href="https://developers.google.com/recaptcha/docs/v3" target="_blank">reCAPTCHA v3</a>)
+-   **v2 checkbox** or simply reCAPTCHA v2 (<a href="https://developers.google.com/recaptcha/docs/display" target="_blank">reCAPTCHA v2</a>)
+-   **v2 invisible** (<a href="https://developers.google.com/recaptcha/docs/invisible" target="_blank">Invisible reCAPTCHA</a>)
 
 ## Get your key first!
 
@@ -29,14 +29,15 @@ Follow the instructions and at the end of the process you will find **Site key**
 
 ## System requirements
 
-| Package version | reCaptcha version             | PHP version           | Laravel version         | 
-| --------------- | ----------------------------- | --------------------- | ----------------------- | 
-| 5.x             | v3, v2 Invisible, v2 Checkbox | 7.3 or greater        | 7, 8                    | 
-| 4.2.x to 4.4.x  | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6, 7, 8 | 
-| 4.1.x           | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6, 7    | 
-| 4.0.x           | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6       | 
-| 3.x             | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6 (\*)  | 
-| 2.x             | v2 Invisible, v2 Checkbox     | 5.5.9, 7.0 or greater | 5.0 or greater          | 
+| Package version | reCaptcha version             | PHP version           | Laravel version         |
+| --------------- | ----------------------------- | --------------------- | ----------------------- |
+| 6.x             | v3, v2 Invisible, v2 Checkbox | 8.0 or greater        | 9, 10                   |
+| 5.x             | v3, v2 Invisible, v2 Checkbox | 7.3 or greater        | 7, 8                    |
+| 4.2.x to 4.4.x  | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6, 7, 8 |
+| 4.1.x           | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6, 7    |
+| 4.0.x           | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6       |
+| 3.x             | v3, v2 Invisible, v2 Checkbox | 7.1 or greater        | 5.5 or greater, 6 (\*)  |
+| 2.x             | v2 Invisible, v2 Checkbox     | 5.5.9, 7.0 or greater | 5.0 or greater          |
 
 > (\*) Version 3.6.1 is Laravel 6 ready
 
@@ -66,7 +67,6 @@ You can use the facade for shorter code. Add `ReCaptcha` to your aliases:
 ];
 ```
 
-
 ## Publish package
 
 Create `config/recaptcha.php` configuration file using the following artisan command:
@@ -94,11 +94,11 @@ It will be the value of `skip_ip`
 > **The following environment variables have been removed!!!**
 > Now only sensitive informations as API keys are allowed as environment variables, that means you have to set configuration values in `config/recaptcha.php`
 
-- ~~RECAPTCHA_DEFAULT_VERSION~~
-- ~~RECAPTCHA_CURL_TIMEOUT~~
-- ~~RECAPTCHA_DEFAULT_VALIDATION_ROUTE~~
-- ~~RECAPTCHA_DEFAULT_TOKEN_PARAMETER_NAME~~
-- ~~RECAPTCHA_DEFAULT_LANGUAGE~~
+-   ~~RECAPTCHA_DEFAULT_VERSION~~
+-   ~~RECAPTCHA_CURL_TIMEOUT~~
+-   ~~RECAPTCHA_DEFAULT_VALIDATION_ROUTE~~
+-   ~~RECAPTCHA_DEFAULT_TOKEN_PARAMETER_NAME~~
+-   ~~RECAPTCHA_DEFAULT_LANGUAGE~~
 
 ### Complete configuration
 
@@ -217,8 +217,8 @@ You can also use `ReCaptcha::htmlScriptTagJsApi()`.
 
 `htmlScriptTagJsApi` function accepts `$configuration` argument. `$configuration` has different keys depending on which ReCAPTCHA you are using:
 
-- [Checkbox](#recaptcha-v2-checkbox)
-- [Invisible](#recaptcha-v2-invisible)
+-   [Checkbox](#recaptcha-v2-checkbox)
+-   [Invisible](#recaptcha-v2-invisible)
 
 ### ReCAPTCHA v2 Checkbox
 
@@ -226,7 +226,7 @@ You can also use `ReCaptcha::htmlScriptTagJsApi()`.
 
 `$configuration` argument can have following keys:
 
-- `lang` set reCAPTCHA language. This will override `default_language` in `config/recaptcha.php`. Here you ca find the complete list of availeble languages [https://developers.google.com/recaptcha/docs/language](https://developers.google.com/recaptcha/docs/language)
+-   `lang` set reCAPTCHA language. This will override `default_language` in `config/recaptcha.php`. Here you ca find the complete list of availeble languages [https://developers.google.com/recaptcha/docs/language](https://developers.google.com/recaptcha/docs/language)
 
 #### Form set-up
 
@@ -265,12 +265,12 @@ You can also use `ReCaptcha::htmlFormSnippet()` .
 
 `htmlFormSnippet` methos allows are only folowing attribute names:
 
-- theme
-- size
-- tabindex
-- callback
-- expired-callback
-- error-callback
+-   theme
+-   size
+-   tabindex
+-   callback
+-   expired-callback
+-   error-callback
 
 > Any different attribute name will be rejected
 
@@ -284,7 +284,7 @@ In `config/recaptcha.php` you can customize reCAPTCHA widget setting `tag_attrib
 
 `$configuration` argument can have following keys:
 
-- `form_id` set reCAPTCHA form ID. This will override `default_form_id` in `config/recaptcha.php`. This value will be returned by `getFormId()` function in order to set the form tag `id` property.
+-   `form_id` set reCAPTCHA form ID. This will override `default_form_id` in `config/recaptcha.php`. This value will be returned by `getFormId()` function in order to set the form tag `id` property.
 
 #### Form set-up
 
@@ -298,7 +298,7 @@ You can also use `ReCaptcha::htmlFormButton($button_label, $properties)` .
 
 ```html
 <form id="{{ getFormId() }}">
-  @csrf ... {!! htmlFormButton($button_label, $properties) !!}
+    @csrf ... {!! htmlFormButton($button_label, $properties) !!}
 </form>
 ```
 
@@ -314,8 +314,8 @@ You can also use `ReCaptcha::htmlFormButton($button_label, $properties)` .
 
 `htmlFormButton` function accepts 2 arguments:
 
-- `$button_label`: (string: optional) the button lable. For example: `Subscribe!`;
-- `$properties`: (array: optional) the HTML button properties. For example:
+-   `$button_label`: (string: optional) the button lable. For example: `Subscribe!`;
+-   `$properties`: (array: optional) the HTML button properties. For example:
 
 ```php
 // $properties =
@@ -348,7 +348,6 @@ if($validator->fails()) {
 }
 ```
 
-
 ## Embed in Blade
 
 Insert `htmlScriptTagJsApi($config)` helper before closing `</head>` tag.
@@ -357,32 +356,27 @@ Insert `htmlScriptTagJsApi($config)` helper before closing `</head>` tag.
 <!DOCTYPE html>
 <html>
     <head>
-        ...
-        {!! htmlScriptTagJsApi([
-            'action' => 'homepage',
-            'callback_then' => 'callbackThen',
-            'callback_catch' => 'callbackCatch'
-        ]) !!}
+        ... {!! htmlScriptTagJsApi([ 'action' => 'homepage', 'callback_then' =>
+        'callbackThen', 'callback_catch' => 'callbackCatch' ]) !!}
 
         <!-- OR! -->
-        
-        {!! htmlScriptTagJsApi([
-            'action' => 'homepage',
-            'custom_validation' => 'myCustomValidation'
-        ]) !!}
+
+        {!! htmlScriptTagJsApi([ 'action' => 'homepage', 'custom_validation' =>
+        'myCustomValidation' ]) !!}
     </head>
+</html>
 ```
-`$config` is required and is an associative array containing configuration parameters required for the JavaScript validation handling. 
+
+`$config` is required and is an associative array containing configuration parameters required for the JavaScript validation handling.
 
 The keys are:
 
-| Key               | Required  | Description                                                                                                                                                           | Default value |
-|-------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| `action` 	        | no        | is the `action` parameter required by reCAPTCHA v3 API (<a href="https://developers.google.com/recaptcha/docs/v3" target="_blank">further info</a>)  	                | `homepage`    |
-| `custom_validation`   | no    	| is the name of your custom callback javascript function who will override the built-in javascript validation system of this package                               | empty string  |
-| `callback_then`   | no    	| (overlooked if `custom_validation`is set) is the name of your custom callback javascript function called by the built-in javascript validation system of this package in case of response success   	| empty string  |
-| `callback_catch` 	| no 	    | (overlooked if `custom_validation`is set) is the name of your custom callback javascript function called by the built-in javascript validation system in this package in case of response fault 	    | empty string  |
-
+| Key                 | Required | Description                                                                                                                                                                                       | Default value |
+| ------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `action`            | no       | is the `action` parameter required by reCAPTCHA v3 API (<a href="https://developers.google.com/recaptcha/docs/v3" target="_blank">further info</a>)                                               | `homepage`    |
+| `custom_validation` | no       | is the name of your custom callback javascript function who will override the built-in javascript validation system of this package                                                               | empty string  |
+| `callback_then`     | no       | (overlooked if `custom_validation`is set) is the name of your custom callback javascript function called by the built-in javascript validation system of this package in case of response success | empty string  |
+| `callback_catch`    | no       | (overlooked if `custom_validation`is set) is the name of your custom callback javascript function called by the built-in javascript validation system in this package in case of response fault   | empty string  |
 
 ## Built-in javascript validation system
 
@@ -392,11 +386,10 @@ Same will happen with `callback_catch`. `callback_catch` will be called in event
 
 Please, go to <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">Using Fetch</a> for further information on `fetch` javascript function.
 
-> **Warning!!! Check browser compatibility** 
-`fetch` function has compatibility issues with some browser like IE. Please create a custom validation function and set `custom_validation` with its name. That function has to accept as argument the `token`received from Google reCAPTCHA API.
+> **Warning!!! Check browser compatibility**
+> `fetch` function has compatibility issues with some browser like IE. Please create a custom validation function and set `custom_validation` with its name. That function has to accept as argument the `token`received from Google reCAPTCHA API.
 >
-> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Browser_compatibility" target="_blank">Fetch browser compatibility</a> 
-
+> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Browser_compatibility" target="_blank">Fetch browser compatibility</a>
 
 ### Validation Laravel route
 
@@ -409,7 +402,7 @@ You can also change the validation end-point changing `default_validation_route`
 <head>
     ...
     <!-- IMPORTANT!!! remember CSRF token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 ```
 
@@ -417,33 +410,39 @@ You can also change the validation end-point changing `default_validation_route`
 
 The output will be a JSON containing following data:
 
-* **Default output without errors**
+-   **Default output without errors**
+
 ```json
 {
-    "action":"homepage",
-    "challenge_ts":"2019-01-29T00:42:08Z",
-    "hostname":"www.yourdomain.ext",
-    "score":0.9,
-    "success":true
+    "action": "homepage",
+    "challenge_ts": "2019-01-29T00:42:08Z",
+    "hostname": "www.yourdomain.ext",
+    "score": 0.9,
+    "success": true
 }
 ```
-* **Output when calling IP is included in "skip_ip" config whitelist**
+
+-   **Output when calling IP is included in "skip_ip" config whitelist**
+
 ```json
 {
-    "skip_by_ip":true,
-    "score":0.9,
-    "success":true
+    "skip_by_ip": true,
+    "score": 0.9,
+    "success": true
 }
 ```
+
 > If you embed code in your blade file using `htmlScriptTagJsApiV3` helper no validation call will be performed!
 >
 > More info at <a href="#complete-configuration">Configuration page</a>
-* **Output with an empty response from Google reCAPTCHA API**
+
+-   **Output with an empty response from Google reCAPTCHA API**
+
 ```json
 {
-    "error":"cURL response empty",
-    "score":0.1,
-    "success":false
+    "error": "cURL response empty",
+    "score": 0.1,
+    "success": false
 }
 ```
 
@@ -455,9 +454,9 @@ After built-in validation you should do something. How? Using `callback_then` an
 
 What you have to do is just create functions and set parameters with their names.
 
-* `callback_then` must receive one argument of type `Promise`.
+-   `callback_then` must receive one argument of type `Promise`.
 
-* `callback_catch` must receive one argument of type `string`
+-   `callback_catch` must receive one argument of type `string`
 
 The result should be something like that:
 
@@ -465,30 +464,26 @@ The result should be something like that:
 <head>
     ...
     <!-- IMPORTANT!!! remember CSRF token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     ...
     <script type="text/javascript">
-        function callbackThen(response){
-        	// read HTTP status
+        function callbackThen(response) {
+            // read HTTP status
             console.log(response.status);
-            
+
             // read Promise object
-            response.json().then(function(data){
+            response.json().then(function (data) {
                 console.log(data);
             });
         }
-        function callbackCatch(error){
-            console.error('Error:', error)
-        }   
-    </script>    
-    ...
-    {!! htmlScriptTagJsApiV3([
-        'action' => 'homepage',
-        'callback_then' => 'callbackThen',
-        'callback_catch' => 'callbackCatch'
-    ]) !!}    
+        function callbackCatch(error) {
+            console.error("Error:", error);
+        }
+    </script>
+    ... {!! htmlScriptTagJsApiV3([ 'action' => 'homepage', 'callback_then' =>
+    'callbackThen', 'callback_catch' => 'callbackCatch' ]) !!}
 </head>
-``` 
+```
 
 ### "custom_validation" function
 
@@ -499,18 +494,15 @@ The result should be something like that:
 ```html
 <head>
     ...
-    <!-- IMPORTANT!!! remember CSRF token --> 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- IMPORTANT!!! remember CSRF token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     ...
     <script type="text/javascript">
         function myCustomValidation(token) {
-            // do something with token 
+            // do something with token
         }
-    </script>    
-    ...
-    {!! htmlScriptTagJsApiV3([
-        'action' => 'homepage',
-        'custom_validation' => 'myCustomValidation'
-    ]) !!}    
+    </script>
+    ... {!! htmlScriptTagJsApiV3([ 'action' => 'homepage', 'custom_validation'
+    => 'myCustomValidation' ]) !!}
 </head>
-``` 
+```
