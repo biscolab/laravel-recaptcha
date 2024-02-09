@@ -325,7 +325,6 @@ class ReCaptchaBuilder
         $url = $this->api_url . '?' . $params;
 
         if (function_exists('curl_version')) {
-
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_HEADER, false);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

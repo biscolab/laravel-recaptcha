@@ -19,14 +19,14 @@ use Illuminate\Routing\Controller;
 class ReCaptchaController extends Controller
 {
 
-	/**
-	 * @return array
-	 */
-	public function validateV3(): array
-	{
+    /**
+     * @return array
+     */
+    public function validateV3(): array
+    {
 
-		$token = request()->input(config('recaptcha.default_token_parameter_name', 'token'), '');
+        $token = request()->input(config('recaptcha.default_token_parameter_name', 'token'), '');
 
-		return recaptcha()->validate($token);
-	}
+        return recaptcha()->validate($token);
+    }
 }

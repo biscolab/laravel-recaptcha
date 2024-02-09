@@ -45,7 +45,7 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
     /**
      * Write ReCAPTCHA HTML tag in your FORM
      * Insert before </form> tag
-     * 
+     *
      * @param null|array $attributes
      * @return string
      */
@@ -80,15 +80,27 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
         $tag_attributes = array_merge($tag_attributes, config('recaptcha.tag_attributes', []));
 
         if (Arr::get($tag_attributes, 'callback') === ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION) {
-            throw new InvalidConfigurationException('Property "callback" ("data-callback") must be different from "' . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
+            throw new InvalidConfigurationException(
+                'Property "callback" ("data-callback") must be different from "'
+                . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION
+                . '"'
+            );
         }
 
         if (Arr::get($tag_attributes, 'expired-callback') === ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION) {
-            throw new InvalidConfigurationException('Property "expired-callback" ("data-expired-callback") must be different from "' . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
+            throw new InvalidConfigurationException(
+                'Property "expired-callback" ("data-expired-callback") must be different from "'
+                . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION
+                . '"'
+            );
         }
 
         if (Arr::get($tag_attributes, 'error-callback') === ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION) {
-            throw new InvalidConfigurationException('Property "error-callback" ("data-error-callback") must be different from "' . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
+            throw new InvalidConfigurationException(
+                'Property "error-callback" ("data-error-callback") must be different from "'
+                . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION
+                . '"'
+            );
         }
 
         return $tag_attributes;
@@ -102,7 +114,9 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
 
         $attributes = $this->getTagAttributes();
 
-        return "<script>var biscolabOnloadCallback = function() {grecaptcha.render('recaptcha-element', " . json_encode($attributes) . ");};</script>";
+        return "<script>var biscolabOnloadCallback = function() {grecaptcha.render('recaptcha-element', "
+            . json_encode($attributes)
+            . ");};</script>";
     }
 
     /**
