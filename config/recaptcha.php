@@ -114,24 +114,6 @@ return [
 
     /**
      *
-     * Set `true` when the error message must be null
-     * @since v5.1.0
-     * Default false
-     *
-     */
-    'empty_message' => false,
-
-    /**
-     *
-     * Set either the error message or the errom message translation key
-     * @since v5.1.0
-     * Default 'validation.recaptcha'
-     *
-     */
-    'error_message_key' => 'validation.recaptcha',
-
-    /**
-     *
      * g-recaptcha tag attributes and grecaptcha.render parameters (v2 only)
      * @see   https://developers.google.com/recaptcha/docs/display#render_param
      * @since v4.0.0

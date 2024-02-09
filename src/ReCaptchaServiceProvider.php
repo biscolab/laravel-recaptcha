@@ -47,15 +47,9 @@ class ReCaptchaServiceProvider extends ServiceProvider
      */
     public function addValidationRule()
     {
-        $message = null;
-
-        if (!config('recaptcha.empty_message')) {
-            $message = trans(config('recaptcha.error_message_key'));
-        }
         Validator::extendImplicit(recaptchaRuleName(), function ($attribute, $value) {
-
             return app('recaptcha')->validate($value);
-        }, $message);
+        });
     }
 
     /**
