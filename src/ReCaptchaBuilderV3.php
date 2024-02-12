@@ -58,9 +58,9 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
             ]
         );
     }
-
+    
     /**
-     * Write script HTML tag in you HTML code
+     * Write script HTML tag in your HTML code
      * Insert before </head> tag
      *
      * @param array|null $configuration
@@ -70,17 +70,19 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
     public function htmlScriptTagJsApi(?array $configuration = []): string
     {
 
+        $nonce = $configuration['nonce'] ? implode('', ['nonce="', $configuration['nonce'], '"']) : '';
+
         if ($this->skip_by_ip) {
             return '';
         }
 
-        $html = "<script src=\"" . $this->api_js_url . "?render={$this->api_site_key}\"></script>";
+        $html = "<script {$nonce} src=\"" . $this->api_js_url . "?render={$this->api_site_key}\"></script>";
 
         $action = Arr::get($configuration, 'action', 'homepage');
 
         $js_custom_validation = Arr::get($configuration, 'custom_validation', '');
 
-        // Check if set custom_validation. That function will override default fetch validation function
+        // Check if set custom_validation. That function will override the default fetch validation function
         if ($js_custom_validation) {
 
             $validate_function = ($js_custom_validation) ? "{$js_custom_validation}(token);" : '';
@@ -107,7 +109,7 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
                 });";
         }
 
-        $html .= "<script>
+        $html .= "<script {$nonce}>
                     var csrfToken = document.head.querySelector('meta[name=\"csrf-token\"]');
                   grecaptcha.ready(function() {
                       grecaptcha.execute('{$this->api_site_key}', {action: '{$action}'}).then(function(token) {
