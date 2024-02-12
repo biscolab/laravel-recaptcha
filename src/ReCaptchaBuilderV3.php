@@ -70,7 +70,7 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
     public function htmlScriptTagJsApi(?array $configuration = []): string
     {
 
-        $nonce = $configuration['nonce'] ? implode('', ['nonce="', $configuration['nonce'], '"']) : '';
+        $nonce = isset($configuration['nonce']) ? implode('', ['nonce="', $configuration['nonce'], '"']) : '';
 
         if ($this->skip_by_ip) {
             return '';
