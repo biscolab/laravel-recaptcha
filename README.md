@@ -46,7 +46,7 @@ Follow the instructions and at the end of the process you will find **Site key**
 You can install the package via composer:
 
 ```sh
-$ composer require biscolab/laravel-recaptcha
+composer require biscolab/laravel-recaptcha
 ```
 
 Laravel 5.5 (or greater) uses package auto-discovery, so doesn't require you to manually add the Service Provider, but if you don't use auto-discovery `ReCaptchaServiceProvider` must be registered in `config/app.php`:
