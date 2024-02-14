@@ -277,7 +277,7 @@ You can also use `ReCaptcha::htmlFormSnippet()` .
 
 #### Customization
 
-In `config/recaptcha.php` you can customize reCAPTCHA widget setting `tag_attributes` array values. Take a look to `tag_attributes` section in [Complete configuration](configuration.md#complete-configuration)
+In `config/recaptcha.php` you can customize reCAPTCHA widget setting `tag_attributes` array values. Take a look to `tag_attributes` section in [Complete configuration](#complete-configuration)
 
 ### ReCAPTCHA v2 Invisible
 
