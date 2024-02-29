@@ -51,12 +51,15 @@ class ReCaptchaBuilderInvisible extends ReCaptchaBuilder
 
         $tag_properties = '';
 
-        $properties = array_merge([
+        $properties = array_merge(
+            [
             'data-callback' => 'biscolabLaravelReCaptcha',
-        ], $properties, 
-        [
+            ],
+            $properties,
+            [
             'data-sitekey'  => $this->api_site_key
-        ]);
+            ]
+        );
 
         if (empty($properties['class'])) {
             $properties['class'] = 'g-recaptcha';
@@ -128,4 +131,3 @@ class ReCaptchaBuilderInvisible extends ReCaptchaBuilder
         return $form_id;
     }
 }
-

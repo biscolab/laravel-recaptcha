@@ -82,10 +82,8 @@ class ReCaptchaBuilderV3 extends ReCaptchaBuilder
 
         // Check if set custom_validation. That function will override default fetch validation function
         if ($js_custom_validation) {
-
             $validate_function = ($js_custom_validation) ? "{$js_custom_validation}(token);" : '';
         } else {
-
             $js_then_callback = Arr::get($configuration, 'callback_then', '');
             $js_callback_catch = Arr::get($configuration, 'callback_catch', '');
 
