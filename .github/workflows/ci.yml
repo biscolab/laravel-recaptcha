@@ -1,5 +1,8 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  - push
+  - pull_request
 
 jobs:
   run:
@@ -8,8 +11,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        php: [ 7.3, 7.4, '8.0', 8.1 ]
-        laravel: [ 7, 8, 9 , 10]
+        php: [7.3, 7.4, '8.0', 8.1, '8.2']
+        laravel: [7, 8, 9, 10, '11']
         exclude:
           - php: 7.3
             laravel: 10
@@ -21,24 +24,32 @@ jobs:
             laravel: 9
           - php: 7.4
             laravel: 9
+          - laravel: '11'
+            php: 7.3
+          - laravel: '11'
+            php: 7.4
+          - laravel: '11'
+            php: '8.0'
+          - laravel: '11'
+            php: 8.1
 
     name: PHP ${{ matrix.php }} Test on ${{ matrix.os }} – Laravel ${{ matrix.laravel }}
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{matrix.php}}
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{matrix.php}}
 
-    - name: Install dependencies
-      uses: php-actions/composer@v5
-      with:
-        args: --prefer-source --no-interaction
+      - name: Install dependencies
+        uses: php-actions/composer@v5
+        with:
+          args: --prefer-source --no-interaction
 
-    - name: Run composer test script
-      uses: php-actions/composer@v5
-      with:
-        command: test
+      - name: Run composer test script
+        uses: php-actions/composer@v5
+        with:
+          command: test
