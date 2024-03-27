@@ -127,10 +127,6 @@ return [
     'explicit'                     => false, // true|false
     // @since v4.3.0
     'api_domain'                   => "www.google.com", // default value is "www.google.com"
-    // @since v5.1.0
-    'empty_message'                => false,
-    // @since v5.1.0
-    'error_message_key'            => 'validation.recaptcha',
     // @since v4.0.0
     'tag_attributes'               => [
         'theme'                    => 'light', // "light"|"dark"
@@ -155,8 +151,6 @@ return [
 | `default_form_id`                   | `string`                | the default form ID. Only for "invisible" reCAPTCHA                                                                                                                                                                                                              | `'biscolab-recaptcha-invisible-form'` |
 | `explicit`                          | `bool`                  | deferring the render can be achieved by specifying your onload callback function and adding parameters to the JavaScript resource. It has no effect with v3 and invisible (supported values: true&#124;false)                                                    | `false`                               |
 | `api_domain`                        | `string`                | customize API domain. Default value is `'www.google.com'`, but, if not accessible you ca set that value to `'www.recaptcha.net'`. More info about [Can I use reCAPTCHA globally?](https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally) | `'www.google.com'`                    |
-| `empty_message`                     | `bool`                  | set default error message to `null`                                                                                                                                                                                                                              | `false`                               |
-| `error_message_key`                 | `string`                | set default error message translation key                                                                                                                                                                                                                        | `'validation.recaptcha'`              |
 
 #### (array) tag_attributes
 
